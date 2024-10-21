@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users List</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> <!-- Include any CSS here if needed -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
 </head>
 <body>
     <div class="container">
@@ -32,13 +32,9 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->password }}</td>
-                        {{-- <td><button>Edit</button></td>
-                        <td><button>Delete</button></td> --}}
                         <td>
                             <button onclick="openEditModal({{ json_encode($user) }})">Edit</button>
                         </td>
-                        {{-- <td><button onclick="openDeleteModal({{ $user->userID }})">Delete</button></td> --}}
-                        {{-- <td><button onclick="deleteUser({{ $user->userID }})">Delete</button></td> --}}
                         <td>
                             <form action="{{ route('users.delete', $user->userID) }}" method="POST" style="display:inline;">
                                 @csrf
@@ -116,23 +112,23 @@
 
     <style>
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.4);
         }
         
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
+            margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
+            width: 80%;
         }
         
         .close {

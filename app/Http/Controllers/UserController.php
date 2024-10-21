@@ -57,7 +57,7 @@ class UserController extends Controller
         $users = User::where('name', 'like', '%' . $query . '%')
                     ->orWhere('email', 'like', '%' . $query . '%')
                     ->get();
-        return view('mains', compact('users'));
+        return view('testing.mains', compact('users'));
     }
 
 

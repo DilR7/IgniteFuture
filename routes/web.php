@@ -29,10 +29,12 @@ Route::delete('/module/{moduleID}', [ModuleController::class, 'delete'])->name('
 
 
 Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes.index');
-Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
 Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
 Route::get('/quizzes/{quizID}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
 Route::put('/quizzes/{quizID}', [QuizController::class, 'update'])->name('quizzes.update');
 Route::delete('/quizzes/{quizID}', [QuizController::class, 'delete'])->name('quizzes.delete');
+
+
+Route::get('/quizzes/{quizID}/questions', [QuizController::class, 'question'])->name('testing.questions');
 
 require __DIR__.'/auth.php';

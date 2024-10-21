@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
 {
     public function index()
     {
+        $users = User::all();
         $quizzes = Quiz::with('user')->get();
-        return view('quizzes.index', compact('quizzes'));
+        return view('testing.quizzes', compact('quizzes','users'));
     }
-
-    
-    public function create()
-    {
-        return view('quizzes.create'); 
-    }
-
     
     public function store(Request $request)
     {
@@ -30,14 +26,14 @@ class QuizController extends Controller
         ]);
 
         Quiz::create($request->all());
-        return redirect()->route('quizzes.index')->with('success', 'Quiz created successfully.');
+        return redirect()->back()->with('success', 'Quiz createc successfully!');
     }
 
     
     public function edit($quizID)
     {
-        $quiz = Quiz::findOrFail($quizID);
-        return view('quizzes.edit', compact('quiz'));
+        $quizzes = Quiz::findOrFail($quizID);
+        return response()->json($quizzes);
     }
 
  
@@ -52,7 +48,7 @@ class QuizController extends Controller
 
         $quiz = Quiz::findOrFail($quizID);
         $quiz->update($request->all());
-        return redirect()->route('quizzes.index')->with('success', 'Quiz updated successfully.');
+        return redirect()->back()->with('success', 'Quiz updated successfully!');
     }
 
    
@@ -60,6 +56,19 @@ class QuizController extends Controller
     {
         $quiz = Quiz::findOrFail($quizID);
         $quiz->delete();
-        return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
+        return redirect()->back()->with('success', 'Quiz deleted successfully!');
     }
+
+
+    public function question($quizID)
+    {
+        $quiz = Quiz::findOrFail($quizID);
+        $questions = Question::with('answers')->where('quizID', $quizID)->get();
+
+        return view('testing.questions', compact('quiz', 'questions'));
+    }
+
+
+
+
 }
