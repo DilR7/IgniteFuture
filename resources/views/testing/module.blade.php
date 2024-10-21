@@ -20,6 +20,7 @@
                     <th>Completion Status</th>
                     <th>Edit</th>
                     <th>Delete</th>
+                    <th>Learning</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +39,14 @@
                                 <button type="submit">Delete</button>
                             </form>
                         </td>  
+                        <td>
+                            <a href="{{ route('modules.contents', $module->moduleID) }}">
+                                <button>Contents</button>
+                            </a>
+                            <a href="{{ route('modules.books', $module->moduleID) }}">
+                                <button>Books</button>
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

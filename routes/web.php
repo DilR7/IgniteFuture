@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
@@ -36,5 +38,11 @@ Route::delete('/quizzes/{quizID}', [QuizController::class, 'delete'])->name('qui
 
 
 Route::get('/quizzes/{quizID}/questions', [QuizController::class, 'question'])->name('testing.questions');
+
+Route::get('/modules/{moduleID}/books', [BookController::class, 'index'])->name('modules.books');
+Route::get('/books/{bookID}', [BookController::class, 'show'])->name('books.show');
+
+Route::get('modules/{moduleID}/contents', [ContentController::class, 'index'])->name('modules.contents');
+Route::get('contents/{contentID}', [ContentController::class, 'show'])->name('contents.show');
 
 require __DIR__.'/auth.php';
