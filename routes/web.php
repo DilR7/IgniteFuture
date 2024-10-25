@@ -9,9 +9,22 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('testing.Halaman1');
+    return view('user.home');
 });
-
+ 
+//book
+Route::get('/book-preview', function(){
+    return view('user.bookpreview');
+});
+Route::get('/read-book', function() {
+    return view('user.readingpage');
+});
+Route::get('/exchange-book', function(){
+    return view('user.exchangebook');
+});
+Route::get('/courses', function(){
+    return view('user.course');
+});
 
 // user
 Route::get('/mains',[UserController::class,"index"]);
