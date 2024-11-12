@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Module;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\User;
@@ -11,9 +12,9 @@ class QuizController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        $quizzes = Quiz::with('user')->get();
-        return view('testing.quizzes', compact('quizzes','users'));
+        $module = Module::all();
+        $quizzes = Quiz::with('module')->get();
+        return view('testing.quizzes', compact('quizzes','module'));
     }
     
     public function store(Request $request)

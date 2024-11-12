@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Module;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,9 +12,10 @@ class ModuleController extends Controller
     public function index(){
         $users = User::all();
         $modules = Module::with('user')->get(); 
-        return view('testing.module',compact('users','modules'));
+        $category = Module::with('category')->get(); 
+        return view('testing.module',compact('users','modules','category'));
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -63,5 +65,12 @@ class ModuleController extends Controller
         $module->delete();
 
         return redirect()->back()->with('success', 'Module deleted successfully!');
+    }
+
+    // Category
+    public function category($categoryID)
+    {
+        $category = Category::where('categoryID', $categoryID)->get();
+        return view('category.books', compact('categoryID'));
     }
 }
