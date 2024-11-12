@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Module;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ModuleSeeder extends Seeder
 {
@@ -13,18 +15,22 @@ class ModuleSeeder extends Seeder
      */
     public function run(): void
     {
-        Module::create([
-            'module_name' => 'Introduction to Programming',
-            'module_desc' => 'A beginner module covering the basics of programming.',
-            'completion' => false,
-            'userID' => 1,
-        ]);
+        $categories = Category::all();
 
-        Module::create([
-            'module_name' => 'Advanced Laravel',
-            'module_desc' => 'An advanced module for Laravel framework.',
-            'completion' => true,
-            'userID' => 2, 
-        ]);
+        foreach($categories as $category)
+        {
+            for($i = 1; $i <= 5; $i++)
+            {
+                $name = fake()->sentence(10);
+                Module::create([
+                    'name' => $name,
+                    'desc' => fake()->paragraph(),
+                    'slug' => Str::slug($name),
+                    'completion' => false,
+                    'category_id' => $category->id,
+                    'user_id' => 1
+                ]);
+            }
+        }
     }
 }

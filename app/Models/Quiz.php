@@ -19,7 +19,7 @@ class Quiz extends Model
 
     public function module()
     {
-        return $this->belongsTo(User::class, 'userID', 'userID');
+        return $this->belongsTo(User::class);
     }
 
     public function questions()

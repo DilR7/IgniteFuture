@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('quizzes', function (Blueprint $table) {
-            $table->id('quizID');
+            $table->id();
             $table->string('title');
-            $table->text('quiz_desc');
+            $table->text('desc');
             $table->integer('score');
             $table->timestamps();
             $table->foreignId('moduleID')->constrained('modules', 'moduleID')->onDelete('cascade');

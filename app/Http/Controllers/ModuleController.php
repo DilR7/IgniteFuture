@@ -11,9 +11,9 @@ class ModuleController extends Controller
 {
     public function index(){
         $users = User::all();
-        $modules = Module::with('user')->get(); 
+        $modules = Module::inRandomOrder()->paginate(8);
         $category = Module::with('category')->get(); 
-        return view('testing.module',compact('users','modules','category'));
+        return view('user.module',compact('users','modules','category'));
     }
     
     public function store(Request $request)
@@ -22,7 +22,7 @@ class ModuleController extends Controller
             'module_name' => 'required|string|max:255',
             'module_desc' => 'required|string',
             'completion' => 'required|boolean',
-            'userID' => 'required|exists:users,userID', // Validate userID exists
+            'userID' => 'required|exists:users,userID', 
         ]);
 
         Module::create([
@@ -68,9 +68,9 @@ class ModuleController extends Controller
     }
 
     // Category
-    public function category($categoryID)
-    {
-        $category = Category::where('categoryID', $categoryID)->get();
-        return view('category.books', compact('categoryID'));
-    }
+    // public function category($categoryID)
+    // {
+    //     $category = Category::where('categoryID', $categoryID)->get();
+    //     return view('category.books', compact('categoryID'));
+    // }
 }
