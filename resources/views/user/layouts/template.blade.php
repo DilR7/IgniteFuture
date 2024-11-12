@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>IgniteFuture</title>
 </head>
 
 <body>
     <div class="flex ">
-        <div class="bg-cornflower-blue-500 w-full h-16 px-12 py-4">
-            <ul class="list-none flex gap-7 font-medium text-cornflower-blue-100">
-                <li><a>Home</a></li>
-                <li><a>Courses</a></li>
+        <div class="bg-dodger-blue-500 w-full h-16 px-12 py-4">
+            <ul class="list-none flex gap-7 font-medium text-dodger-blue-100">
+                <li><a href={{ route('home') }}>Home</a></li>
+                <li><a href={{ route('modules') }}>Module</a></li>
+                <li><a href={{ route('books') }}>Book</a></li>
                 <li><a>Quiz</a></li>
                 <li><a>Ranking</a></li>
             </ul>
@@ -23,7 +24,7 @@
 
     @yield('main-content')
 
-    <footer class="bg-cornflower-blue-500 pt-12 pb-3">
+    <footer class="bg-dodger-blue-500 pt-12 pb-3">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-6 gap-8 text-white">
                 <!-- Brand Section -->
@@ -95,7 +96,7 @@
             </div>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>

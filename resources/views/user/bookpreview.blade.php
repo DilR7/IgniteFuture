@@ -32,13 +32,13 @@
                         </div>
                     </div>
                     <div class="flex flex-col py-4 border-2 w-full gap-4">
-                        <button class="p-2 bg-cornflower-blue-500 text-white mx-4 rounded-md font-medium">READ NOW</button>
+                        <button class="p-2 bg-dodger-blue-500 text-white mx-4 rounded-md font-medium">READ NOW</button>
                         <button
-                            class="p-2 bg-cornflower-blue-200 text-cornflower-blue-600 mx-4 rounded-md font-medium">BOOKMARK</button>
+                            class="p-2 bg-dodger-blue-200 text-dodger-blue-600 mx-4 rounded-md font-medium">BOOKMARK</button>
                     </div>
                     <div class="flex flex-col py-4 border-x-2 w-full gap-2 items-start px-4">
                         <p class="font-medium">This book includes:</p>
-                        <div class="flex flex-col gap-2 text-cornflower-blue-500 text-xs">
+                        <div class="flex flex-col gap-2 text-dodger-blue-500 text-xs">
                             <div class="flex gap-2">
                                 <p>Limited access</p>
                             </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="flex flex-col py-4 border-2 w-full gap-2 items-start px-4">
                         <p class="font-medium">Share this book:</p>
-                        <div class="flex flex-col gap-2 text-cornflower-blue-500 text-xs font-medium">
+                        <div class="flex flex-col gap-2 text-dodger-blue-500 text-xs font-medium">
                             <button class="p-2 px-4 bg-gray-100">Copy Link</button>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                         to shape students into more creative, collaborative individuals with a deeper understanding of the
                         nation's cultural heritage.</p>
                 </div>
-                <div class="flex flex-col text-sm text-justify p-7 bg-cornflower-blue-200 w-full gap-3">
+                <div class="flex flex-col text-sm text-justify p-7 bg-dodger-blue-200 w-full gap-3">
                     <p class="font-semibold text-lg">What will you learn in this book</p>
                     <div class="grid grid-cols-2 gap-10 text-justify">
                         <div class="text-xs flex flex-col gap-6">
@@ -145,12 +145,12 @@
                             <p class="font-semibold text-4xl">4.9</p>
                             <div class="flex gap-1 w-full justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                    class="w-3 h-3 text-cornflower-blue-600">
+                                    class="w-3 h-3 text-dodger-blue-600">
                                     <path
                                         d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                 </svg>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                    class="w-3 h-3 text-cornflower-blue-600">
+                                    class="w-3 h-3 text-dodger-blue-600">
                                     <path
                                         d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                 </svg>
@@ -162,27 +162,27 @@
                             <div class="flex items-center gap-3 text-gray-600 text-xs">
                                 <div class="flex gap-1 items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
@@ -197,27 +197,27 @@
                             <div class="flex items-center gap-3 text-gray-600 text-xs">
                                 <div class="flex gap-1 items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
@@ -232,27 +232,27 @@
                             <div class="flex items-center gap-3 text-gray-600 text-xs">
                                 <div class="flex gap-1 items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
@@ -267,27 +267,27 @@
                             <div class="flex items-center gap-3 text-gray-600 text-xs">
                                 <div class="flex gap-1 items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
@@ -301,27 +301,27 @@
                             <div class="flex items-center gap-3 text-gray-600 text-xs">
                                 <div class="flex gap-1 items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 text-cornflower-blue-600">
+                                        class="w-3 h-3 text-dodger-blue-600">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                        class="w-3 h-3 stroke-cornflower-blue-600 text-white ">
+                                        class="w-3 h-3 stroke-dodger-blue-600 text-white ">
                                         <path
                                             d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                     </svg>
@@ -347,12 +347,12 @@
                             <p class="font-medium">Diddy</p>
                             <div class="flex gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                    class="w-3 h-3 text-cornflower-blue-600">
+                                    class="w-3 h-3 text-dodger-blue-600">
                                     <path
                                         d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                 </svg>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                    class="w-3 h-3 text-cornflower-blue-600">
+                                    class="w-3 h-3 text-dodger-blue-600">
                                     <path
                                         d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                 </svg>
@@ -372,12 +372,12 @@
                             <p class="font-medium">Diddy</p>
                             <div class="flex gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                    class="w-3 h-3 text-cornflower-blue-600">
+                                    class="w-3 h-3 text-dodger-blue-600">
                                     <path
                                         d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                 </svg>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                                    class="w-3 h-3 text-cornflower-blue-600">
+                                    class="w-3 h-3 text-dodger-blue-600">
                                     <path
                                         d="M12 .587l3.668 7.431L24 9.587l-6 5.848L19.336 24 12 20.091 4.664 24 6 15.435l-6-5.848 8.332-1.569L12 .587z" />
                                 </svg>

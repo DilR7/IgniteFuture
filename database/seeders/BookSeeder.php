@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Module;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class BookSeeder extends Seeder
 {
@@ -13,17 +15,18 @@ class BookSeeder extends Seeder
      */
     public function run(): void
     {
-        Book::create([
-            'book_name' => 'Sample Book',
-            'book_desc' => 'This is a sample book description.',
-            'book_content' => 'path/to/sample.pdf', // Adjust this path as necessary
-            'moduleID' => 1, // Replace with an actual module ID from your modules table
-        ]);
-        Book::create([
-            'book_name' => 'Laporan Keuangan BBRI',
-            'book_desc' => 'This annual report for BBRI 2024 Performance.',
-            'book_content' => 'pdfs/bbri.pdf', // Adjust this path as necessary
-            'moduleID' => 1, // Replace with an actual module ID from your modules table
-        ]);
+        $modules = Module::all();
+
+        for ($i = 0; $i < $modules->count() * 5; $i++) {
+            $name = fake()->sentence(4);
+            $slug = Str::slug($name);
+            Book::create([
+                'name' => $name,
+                'slug' => $slug,
+                'desc' => fake()->paragraph(),
+                'content' => 'pdfs/bbri.pdf',
+                'module_id' => $modules->random()->id
+            ]);
+        }
     }
 }
