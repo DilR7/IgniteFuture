@@ -21,10 +21,6 @@ class Module extends Model
         return $this->belongsTo(Module::class);
     }
 
-    public function Category() : BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     public function category()
     {

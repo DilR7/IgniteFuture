@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <title>IgniteFuture</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
 <body>

@@ -9,12 +9,17 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('user.videopreview');
+Route::get('/quiz', function () {
+    return view('user.quizstart');
+});
+Route::get('/quizz', function () {
+    return view('user.quizquestion');
+});
 
-// Route::controller(HomeController::class)->group(function(){
-//     Route::get('/','index')->name('home');
-// });
+
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/','index')->name('home');
+});
 
 Route::controller(ModuleController::class)->group(function(){
     Route::get('/module','index')->name('modules');
