@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index($moduleID)
+    public function index()
     {
-        $books = Book::where('moduleID', $moduleID)->get();
-        return view('testing.books', compact('books', 'moduleID'));
+        $books = Book::All();
+        return view('user.book', compact('books'));
     }
 
     public function show($bookID)

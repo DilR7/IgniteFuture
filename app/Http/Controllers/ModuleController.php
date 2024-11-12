@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Module;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,7 +12,15 @@ class ModuleController extends Controller
     public function index(){
         $users = User::all();
         $modules = Module::inRandomOrder()->paginate(8);
-        return view('user.module',compact('users','modules'));
+        $categories = Category::all();
+        return view('user.module',compact('users','modules','categories'))->with('isAllCategory', true);;
+    }
+
+    public function moduleCategory($slug){
+        $category = Category::where('slug', $slug)->firstOrFail();
+        $modules = Module::Where('category_id', $category->id)->paginate(8);
+        $categories = Category::all();
+        return view('user.module', compact('categories', 'modules','category'))->with('isAllCategory', false);;
     }
 
     public function store(Request $request)

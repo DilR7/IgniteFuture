@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             UserSeeder::class,
             ModuleSeeder::class,
+            BookSeeder::class,
             // QuizSeeder::class,
             // QuestionSeeder::class,
             // AnswerSeeder::class,

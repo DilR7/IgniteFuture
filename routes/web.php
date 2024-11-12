@@ -16,8 +16,13 @@ Route::controller(HomeController::class)->group(function(){
 
 Route::controller(ModuleController::class)->group(function(){
     Route::get('/module','index')->name('modules');
+    Route::get('/module/{slug}', 'moduleCategory')->name('modulecategory');
 });
  
+Route::controller(BookController::class)->group(function(){
+    Route::get('/book','index')->name('books');
+    // Route::get('/module/{slug}', 'moduleCategory')->name('modulecategory');
+});
  
 //book
 Route::get('/book-preview', function(){
@@ -59,8 +64,8 @@ Route::delete('/quizzes/{quizID}', [QuizController::class, 'delete'])->name('qui
 
 Route::get('/quizzes/{quizID}/questions', [QuizController::class, 'question'])->name('testing.questions');
 
-Route::get('/modules/{moduleID}/books', [BookController::class, 'index'])->name('modules.books');
-Route::get('/books/{bookID}', [BookController::class, 'show'])->name('books.show');
+// Route::get('/modules/{moduleID}/books', [BookController::class, 'index'])->name('modules.books');
+// Route::get('/books/{bookID}', [BookController::class, 'show'])->name('books.show');
 
 Route::get('modules/{moduleID}/contents', [ContentController::class, 'index'])->name('modules.contents');
 Route::get('contents/{contentID}', [ContentController::class, 'show'])->name('contents.show');

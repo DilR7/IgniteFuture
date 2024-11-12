@@ -10,16 +10,6 @@
                 <p class="font-bold text-xl">IgniteFuture</p>
             </div>
 
-            <div class="relative">
-                <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md flex items-center">
-                    <span>Browse</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-            </div>
-
             <div class="flex-1 mx-4">
                 <div class="relative">
                     <input type="text"
@@ -141,7 +131,7 @@
                             <button
                                 class="rounded-lg bg-dodger-blue-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
-                                Read more
+                                Enroll Now
                             </button>
                         </div>
                     </div>
