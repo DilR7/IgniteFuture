@@ -12,6 +12,6 @@ class Answer extends Model
     protected $primaryKey = 'answerID';
     public function question()
     {
-        return $this->hasMany(Answer::class, 'questionID', 'questionID');
+        return $this->belongsTo(Answer::class, 'questionID', 'questionID');
     }
 }

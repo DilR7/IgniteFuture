@@ -17,13 +17,13 @@ class Quiz extends Model
         'userID', 
     ];
 
-    public function user()
+    public function module()
     {
         return $this->belongsTo(User::class, 'userID', 'userID');
     }
 
     public function questions()
     {
-        return $this->hasMany(Question::class, 'quizID', 'quizID');
+        return $this->hasMany(Module::class, 'questionID', 'questionID');
     }
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('module_desc');
             $table->boolean('completion')->default(0);
             $table->foreignId('userID')->constrained('users', 'userID')->onDelete('cascade');
+            $table->foreignId('categoryID')->constrained('categories','categoryID')->onDelete('cascade');
 
         });
     }

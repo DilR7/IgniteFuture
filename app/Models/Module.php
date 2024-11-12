@@ -22,4 +22,15 @@ class Module extends Model
         return $this->belongsTo(User::class, 'userID', 'userID');  
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'categoryID', 'categoryID');  
+    }
+
+
+    public function quiz()
+    {
+        return $this->hasMany(Quiz::class, 'quizID', 'quizID');
+    }
+
 }
