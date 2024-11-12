@@ -4,22 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Module extends Model
 {
     use HasFactory;
-
-    protected $table = 'modules';
-    protected $primaryKey = 'moduleID'; 
     protected $fillable = [
-        'module_name',
-        'module_desc',
+        'name',
+        'desc',
+        'slug',
         'completion',
-        'userID',
     ];
-    public function user()
+
+    public function User() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'userID', 'userID');  
+        return $this->belongsTo(Module::class);
+    }
+
+    public function Category() : BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
 }

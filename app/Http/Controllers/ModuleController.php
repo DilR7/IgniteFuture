@@ -10,8 +10,8 @@ class ModuleController extends Controller
 {
     public function index(){
         $users = User::all();
-        $modules = Module::with('user')->get(); 
-        return view('testing.module',compact('users','modules'));
+        $modules = Module::inRandomOrder()->paginate(8);
+        return view('user.module',compact('users','modules'));
     }
 
     public function store(Request $request)
@@ -20,7 +20,7 @@ class ModuleController extends Controller
             'module_name' => 'required|string|max:255',
             'module_desc' => 'required|string',
             'completion' => 'required|boolean',
-            'userID' => 'required|exists:users,userID', // Validate userID exists
+            'userID' => 'required|exists:users,userID', 
         ]);
 
         Module::create([

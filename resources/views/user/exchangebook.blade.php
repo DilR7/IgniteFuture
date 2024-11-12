@@ -8,7 +8,7 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <p class="font-semibold text-xl">200 Points</p>
-                    <button class="font-medium text-xs p-2 px-4 bg-cornflower-blue-500 rounded-lg text-white">REDEEM</button>
+                    <button class="font-medium text-xs p-2 px-4 bg-dodger-blue-500 rounded-lg text-white">REDEEM</button>
                 </div>
             </div>
 
@@ -18,8 +18,7 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <p class="font-semibold text-xl">200 Points</p>
-                    <button
-                        class="font-medium text-xs p-2 px-4 bg-cornflower-blue-500 rounded-lg text-white">REDEEM</button>
+                    <button class="font-medium text-xs p-2 px-4 bg-dodger-blue-500 rounded-lg text-white">REDEEM</button>
                 </div>
             </div>
             <div class="flex flex-col gap-3">
@@ -28,8 +27,7 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <p class="font-semibold text-xl">200 Points</p>
-                    <button
-                        class="font-medium text-xs p-2 px-4 bg-cornflower-blue-500 rounded-lg text-white">REDEEM</button>
+                    <button class="font-medium text-xs p-2 px-4 bg-dodger-blue-500 rounded-lg text-white">REDEEM</button>
                 </div>
             </div>
             <div class="flex flex-col gap-3">
@@ -38,8 +36,7 @@
                 </div>
                 <div class="flex justify-between items-center">
                     <p class="font-semibold text-xl">200 Points</p>
-                    <button
-                        class="font-medium text-xs p-2 px-4 bg-cornflower-blue-500 rounded-lg text-white">REDEEM</button>
+                    <button class="font-medium text-xs p-2 px-4 bg-dodger-blue-500 rounded-lg text-white">REDEEM</button>
                 </div>
             </div>
         </div>
