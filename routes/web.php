@@ -15,13 +15,13 @@ Route::controller(HomeController::class)->group(function(){
 });
 
 Route::controller(ModuleController::class)->group(function(){
-    Route::get('/module','index')->name('modules');
-    Route::get('/module/{slug}', 'moduleCategory')->name('modulecategory');
+    Route::get('/modules','index')->name('modules');
+    Route::get('/modules/{slug}', 'moduleCategory')->name('modulecategory');
 });
  
 Route::controller(BookController::class)->group(function(){
     Route::get('/book','index')->name('books');
-    // Route::get('/module/{slug}', 'moduleCategory')->name('modulecategory');
+    Route::get('/book/{slug}', 'readBook')->name('readbook');
 });
  
 Route::controller(QuizController::class)->group(function(){
@@ -52,6 +52,23 @@ Route::get('/exchange-book', function(){
 // });
 // Route::get('/question', function(){
 //     return view('user.uestion');
+// });
+Route::controller(ContentController::class)->group(function(){
+    Route::get('/modules/content/{slug}', 'index')->name('contents');
+});
+
+//book
+// Route::get('/book-preview', function(){
+//     return view('user.bookpreview');
+// });
+// Route::get('/read-book', function() {
+//     return view('user.readingpage');
+// });
+// Route::get('/exchange-book', function(){
+//     return view('user.exchangebook');
+// });
+// Route::get('/courses', function(){
+//     return view('user.course');
 // });
 
 // user

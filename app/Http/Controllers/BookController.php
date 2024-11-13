@@ -13,9 +13,9 @@ class BookController extends Controller
         return view('user.book', compact('books'));
     }
 
-    public function show($bookID)
+    public function readBook($slug)
     {
-        $book = Book::findOrFail($bookID);
-        return view('testing.book', compact('book'));
+        $book = Book::where("slug", $slug)->firstOrFail();
+        return view('user.readingpage', compact('book'));
     }
 }
