@@ -28,14 +28,14 @@
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All
                             Category</a>
                     </li>
-                
-                        @foreach ($categories as $category)
-                            <li>
-                                <a href="{{ route('modulecategory', ['slug' => $category->slug]) }}"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $category->name }}</a>
-                            </li>
-                        @endforeach
-                   
+
+                    @foreach ($categories as $category)
+                        <li>
+                            <a href="{{ route('modulecategory', ['slug' => $category->slug]) }}"
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $category->name }}</a>
+                        </li>
+                    @endforeach
+
                 </ul>
             </div>
 
@@ -69,7 +69,7 @@
     <div class="px-32 bg-gray-100 pt-5">
         <div class="grid grid-cols-4 text-black gap-4">
             @foreach ($modules as $module)
-                <a href="javascript:void(0)" class="h-full">
+                <a href="{{ route('contents', ['slug' => $module->slug]) }}" class="h-full">
                     <div
                         class=" cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                         <div class="relative m-2.5 overflow-hidden text-white rounded-md">
@@ -90,7 +90,7 @@
                             </p>
                         </div>
                         <div class="flex items-center justify-start p-4">
-                            <button
+                            <button onclick="window.location.href='{{ route('contents', ['slug' => $module->slug]) }}'"
                                 class="rounded-lg bg-dodger-blue-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 Enroll Now
