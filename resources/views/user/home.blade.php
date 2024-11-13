@@ -74,32 +74,7 @@
     </div>
     </div>
 
-    <div class="px-32 py-16 bg-dodger-blue-500">
-        <div class="grid grid-cols-10 text-black gap-4">
-            <div class="flex flex-col text-start gap-4 col-span-4 pr-4">
-                <p class="text-2xl font-medium text-white">Start Learning with 67.1k students around the world.</p>
-                <div class="text-white flex gap-4 text-sm">
-                    <button class="bg-cornflower-blue-700 p-2 px-3 rounded-md">Join The Family</button>
-                    <button class="bg-cornflower-blue-700 p-2 px-3 rounded-md">Browse All Courses</button>
-                </div>
-            </div>
-
-            <div class="flex flex-col text-start gap-2 col-span-2 justify-center">
-                <p class="text-white text-2xl font-semibold">6.3k </p>
-                <p class="text-gray-300 text-xs">Online Courses </p>
-            </div>
-
-            <div class="flex flex-col text-start gap-2 col-span-2 justify-center">
-                <p class="text-white text-2xl font-semibold">6.3k </p>
-                <p class="text-gray-300 text-xs">Online Courses </p>
-            </div>
-
-            <div class="flex flex-col text-start gap-2 col-span-2 justify-center">
-                <p class="text-white text-2xl font-semibold">6.3k </p>
-                <p class="text-gray-300 text-xs">Online Courses </p>
-            </div>
-        </div>
-    </div>
+    
 
 
     <div class="px-32 pb-16 bg-gray-100">
