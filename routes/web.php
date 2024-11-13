@@ -15,36 +15,40 @@ Route::controller(HomeController::class)->group(function(){
 });
 
 Route::controller(ModuleController::class)->group(function(){
-    Route::get('/module','index')->name('modules');
-    Route::get('/module/{slug}', 'moduleCategory')->name('modulecategory');
+    Route::get('/modules','index')->name('modules');
+    Route::get('/modules/{slug}', 'moduleCategory')->name('modulecategory');
 });
  
 Route::controller(BookController::class)->group(function(){
     Route::get('/book','index')->name('books');
-    // Route::get('/module/{slug}', 'moduleCategory')->name('modulecategory');
+    Route::get('/book/{slug}', 'readBook')->name('readbook');
 });
  
-//book
-Route::get('/book-preview', function(){
-    return view('user.bookpreview');
-});
-Route::get('/read-book', function() {
-    return view('user.readingpage');
-});
-Route::get('/exchange-book', function(){
-    return view('user.exchangebook');
-});
-Route::get('/courses', function(){
-    return view('user.course');
+Route::controller(ContentController::class)->group(function(){
+    Route::get('/modules/content/{slug}', 'index')->name('contents');
 });
 
+//book
+// Route::get('/book-preview', function(){
+//     return view('user.bookpreview');
+// });
+// Route::get('/read-book', function() {
+//     return view('user.readingpage');
+// });
+// Route::get('/exchange-book', function(){
+//     return view('user.exchangebook');
+// });
+// Route::get('/courses', function(){
+//     return view('user.course');
+// });
+
 // user
-Route::get('/mains',[UserController::class,"index"]);
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{userID}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{userID}', [UserController::class, 'update'])->name('users.update');
-Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
-Route::delete('/users/{userID}', [UserController::class, 'delete'])->name('users.delete');
+// Route::get('/mains',[UserController::class,"index"]);
+// Route::post('/users', [UserController::class, 'store'])->name('users.store');
+// Route::get('/users/{userID}/edit', [UserController::class, 'edit'])->name('users.edit');
+// Route::put('/users/{userID}', [UserController::class, 'update'])->name('users.update');
+// Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
+// Route::delete('/users/{userID}', [UserController::class, 'delete'])->name('users.delete');
 
 // module
 // Route::get('/module',[ModuleController::class,"index"]);
@@ -67,7 +71,7 @@ Route::get('/quizzes/{quizID}/questions', [QuizController::class, 'question'])->
 // Route::get('/modules/{moduleID}/books', [BookController::class, 'index'])->name('modules.books');
 // Route::get('/books/{bookID}', [BookController::class, 'show'])->name('books.show');
 
-Route::get('modules/{moduleID}/contents', [ContentController::class, 'index'])->name('modules.contents');
-Route::get('contents/{contentID}', [ContentController::class, 'show'])->name('contents.show');
+// Route::get('modules/{moduleID}/contents', [ContentController::class, 'index'])->name('modules.contents');
+// Route::get('contents/{contentID}', [ContentController::class, 'show'])->name('contents.show');
 
 require __DIR__.'/auth.php';

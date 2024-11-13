@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Module;
 use App\Models\Content;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ContentSeeder extends Seeder
 {
@@ -13,25 +15,18 @@ class ContentSeeder extends Seeder
      */
     public function run(): void
     {
-        Content::create([
-            'content_name' => 'Introduction to Video 1',
-            'content_desc' => 'Description for video 1.',
-            'content_video' => 'videos/ok.mp4', 
-            'moduleID' => 1, 
-        ]);
+        $modules = Module::all();
 
-        Content::create([
-            'content_name' => 'Introduction to Video 2',
-            'content_desc' => 'Description for video 2.',
-            'content_video' => 'videos/oke.mp4',
-            'moduleID' => 1,
-        ]);
-
-        Content::create([
-            'content_name' => 'Introduction to Video 3',
-            'content_desc' => 'Description for video 3.',
-            'content_video' => 'videos/okee.mp4',
-            'moduleID' => 1,
-        ]);
+        foreach($modules as $module)
+        {
+            $name1 = fake()->sentence(2);
+            Content::create([
+                'name' => $name1,
+                'desc' => 'Description for video 1.',
+                'slug' => Str::slug($name1),
+                'video' => 'videos/ok.mp4', 
+                'module_id' => $module->id, 
+            ]);
+        }
     }
 }
