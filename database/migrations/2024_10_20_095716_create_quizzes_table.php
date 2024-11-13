@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('desc');
             $table->integer('score');
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users' )->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('module_id')->constrained('modules' )->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -32,4 +32,8 @@ class Module extends Model
         return $this->hasMany(Book::class);
     }
 
+    public function quiz(){
+        return $this->hasMany(Quiz::class);
+    }
+
 }

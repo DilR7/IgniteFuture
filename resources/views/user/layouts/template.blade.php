@@ -16,7 +16,7 @@
                 <li><a href={{ route('home') }}>Home</a></li>
                 <li><a href={{ route('modules') }}>Module</a></li>
                 <li><a href={{ route('books') }}>Book</a></li>
-                <li><a>Quiz</a></li>
+                <li><a href={{ route('quiz') }} >Quiz</a></li>
                 <li><a>Ranking</a></li>
             </ul>
         </div>

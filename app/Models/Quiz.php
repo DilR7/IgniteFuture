@@ -8,18 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Quiz extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'quizID';
-
-    protected $fillable = [
-        'title',
-        'quiz_desc',
-        'score',
-        'userID', 
-    ];
-
-    public function user()
+    public function module()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Module::class);
     }
 
     public function questions()

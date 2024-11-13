@@ -13,7 +13,7 @@ class ModuleController extends Controller
         $users = User::all();
         $modules = Module::inRandomOrder()->paginate(8);
         $categories = Category::all();
-        return view('user.module',compact('users','modules','categories'))->with('isAllCategory', true);;
+        return view('user.module',compact('users','modules','categories'))->with('isAllCategory', true);
     }
 
     public function moduleCategory($slug){
