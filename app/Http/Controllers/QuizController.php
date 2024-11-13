@@ -19,19 +19,25 @@ class QuizController extends Controller
         return view('user.quiz',compact('modules','quiz','category'))->with('isAllQuiz', true);
     }
 
-    public function quizCategory($slug){
-        $category = Category::where('slug', $slug)->firstOrFail();
-        $modules = Module::Where('category_id', $category->id)->get();
-        $quiz = Quiz::Where('module_id', $modules->id)->paginate(8);
-        $categories = Category::all();
-        return view('user.quiz', compact('categories', 'modules','category','quiz'))->with('isAllQuiz', false);;
+    // public function quizCategory($id){
+    //     $module = Module::findOrFail($id); // Find by id instead of slug
+    //     $quizzes = Quiz::where('module_id', $module->id)->paginate(8);
+    //     $modules = Module::all();
+    //     return view('user.start', compact('modules', 'quizzes'))->with('isAllQuiz', false);
+    // }
+
+    // public function quizCategory($id){
+    //     $quiz = Quiz::findOrFail($id); // Fetch the quiz by id
+    //     $modules = Module::all();
+    //     return view('user.quizstart', compact('modules', 'quiz'))->with('isAllQuiz', false);
+    // }
+
+    public function quizCategory($id){
+        $quizzes = Quiz::findOrFail($id);
+        $modules = Module::all();
+        return view('user.start', compact('modules', 'quizzes'))->with('isAllQuiz', false);
     }
 
-
-    // public function index()
-    // {
-    //     return view('user.quiz'); // Or the view you want to display
-    // }
 
     public function start()
     {

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc');
+            $table->string('slug')->unique();
             $table->integer('score');
             $table->timestamps();
             $table->foreignId('module_id')->constrained('modules' )->onDelete('cascade')->onUpdate('cascade');

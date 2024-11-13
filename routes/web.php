@@ -26,9 +26,9 @@ Route::controller(BookController::class)->group(function(){
  
 Route::controller(QuizController::class)->group(function(){
     Route::get('/quiz','index')->name('quiz');
-    Route::get('/start','start')->name('quizstart');
+    // Route::get('/start/{slug}','quizCategory')->name('quizstart');
+    Route::get('/start/{id}', 'quizCategory')->name('quizstart');
     Route::get('/question','quizquestion')->name('question');
-    // Route::get('/module/{slug}', 'moduleCategory')->name('modulecategory');
 });
 
 // Route::get('/quiz', [QuizController::class, 'index'])->name('quiz');

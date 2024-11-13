@@ -60,19 +60,19 @@
                             </button>
                         </div>
                         <div class="flex flex-col items-start gap-y-4">
-                            <div>28/07/2021</div>
-                            <div>15 Mins</div>
+                            <div>{{$quizzes->created_at}}</div>
+                            <div>10 Mins</div>
                             <div>Twice</div>
-                            <div>80 Points</div>
+                            <div>100 Points</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex flex-col w-full py-4 px-4 border-x-2 text-xs gap-2">
-                    <div class="flex text-start font-medium">One of the most efficient ways to protect against cyber attacks and all types of data breaches is to train your employees on cyber attack prevention and</div>
+                    <div class="flex text-start font-medium">{{$quizzes->title}}</div>
                     <br>
-                    <div class="flex text-start font-medium">The quiz consists of questions. To be successful with the quizzes, it’s important to conversant with the topic by paying attention to the short video</div>
-                    <div class="flex text-start font-medium">To start, click the "Start" button. When finished, click the "Submit" button.</div>
+                    <div class="flex text-start font-medium">{{$quizzes->desc}}</div>
+                    <div class="flex text-start font-medium">" Coward already failed before he fail "  -  Eric</div>
                 </div>
             </div>
         </div>
