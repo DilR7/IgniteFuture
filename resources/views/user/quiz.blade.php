@@ -69,7 +69,7 @@
 
     <div class="px-32 bg-gray-100 pt-5">
         <div class="grid grid-cols-4 text-black gap-4">
-            @foreach ($modules as $modules)
+            @foreach ($quiz as $quizzes)
                 <a href="javascript:void(0)" class="h-full">
                     <div
                         class=" cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
@@ -81,14 +81,14 @@
                         <div class="p-4 flex-grow">
                             <div
                                 class="mb-4 rounded-md border-2 border-dodger-blue-300 bg-white py-0.5 px-2.5 text-xs text-dodger-blue-800 font-bold transition-all shadow-sm w-24 text-center">
-                                {{ $modules->Category->name }}
+                                {{ $quizzes->Module->Category->name }}
                             </div>
                             <div
                                 class="text-start mb-4 rounded-md bg-white py-0.5 text-xs text-dodger-blue-800 font-bold transition-all">
-                                {{ $modules->Quiz->title }}
+                                {{ $quizzes->title }}
                             </div>
                             <h6 class="mb-2 text-slate-800 text-md font-semibold line-clamp-2">
-                                {{ $modules->Quiz->desc }}
+                                {{ $quizzes->desc }}
                             </h6>
                         </div>
                         <div class="flex items-center justify-start p-4">
