@@ -16,7 +16,7 @@
                 <li><a href={{ route('home') }}>Home</a></li>
                 <li><a href={{ route('modules') }}>Module</a></li>
                 <li><a href={{ route('books') }}>Book</a></li>
-                <li><a href={{ route('quiz') }} >Quiz</a></li>
+                <li><a href={{ route('quiz') }}>Quiz</a></li>
                 <li><a>Ranking</a></li>
             </ul>
         </div>
@@ -96,10 +96,10 @@
             </div>
         </div>
     </footer>
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-
+    
 </body>
 
 </html>

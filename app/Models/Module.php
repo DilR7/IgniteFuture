@@ -17,28 +17,33 @@ class Module extends Model
         'completion',
     ];
 
-    public function User() : BelongsTo
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function Category() : BelongsTo
+    public function category() : BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function Book() : HasMany
+    public function books() : HasMany
     {
         return $this->hasMany(Book::class);
     }
 
-    public function quiz() : HasMany {
+    public function quizzes() : HasMany {
         return $this->hasMany(Quiz::class);
     }
 
-    public function Content() : HasMany
+    public function contents() : HasMany
     {
         return $this->hasMany(Content::class);
+    }
+
+    public function enrollments() : HasMany
+    {
+        return $this->hasMany(Enrollment::class);
     }
 
 }

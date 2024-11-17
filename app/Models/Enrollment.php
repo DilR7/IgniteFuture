@@ -6,18 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Category extends Model
+class Enrollment extends Model
 {
     use HasFactory;
 
-    protected $fillable =
-    [
-        'name',
-        'slug',
-    ];
-
-    public function modules() : HasMany
+    public function user() : HasMany
     {
-        return $this->hasMany(Module::class);
+        return $this->HasMany(User::class);
     }
 }

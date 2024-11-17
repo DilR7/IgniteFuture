@@ -19,14 +19,17 @@ class ContentSeeder extends Seeder
 
         foreach($modules as $module)
         {
-            $name1 = fake()->sentence(2);
-            Content::create([
+            for($i = 1; $i <= 3; $i++)
+            {
+                $name1 = fake()->sentence(2);
+                Content::create([
                 'name' => $name1,
                 'desc' => 'Description for video 1.',
                 'slug' => Str::slug($name1),
                 'video' => 'videos/ok.mp4', 
                 'module_id' => $module->id, 
             ]);
+            }
         }
     }
 }

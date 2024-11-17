@@ -1,37 +1,53 @@
 <?php
 
+use App\Http\Middleware\Admin;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\ContentController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ModuleController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\ProfileController;
 
 
 Route::controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('home');
+    Route::get('/logout', 'logout')->name('logout');
 });
 
-Route::controller(ModuleController::class)->group(function(){
-    Route::get('/modules','index')->name('modules');
-    Route::get('/modules/{slug}', 'moduleCategory')->name('modulecategory');
-});
- 
-Route::controller(BookController::class)->group(function(){
-    Route::get('/book','index')->name('books');
-    Route::get('/book/{slug}', 'readBook')->name('readbook');
-});
- 
-Route::controller(QuizController::class)->group(function(){
-    Route::get('/quiz','index')->name('quiz');
-    // Route::get('/start/{slug}','quizCategory')->name('quizstart');
-    Route::get('/start/{id}', 'quizCategory')->name('quizstart');
-    Route::get('/question','quizquestion')->name('question');
+Route::middleware(['auth', 'role:user'])->group(function(){
+    Route::controller(ModuleController::class)->group(function(){
+        Route::get('/modules','index')->name('modules');
+        Route::get('/modules/{slug}', 'moduleCategory')->name('modulecategory');
+    });
+
+    Route::controller(ContentController::class)->group(function(){
+        Route::post('/modules/{slug}/content', 'index')->name('contents');
+        Route::get('/content/{slug}', 'otherContent')->name('othercontents');
+        Route::get('/modules/{module_id}/mycontent', 'myContent')->name('mycontents');
+    });
+
+    Route::controller(EnrollmentController::class)->group(function(){
+        Route::post('/enroll/{moduleId}', [EnrollmentController::class, 'enroll'])->name('enroll');
+    });
+     
+    Route::controller(BookController::class)->group(function(){
+        Route::get('/book','index')->name('books');
+        Route::get('/book/{slug}', 'readBook')->name('readbook');
+    });
+     
+    Route::controller(QuizController::class)->group(function(){
+        Route::get('/quiz','index')->name('quiz');
+        // Route::get('/start/{slug}','quizCategory')->name('quizstart');
+        Route::get('/start/{id}', 'quizCategory')->name('quizstart');
+        Route::get('/question','quizquestion')->name('question');
+    });
 });
 
-// Route::get('/quiz', [QuizController::class, 'index'])->name('quiz');
+
 
 
 //book
@@ -53,9 +69,7 @@ Route::get('/exchange-book', function(){
 // Route::get('/question', function(){
 //     return view('user.uestion');
 // });
-Route::controller(ContentController::class)->group(function(){
-    Route::get('/modules/content/{slug}', 'index')->name('contents');
-});
+
 
 //book
 // Route::get('/book-preview', function(){

@@ -18,7 +18,7 @@ class Book extends Model
         'slug',
     ];
 
-    public function Book() : BelongsTo
+    public function book() : BelongsTo
     {
         return $this->belongsTo(Module::class);
     }

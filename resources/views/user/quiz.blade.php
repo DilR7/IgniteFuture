@@ -12,7 +12,6 @@
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 type="button">
                 {{ $isAllQuiz ? 'All Quiz' : $category->name }}
-                {{-- {{ $category->name }} --}}
                 <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -29,14 +28,14 @@
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All
                             Category</a>
                     </li>
-                
-                        @foreach ($category  as  $category)
-                            <li>
-                                <a href=""
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $category->name }}</a>
-                            </li>
-                        @endforeach
-                   
+
+                    @foreach ($category as $category)
+                        <li>
+                            <a href=""
+                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $category->name }}</a>
+                        </li>
+                    @endforeach
+
                 </ul>
             </div>
 
@@ -58,10 +57,10 @@
 
             <div class="flex items-center space-x-4">
                 <a href="#"
-                    class="text-cornflower-blue-500 font-semibold rounded-lg px-4 py-2 bg-cornflower-blue-200 hover:bg-cornflower-blue-500">Create
+                    class="text-dodger-blue-500 font-semibold rounded-lg px-4 py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500">Create
                     Account</a>
-                <a href="#"
-                    class="bg-cornflower-blue-500 text-white px-4 py-2 rounded-lg hover:bg-cornflower-blue-700">Sign In</a>
+                <a href="#" class="bg-dodger-blue-500 text-white px-4 py-2 rounded-lg hover:bg-dodger-blue-700">Sign
+                    In</a>
             </div>
 
         </div>
@@ -92,8 +91,7 @@
                             </h6>
                         </div>
                         <div class="flex items-center justify-start p-4">
-                            <button
-                                onclick="window.location.href='{{ route('quizstart', ['id' => $quizzes->id]) }}'"
+                            <button onclick="window.location.href='{{ route('quizstart', ['id' => $quizzes->id]) }}'"
                                 class="rounded-lg bg-dodger-blue-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                 type="button">
                                 Start Quiz

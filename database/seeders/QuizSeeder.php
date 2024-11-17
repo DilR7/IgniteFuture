@@ -21,7 +21,7 @@ class QuizSeeder extends Seeder
         {
             for($i = 1; $i <= 5; $i++)
             {
-                $title = fake()->text(6);
+                $title = fake()->text(8) . ' ' . $module->id . $i;
                 Quiz::create([
                     'title' => $title,
                     'desc' => fake()->paragraph(),

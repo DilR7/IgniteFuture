@@ -26,11 +26,19 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <a href="#"
-                    class="text-cornflower-blue-500 font-semibold rounded-lg px-4 py-2 bg-cornflower-blue-200 hover:bg-cornflower-blue-500">Create
-                    Account</a>
-                <a href="#"
-                    class="bg-cornflower-blue-500 text-white px-4 py-2 rounded-lg hover:bg-cornflower-blue-700">Sign In</a>
+                @if (Auth::check())
+                    {{ $user->name }}
+                    <a href="{{ route('logout') }}"
+                        class="text-dodger-blue-500 font-medium rounded-lg px-4 py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Log
+                        Out</a>
+                @else
+                    <a href="{{ route('register') }}"
+                        class="text-dodger-blue-500 font-medium rounded-lg px-4 py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Create
+                        Account</a>
+                    <a href="{{ route('login') }}"
+                        class="bg-dodger-blue-500 font-medium text-white px-4 py-2 rounded-lg hover:bg-dodger-blue-900">Sign
+                        In</a>
+                @endif
             </div>
 
         </div>
@@ -38,13 +46,13 @@
     <div class="pl-32 h-auto flex bg-gray-100">
         <div class="grid grid-cols-2 text-black">
             <div class='flex flex-col gap-5 py-32 mr-20'>
-                <div class="text-5xl font-medium">Learn with Expert <span class="text-cornflower-blue-400">Anytime</span>
-                    <span class="text-cornflower-blue-500">Anywhere</span>
+                <div class="text-5xl font-medium">Learn with Expert <span class="text-dodger-blue-400">Anytime</span>
+                    <span class="text-dodger-blue-500">Anywhere</span>
                 </div>
                 <div class="text-base font-medium">Our mision is to help people to find the best course online and learn
                     with expert anytime, anywhere
                 </div>
-                <buton class="bg-cornflower-blue-500 w-24 p-2 text-center rounded-lg text-white font-medium text-sm">JOIN US
+                <buton class="bg-dodger-blue-500 w-24 p-2 text-center rounded-lg text-white font-medium text-sm">JOIN US
                 </buton>
             </div>
             <div class="flex justify-end">
@@ -60,7 +68,7 @@
                 <div class="flex flex-col text-center gap-4">
                     <a class="rounded-xl flex gap-2 hover:cursor-pointer {{ $category->bgColor }}" href="">
                         <div>
-                            <img src="{{ asset('build/assets/Physics.png') }}" alt="" class="h-20 p-4">
+                            <img src="{{ asset($category->img) }}" alt="" class="h-20 p-4">
                         </div>
                         <div class="flex flex-col items-start justify-center ">
                             <p class="font-medium">{{ $category->name }}</p>
@@ -74,7 +82,7 @@
     </div>
     </div>
 
-    
+
 
 
     <div class="px-32 pb-16 bg-gray-100">

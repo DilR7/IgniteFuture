@@ -18,7 +18,7 @@ class Content extends Model
         'video'
     ];
 
-    public function Module() : BelongsTo
+    public function module() : BelongsTo
     {
         return $this->belongsTo(Module::class);
     }

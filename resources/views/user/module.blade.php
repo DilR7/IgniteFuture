@@ -57,10 +57,10 @@
 
             <div class="flex items-center space-x-4">
                 <a href="#"
-                    class="text-cornflower-blue-500 font-semibold rounded-lg px-4 py-2 bg-cornflower-blue-200 hover:bg-cornflower-blue-500">Create
+                    class="text-dodger-blue-500 font-semibold rounded-lg px-4 py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500">Create
                     Account</a>
-                <a href="#"
-                    class="bg-cornflower-blue-500 text-white px-4 py-2 rounded-lg hover:bg-cornflower-blue-700">Sign In</a>
+                <a href="#" class="bg-dodger-blue-500 text-white px-4 py-2 rounded-lg hover:bg-dodger-blue-700">Sign
+                    In</a>
             </div>
 
         </div>
@@ -68,8 +68,10 @@
 
     <div class="px-32 bg-gray-100 pt-5">
         <div class="grid grid-cols-4 text-black gap-4">
+
+
             @foreach ($modules as $module)
-                <a href="{{ route('contents', ['slug' => $module->slug]) }}" class="h-full">
+                <form action="{{ route('contents', ['slug' => $module->slug]) }}" class="h-full" method="POST">
                     <div
                         class=" cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                         <div class="relative m-2.5 overflow-hidden text-white rounded-md">
@@ -79,7 +81,7 @@
                         </div>
                         <div class="p-4 flex-grow">
                             <div
-                                class="mb-4 rounded-md border-2 border-dodger-blue-300 bg-white py-0.5 px-2.5 text-xs text-dodger-blue-800 font-bold transition-all shadow-sm w-24 text-center">
+                                class="mb-4 rounded-md border-2 border-dodger-blue-300 bg-white py-0.5 px-2.5 text-xs text-dodger-blue-800 font-semibold transition-all shadow-sm w-24 text-center">
                                 {{ $module->Category->name }}
                             </div>
                             <h6 class="mb-2 text-slate-800 text-xl font-semibold line-clamp-2">
@@ -90,15 +92,17 @@
                             </p>
                         </div>
                         <div class="flex items-center justify-start p-4">
-                            <button onclick="window.location.href='{{ route('contents', ['slug' => $module->slug]) }}'"
-                                class="rounded-lg bg-dodger-blue-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                type="button">
-                                Enroll Now
-                            </button>
+                            <form action="{{ route('contents', ['slug' => $module->slug]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="rounded-lg bg-blue-700 py-2 px-4 text-white">
+                                    Enroll Now
+                                </button>
+                            </form>
                         </div>
                     </div>
-                </a>
+                </form>
             @endforeach
+
 
         </div>
         <div class='mt-5'>
