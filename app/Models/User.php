@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Enrollment::class);
     }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role; // Assuming 'role' is the column storing the user's role
+    }
 }

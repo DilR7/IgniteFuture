@@ -9,8 +9,20 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
+
+
+
+// Route::get('/', function () {
+//     if (Auth::check() && Auth::user()->hasRole('admin')) {
+//         return redirect('/admin/dashboard');
+//     }
+
+//     return app(HomeController::class)->index(); 
+// })->name('home');
 
 
 Route::controller(HomeController::class)->group(function(){
@@ -46,6 +58,12 @@ Route::middleware(['auth', 'role:user'])->group(function(){
         Route::get('/question','quizquestion')->name('question');
     });
 });
+
+
+Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
 
 
 
