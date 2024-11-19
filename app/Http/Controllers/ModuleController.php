@@ -23,6 +23,11 @@ class ModuleController extends Controller
         return view('user.module', compact('categories', 'modules','category'))->with('isAllCategory', false);;
     }
 
+    public function create(){
+        $categories = Category::all();
+        return view('create', compact('categories'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([

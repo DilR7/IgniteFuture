@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
@@ -9,10 +10,11 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrollmentController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ModuleAdminController;
+
 
 
 
@@ -47,7 +49,7 @@ Route::middleware(['auth', 'role:user'])->group(function(){
     });
      
     Route::controller(BookController::class)->group(function(){
-        Route::get('/book','index')->name('books');
+        // Route::get('/book','index')->name('books');
         Route::get('/book/{slug}', 'readBook')->name('readbook');
     });
      
@@ -65,10 +67,24 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
         Route::get('/dashboard', 'index')->name('dashboard');
         Route::get('/module','module')->name('modules');
     });
+
+    // Route::get('/create', function () {
+    //     return view('admin.create');
+    // })->name('admin.create');
+
+    Route::controller(ModuleAdminController::class)->group(function(){
+        Route::get('/createModule', 'create')->name('createmodule');
+    });
+    
+    // Route::get('/create',[ModuleController::class, 'create'])->name('create');
+    // Route::get('/',[ModuleController::class, 'store'])->name('store');
+
     Route::get('/book', function () {
         return view('admin.book');
     })->name('admin.book');
+    
 });
+
 
 
 
