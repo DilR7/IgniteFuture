@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('achievements', function (Blueprint $table) {
+        Schema::create('content_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->integer('required_score');
-            $table->string('image')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('content_id')->constrained('contents')->onDelete('cascade');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('achievements');
+        //
     }
 };

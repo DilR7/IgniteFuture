@@ -11,7 +11,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\QuestionController;
 
 Route::controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('home');
@@ -22,12 +22,14 @@ Route::middleware(['auth', 'role:user'])->group(function(){
     Route::controller(ModuleController::class)->group(function(){
         Route::get('/modules','index')->name('modules');
         Route::get('/modules/{slug}', 'moduleCategory')->name('modulecategory');
+        Route::get('/ranking', 'ranking')->name('ranking');
     });
 
     Route::controller(ContentController::class)->group(function(){
         Route::post('/modules/{slug}/content', 'index')->name('contents');
         Route::get('/content/{slug}', 'otherContent')->name('othercontents');
         Route::get('/modules/{module_id}/mycontent', 'myContent')->name('mycontents');
+        Route::post('/contents/{id}/mark-watched', 'markAsWatched')->name('contents.markWatched');
     });
 
     Route::controller(EnrollmentController::class)->group(function(){
@@ -41,9 +43,13 @@ Route::middleware(['auth', 'role:user'])->group(function(){
      
     Route::controller(QuizController::class)->group(function(){
         Route::get('/quiz','index')->name('quiz');
-        // Route::get('/start/{slug}','quizCategory')->name('quizstart');
-        Route::get('/start/{id}', 'quizCategory')->name('quizstart');
-        Route::get('/question','quizquestion')->name('question');
+        Route::get('/quizzes/{slug}','quizCategory')->name('quizcategory');
+        Route::get('/start/{id}', 'quizStart')->name('quizstart');
+    });
+
+    Route::controller(QuestionController::class)->group(function(){
+        Route::get('/question/{id}', 'index')->name('question');
+        Route::post('/submit-quiz', [QuestionController::class, 'submitQuiz'])->name('submit.quiz');
     });
 });
 

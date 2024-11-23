@@ -10,15 +10,21 @@
 </head>
 
 <body>
-    <div class="flex h-screen">
-        <div class="flex w-1/2 h-screen justify-center items-center flex-col ">
-            <div class="flex items-center justify-start w-full px-12">
-                <img src="{{ asset('build/assets/logo.png') }}" alt="Your Logo" class="h-10 w-10 mr-2">
-                <span class="text-base font-semibold text-gray-900">Ignite Future</span>
-            </div>
-            <div class="px-24 w-full py-[34px]">
+    <div class="flex flex-col lg:flex-row h-screen">
+        <div class="flex flex-col lg:w-1/2 h-screen justify-center items-center">
+            <div class="px-6 md:px-16 lg:px-24 w-full">
+                <div class="flex items-center justify-start w-full">
+                    <div class="flex flex-col items-center justify-center w-full pb-8">
+                        <img src="{{ asset('imgs/Logo.png') }}" alt="Your Logo" class="h-10 w-10 md:h-12 md:w-12">
+                        <p class="font-bold text-lg">
+                            Ignite<span class="text-dodger-blue-500">Future</span>
+                        </p>
+                    </div>
+                </div>
+
                 <div class="font-semibold w-full mb-4">
-                    <div class="text-xl">Welcome to Ignite Future</div>
+                    <p class="font-bold text-lg sm:text-xl">Welcome to Ignite<span
+                            class="text-dodger-blue-500">Future</span></p>
                     <div class="text-sm text-gray-400 font-medium">Register An Account</div>
                 </div>
                 <form method="POST" action="{{ route('register') }}" class="w-full">
@@ -72,7 +78,8 @@
                     </div>
 
                     <div class="flex flex-col items-center gap-1 mt-4">
-                        <button class="block w-full rounded-md border h-8 bg-black text-white">
+                        <button
+                            class="block w-full rounded-md border h-8 bg-dodger-blue-600 text-white hover:bg-dodger-blue-800">
                             {{ __('Register') }}
                         </button>
                         <a class=" text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
@@ -83,11 +90,14 @@
                 </form>
             </div>
         </div>
-        <div class="flex w-1/2 h-screen gap-4 pt-4">
-            <img src="{{ asset('build/assets/RBanner1.jpg') }}" alt="Bottom Right Image" class="h-4/6 w-48 rounded-2xl">
-            <img src="{{ asset('build/assets/RBanner2.jpg') }}" alt="Top Left Image" class="mt-20 h-4/6 w-48 rounded-2xl">
-            <img src="{{ asset('build/assets/RBanner3.jpg') }}" alt="Bottom Right Image" class="mt-40 h-4/6 w-48 rounded-2xl">
+        <div class="hidden lg:flex lg:w-1/2 h-screen gap-4 pt-4 overflow-hidden">
+            <img src="{{ asset('build/assets/RBanner1.jpg') }}" alt="Bottom Right Image" class="flex-1 h-4/6 w-48 rounded-2xl">
+            <img src="{{ asset('build/assets/RBanner2.jpg') }}" alt="Top Left Image"
+                class="flex-1 mt-20 h-4/6 w-48 rounded-2xl">
+            <img src="{{ asset('build/assets/RBanner3.jpg') }}" alt="Bottom Right Image"
+                class="flex-1 mt-40 h-4/6 w-48 rounded-2xl">
         </div>
     </div>
 </body>
+
 </html>
