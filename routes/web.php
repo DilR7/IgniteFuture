@@ -111,6 +111,11 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
         Route::get('/adminbook', 'viewBook')->name('adminbook');
         // create
         Route::get('/adminbook/create', 'BookCreate')->name('admin.adminbookcreate'); 
+        Route::get('/admincontent', 'viewContent')->name('admincontent');
+        Route::get('/module', 'viewModule')->name('adminmodule');
+        Route::get('/manageuser', 'viewUser')->name('manageuser');
+        Route::get('/adminquiz', 'viewQuiz')->name('adminquiz');
+        Route::get('/adminbook/bookcreate', 'BookCreate')->name('adminbook.create'); 
         Route::post('/adminbook', 'postBook')->name('adminbook.store');
         // delete
         Route::delete('/adminbook/{id}', [DashboardController::class, 'deleteBook'])->name('adminbook.delete');
