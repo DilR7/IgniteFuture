@@ -14,12 +14,12 @@ class DashboardController extends Controller
         return view('admin.dashboard');
     }
 
-    public function module(){
-        $users = User::all();
-        $modules = Module::inRandomOrder()->paginate(8);
-        $categories = Category::all();
-        return view('admin.module',compact('users','modules','categories'))->with('isAllCategory', true);
-    }
+    // public function module(){
+    //     $users = User::all();
+    //     $modules = Module::inRandomOrder()->paginate(8);
+    //     $categories = Category::all();
+    //     return view('admin.module',compact('users','modules','categories'))->with('isAllCategory', true);
+    // }
 }
 
 

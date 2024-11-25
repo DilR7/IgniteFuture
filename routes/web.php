@@ -62,20 +62,21 @@ Route::middleware(['auth', 'role:user'])->group(function(){
 
 Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::controller(DashboardController::class)->group(function(){
-        Route::get('/dashboard', 'index')->name('dashboard');
-        Route::get('/module','module')->name('modules');
+        Route::get('/dashboards', 'index')->name('dashboard');
+        // Route::get('/module', function () {
+        //     return view('admin.module');
+        // })->name('admin.module');
+        //Route::get('/module','module')->name('modules');
     });
-    Route::get('/book', function () {
-        return view('admin.book');
-    })->name('admin.book');
+    // Route::get('/book', function () {
+    //     return view('admin.book');
+    // })->name('admin.book');
 });
 
 
 
 
-    // Route::get('/module', function () {
-    //     return view('admin.module');
-    // })->name('admin.module');
+
 
 
 
