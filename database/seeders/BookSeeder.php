@@ -17,7 +17,7 @@ class BookSeeder extends Seeder
     {
         $modules = Module::all();
 
-        for ($i = 0; $i < $modules->count() * 5; $i++) {
+        for ($i = 0; $i < $modules->count(); $i++) {
             $name = fake()->sentence(4);
             $slug = Str::slug($name);
             Book::create([

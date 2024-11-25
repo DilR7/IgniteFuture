@@ -19,7 +19,7 @@ class QuizSeeder extends Seeder
 
         foreach($modules as $module)
         {
-            for($i = 1; $i <= 5; $i++)
+            for($i = 1; $i <= 2; $i++)
             {
                 $title = fake()->text(8) . ' ' . $module->id . $i;
                 Quiz::create([

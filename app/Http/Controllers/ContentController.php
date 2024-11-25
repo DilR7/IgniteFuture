@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use App\Models\Content;
+use App\Models\Category;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class ContentController extends Controller
@@ -42,7 +43,7 @@ class ContentController extends Controller
                         ->take(2)
                         ->get();
                         
-        return view('user.content', compact('module', 'contents','mainContent','listCourse','relatedModule'));
+        return view('user.content', compact('module', 'contents','mainContent','listCourse','relatedModule','user'));
     }
 
     public function otherContent($slug)
@@ -61,7 +62,7 @@ class ContentController extends Controller
         ->withCount('contents')
         ->take(2)
         ->get();
-        return view('user.content', compact('mainContent', 'module', 'contents','listCourse','relatedModule'));
+        return view('user.content', compact('mainContent', 'module', 'contents','listCourse','relatedModule','user'));
     }
     public function myContent($module_id)
     {
@@ -82,10 +83,35 @@ class ContentController extends Controller
                         ->take(2)
                         ->get();
 
-        return view('user.content', compact('mainContent', 'module', 'contents', 'listCourse','relatedModule'));
+        return view('user.content', compact('mainContent', 'module', 'contents', 'listCourse','relatedModule','user'));
     }
 
+    public function markAsWatched($id)
+{
+    $userId = Auth::id();
 
+    $existingRecord = DB::table('content_user')
+        ->where('user_id', $userId)
+        ->where('content_id', $id)
+        ->first();
+
+    if ($existingRecord) {
+        DB::table('content_user')
+            ->where('user_id', $userId)
+            ->where('content_id', $id)
+            ->update(['completed' => true, 'updated_at' => now()]);
+    } else {
+        DB::table('content_user')->insert([
+            'user_id' => $userId,
+            'content_id' => $id,
+            'completed' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+
+    return response()->json(['message' => 'Content marked as watched successfully!']);
+}
     public function show($contentID)
     {
         $content = Content::findOrFail($contentID);
