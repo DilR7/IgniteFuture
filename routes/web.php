@@ -109,22 +109,25 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
         })->name('admin.module');
 
         Route::get('/adminbook', 'viewBook')->name('adminbook');
-        Route::get('/adminbook/bookcreate', 'BookCreate')->name('adminbook.create'); 
+        // create
+        Route::get('/adminbook/create', 'BookCreate')->name('admin.adminbookcreate'); 
         Route::post('/adminbook', 'postBook')->name('adminbook.store');
+        // delete
+        Route::delete('/adminbook/{id}', [DashboardController::class, 'deleteBook'])->name('adminbook.delete');
     });
 });
 
 
 //book
-Route::get('/book-preview', function(){
-    return view('user.bookpreview');
-});
-Route::get('/read-book', function() {
-    return view('user.readingpage');
-});
-Route::get('/exchange-book', function(){
-    return view('user.exchangebook');
-});
+// Route::get('/book-preview', function(){
+//     return view('user.bookpreview');
+// });
+// Route::get('/read-book', function() {
+//     return view('user.readingpage');
+// });
+// Route::get('/exchange-book', function(){
+//     return view('user.exchangebook');
+// });
 
 
 require __DIR__.'/auth.php';
