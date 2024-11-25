@@ -109,6 +109,10 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
         })->name('admin.module');
 
         Route::get('/adminbook', 'viewBook')->name('adminbook');
+        Route::get('/admincontent', 'viewContent')->name('admincontent');
+        Route::get('/module', 'viewModule')->name('adminmodule');
+        Route::get('/manageuser', 'viewUser')->name('manageuser');
+        Route::get('/adminquiz', 'viewQuiz')->name('adminquiz');
         Route::get('/adminbook/bookcreate', 'BookCreate')->name('adminbook.create'); 
         Route::post('/adminbook', 'postBook')->name('adminbook.store');
     });
