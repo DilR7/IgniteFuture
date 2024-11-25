@@ -46,13 +46,20 @@
                              alt="investment-seed-round" />
                     </td>    
                     <td>
+
+                        <button type="submit" class="text-white bg-blue-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            Edit
+                        </button>
+
                         <form action="{{ route('adminbook.delete', $book->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-white bg-red-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                             +   Delete
+                             Delete
                             </button>
                         </form>
+
+                       
                     </td>                
                     {{-- <td class="px-2 py-2">
                         <button 
