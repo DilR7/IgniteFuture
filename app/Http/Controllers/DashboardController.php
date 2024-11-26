@@ -51,13 +51,13 @@ class DashboardController extends Controller
         return view('admin.manageuser', compact('users')); 
     }
 
-    // Book
     public function viewBook()
     {
         $adminbook = Book::all();  
         return view('admin.adminbook', compact('adminbook')); 
     }
 
+    // CreateBook
     public function BookCreate()
     {
         $modules = Module::all(); 
@@ -84,11 +84,106 @@ class DashboardController extends Controller
         return redirect()->route('adminbook')->with('success', 'Book created successfully!');
     }
 
+    // EditBook
+    public function editBook($id)
+    {
+        $book = Book::findOrFail($id);
+        $modules = Module::all(); // Assuming modules are still relevant for editing
+        return view('admin.adminbookedit', compact('book', 'modules'));
+    }
+
+    public function updateBook(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'content' => 'required|string',
+            'module_id' => 'required|exists:modules,id', 
+        ]);
+
+        $book = Book::findOrFail($id);
+        $book->update([
+            'name' => $request->name,
+            'slug' => strtolower(str_replace(' ', '_', $request->name)),
+            'desc' => $request->desc,
+            'content' => $request->content,
+            'module_id' => $request->module_id,
+        ]);
+
+        return redirect()->route('adminbook')->with('success', 'Book updated successfully!');
+    }
+
+    // Delete
     public function deleteBook($id)
     {
         $book = Book::findOrFail($id);
         $book->delete();
         return redirect()->route('adminbook')->with('success', 'Book deleted successfully!');
+    }
+
+    //CreateContent
+    public function ContentCreate()
+    {
+        $modules = Module::all(); // Fetch all modules
+        return view('admin.admincontentcreate', compact('modules'));
+    }
+
+    public function postContent(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'video' => 'required|string',
+            'module_id' => 'required|exists:modules,id',
+        ]);
+
+        Content::create([
+            'name' => $request->name,
+            'slug' => strtolower(str_replace(' ', '_', $request->name)),
+            'desc' => $request->desc,
+            'video' => $request->video,
+            'module_id' => $request->module_id,
+        ]);
+
+        return redirect()->route('admincontent')->with('success', 'Content created successfully!');
+    }
+
+    //EditContent
+    public function editContent($id)
+    {
+        $content = Content::findOrFail($id);
+        $modules = Module::all();
+        return view('admin.admincontentedit', compact('content', 'modules'));
+    }
+
+    public function updateContent(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'video' => 'required|string',
+            'module_id' => 'required|exists:modules,id',
+        ]);
+
+        $content = Content::findOrFail($id);
+        $content->update([
+            'name' => $request->name,
+            'slug' => strtolower(str_replace(' ', '_', $request->name)),
+            'desc' => $request->desc,
+            'video' => $request->video,
+            'module_id' => $request->module_id,
+        ]);
+
+        return redirect()->route('admincontent')->with('success', 'Content updated successfully!');
+    }
+
+    // Delete content
+    public function deleteContent($id)
+    {
+        $content = Content::findOrFail($id);
+        $content->delete();
+
+        return redirect()->route('admincontent')->with('success', 'Content deleted successfully!');
     }
 
 }

@@ -38,7 +38,7 @@
                     </th>
                        
                     <td class="px-6 py-4">
-                        {{ implode(' ', array_slice(explode(' ', $book->desc), 0, 8)) }} ...
+                        {{ implode(' ', array_slice(explode(' ', $book->desc), 0, 5)) }} ...
                     </td>
                     <td class="px-2 py-2">
                         <img class="w-20 h-20 object-cover"
@@ -47,9 +47,11 @@
                     </td>    
                     <td>
 
-                        <button type="submit" class="text-white bg-blue-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                        <a 
+                            href="{{ route('adminbook.edit', $book->id) }}" 
+                            class="text-white bg-blue-700 border border-gray-300 focus:outline-none hover:bg-blue-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                             Edit
-                        </button>
+                        </a>
 
                         <form action="{{ route('adminbook.delete', $book->id) }}" method="POST" style="display:inline;">
                             @csrf
@@ -58,19 +60,7 @@
                              Delete
                             </button>
                         </form>
-
-                       
                     </td>                
-                    {{-- <td class="px-2 py-2">
-                        <button 
-                        type="button" 
-                        class="text-white bg-red-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        onclick="deleteBook({{ $book->id }})">
-                        >
-                        Delete
-                        </button>
-                    </td>                  
-                    --}}
                 </tr>
             @endforeach
         </tbody>
@@ -92,7 +82,7 @@
             .then(response => {
                 if (response.ok) {
                     alert('Book deleted successfully!');
-                    location.reload(); // Reload the page to reflect changes
+                    location.reload(); 
                 } else {
                     alert('Failed to delete the book. Please try again.');
                 }

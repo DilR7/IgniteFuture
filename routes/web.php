@@ -108,17 +108,32 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
             return view('admin.module');
         })->name('admin.module');
 
+        // CRUD Book
         Route::get('/adminbook', 'viewBook')->name('adminbook');
         // create
         Route::get('/adminbook/create', 'BookCreate')->name('admin.adminbookcreate'); 
+        Route::post('/adminbook', 'postBook')->name('adminbook.store');
+        // delete
+        Route::delete('/adminbook/{id}', [DashboardController::class, 'deleteBook'])->name('adminbook.delete');
+        // Edit Book
+        Route::get('/adminbook/edit/{id}', [DashboardController::class, 'editBook'])->name('adminbook.edit');
+        Route::put('/adminbook/update/{id}', [DashboardController::class, 'updateBook'])->name('adminbook.update');
+
+         // CRUD Content
         Route::get('/admincontent', 'viewContent')->name('admincontent');
+        Route::get('/admincontent/create', 'ContentCreate')->name('admin.admincontentcreate'); 
+        Route::post('/admincontent', 'postContent')->name('admincontent.store');
+        Route::delete('/admincontent/{id}', [DashboardController::class, 'deleteContent'])->name('admincontent.delete');
+        Route::get('/admincontent/edit/{id}', [DashboardController::class, 'editContent'])->name('admincontent.edit');
+        Route::put('/admincontent/update/{id}', [DashboardController::class, 'updateContent'])->name('admincontent.update');
+
+
+
         Route::get('/module', 'viewModule')->name('adminmodule');
         Route::get('/manageuser', 'viewUser')->name('manageuser');
         Route::get('/adminquiz', 'viewQuiz')->name('adminquiz');
         Route::get('/adminbook/bookcreate', 'BookCreate')->name('adminbook.create'); 
-        Route::post('/adminbook', 'postBook')->name('adminbook.store');
-        // delete
-        Route::delete('/adminbook/{id}', [DashboardController::class, 'deleteBook'])->name('adminbook.delete');
+        
     });
 });
 

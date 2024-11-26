@@ -5,8 +5,14 @@
 @section('content')
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <div class="flex justify-end">
-        <a href="#" class="right-button text-black border-b border-black bg-white hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">+ Add Content</a>
+        <button 
+        type="button" 
+        class="right-button text-black border-b border-black bg-white hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+        onclick="window.location.href='{{ route('admin.admincontentcreate') }}'">
+        + Add Content
+        </button>
     </div>
+
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -16,9 +22,6 @@
                 <th scope="col" class="px-6 py-3">
                     Description
                 </th>
-                {{-- <th scope="col" class="px-6 py-3">
-                    video
-                </th> --}}
                 <th scope="col" class="px-6 py-3">
                     Module
                 </th>
@@ -38,24 +41,23 @@
                     <th class="px-6 py-4">
                         {{ implode(' ', array_slice(explode(' ', $c->desc), 0, 8)) }} ...
                     </th>
-                    {{-- <td class="px-2 py-2">
-                        <video class="w-40 h-40 object-cover" controls>
-                            <source src="{{ $c->video }}" type="videos/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </td> --}}
                     <th class="px-3 py-2">
                         {{ implode(' ', array_slice(explode(' ', $c->module->name), 0, 3)) }} ...
                     </th>
                     <td>
-                        <div class="flex space-x-2 mx-auto w-fit ml-auto">
-                            <a href="" class="right-button text-black border-b border-black bg-white hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">EDIT</a>
-                        <form action="" method="POST">
+                        <a 
+                            href="{{ route('admincontent.edit', $c->id) }}" 
+                            class="text-white bg-blue-700 border border-gray-300 focus:outline-none hover:bg-blue-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            Edit
+                        </a>
+
+                        <form action="{{ route('admincontent.delete', $c->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="right-button text-black border-b border-black bg-white hover:bg-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"> DELETE </button>
+                            <button type="submit" class="text-white bg-red-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            Delete
+                            </button>
                         </form>
-                        </div>
                     </td>                 
                 </tr>
             @endforeach
