@@ -33,6 +33,7 @@ class HomeController extends Controller
         $user = Auth::user();
         
         $modules = Module::inRandomOrder()->limit(6)->get();
+
         return view('user.home', compact('categories', 'modules', 'user'));
     }
 
