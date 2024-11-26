@@ -15,6 +15,8 @@ class Module extends Model
         'name',
         'desc',
         'slug',
+        'category_id',
+        'user_id',
         'completion',
     ];
 

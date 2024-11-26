@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 //         return redirect('/admin/dashboard');
 //     }
 
-//     return app(HomeController::class)->index(); 
+//     return app(HomeController::class)->index();
 // })->name('home');
 
 use App\Http\Controllers\QuestionController;
@@ -48,12 +48,12 @@ Route::middleware(['auth', 'role:user'])->group(function(){
     Route::controller(EnrollmentController::class)->group(function(){
         Route::post('/enroll/{moduleId}', [EnrollmentController::class, 'enroll'])->name('enroll');
     });
-     
+
     Route::controller(BookController::class)->group(function(){
         Route::get('/book','index')->name('books');
         Route::get('/book/{slug}', 'readBook')->name('readbook');
     });
-     
+
     Route::controller(QuizController::class)->group(function(){
         Route::get('/quiz','index')->name('quiz');
         Route::get('/quizzes/{slug}','quizCategory')->name('quizcategory');
@@ -85,12 +85,12 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::controller(EnrollmentController::class)->group(function(){
         Route::post('/enroll/{moduleId}', [EnrollmentController::class, 'enroll'])->name('enroll');
     });
-     
+
     Route::controller(BookController::class)->group(function(){
         Route::get('/book','index')->name('books');
         Route::get('/book/{slug}', 'readBook')->name('readbook');
     });
-     
+
     Route::controller(QuizController::class)->group(function(){
         Route::get('/quiz','index')->name('quiz');
         Route::get('/quizzes/{slug}','quizCategory')->name('quizcategory');
@@ -110,10 +110,17 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
         Route::get('/adminbook', 'viewBook')->name('adminbook');
         Route::get('/admincontent', 'viewContent')->name('admincontent');
+
         Route::get('/module', 'viewModule')->name('adminmodule');
+        Route::get('/module/add', 'addModuleForm')->name('addModuleForm');
+        Route::post('/module/store', 'storeModule')->name('storeModule');
+        Route::get('/module/edit/{id}', 'editModuleForm')->name('editModuleForm');
+        Route::post('/module/update/{id}', 'updateModule')->name('updateModule');
+        Route::post('/module/delete/{id}', 'deleteModule')->name('deleteModule');
+
         Route::get('/manageuser', 'viewUser')->name('manageuser');
         Route::get('/adminquiz', 'viewQuiz')->name('adminquiz');
-        Route::get('/adminbook/bookcreate', 'BookCreate')->name('adminbook.create'); 
+        Route::get('/adminbook/bookcreate', 'BookCreate')->name('adminbook.create');
         Route::post('/adminbook', 'postBook')->name('adminbook.store');
     });
 });
