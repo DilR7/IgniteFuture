@@ -51,13 +51,16 @@
                             Edit
                         </a>
 
-                        <form action="{{ route('admincontent.delete', $c->id) }}" method="POST" style="display:inline;">
+                        <form id="delete-form-{{ $c->id }}" action="{{ route('admincontent.delete', $c->id) }}" method="POST" style="display:none;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-white bg-red-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                            Delete
-                            </button>
                         </form>
+                        <button 
+                            type="button" 
+                            onclick="confirmDelete('{{ $c->id }}')"
+                            class="text-white bg-red-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            Delete
+                        </button>
                     </td>                 
                 </tr>
             @endforeach
@@ -65,3 +68,23 @@
     </table>
 </div>                  
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function confirmDelete(contentId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(`delete-form-${contentId}`).submit();
+            }
+        });
+    }
+</script>

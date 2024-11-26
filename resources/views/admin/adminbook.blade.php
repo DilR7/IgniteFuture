@@ -46,20 +46,22 @@
                              alt="investment-seed-round" />
                     </td>    
                     <td>
-
                         <a 
                             href="{{ route('adminbook.edit', $book->id) }}" 
                             class="text-white bg-blue-700 border border-gray-300 focus:outline-none hover:bg-blue-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                             Edit
                         </a>
 
-                        <form action="{{ route('adminbook.delete', $book->id) }}" method="POST" style="display:inline;">
+                        <form id="delete-form-{{ $book->id }}" action="{{ route('adminbook.delete', $book->id) }}" method="POST" style="display:none;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-white bg-red-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-                             Delete
-                            </button>
                         </form>
+                        <button 
+                            type="button" 
+                            onclick="confirmDelete('{{ $book->id }}')"
+                            class="text-white bg-red-700 border border-gray-300 focus:outline-none hover:bg-red-500 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                            Delete
+                        </button>
                     </td>                
                 </tr>
             @endforeach
@@ -68,29 +70,22 @@
 </div>                  
 @endsection
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    function deleteBook(bookId) {
-        if (confirm('Are you sure you want to delete this book?')) {
-            fetch(`/adminbook/${bookId}`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Book deleted successfully!');
-                    location.reload(); 
-                } else {
-                    alert('Failed to delete the book. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            });
-        }
+    function confirmDelete(bookId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Confirm'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(`delete-form-${bookId}`).submit();
+            }
+        });
     }
 </script>
