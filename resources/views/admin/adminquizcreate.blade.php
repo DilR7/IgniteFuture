@@ -47,8 +47,6 @@
     <div id="questions-container">
         <h3 class="text-lg font-medium mb-2">Questions</h3>
         <button type="button" class="bg-green-600 text-white px-3 py-2 rounded mb-4" onclick="addQuestion()">+ Add Question</button>
-
-        <!-- Questions will be added dynamically here -->
     </div>
 
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Add Quiz</button>

@@ -60,7 +60,7 @@
                             @enderror
 
                             <label for="is_correct_{{ $index }}_{{ $answerIndex }}">
-                                <input type="checkbox" name="questions[{{ $index }}][answers][{{ $answerIndex }}][is_correct]" id="is_correct_{{ $index }}_{{ $answerIndex }}" {{ old('questions.' . $index . '.answers.' . $answerIndex . '.is_correct', $answer->is_correct) ? 'checked' : '' }} class="form-checkbox h-5 w-5 text-blue-600">
+                                <input type="checkbox" name="questions[{{ $index }}][answers][{{ $answerIndex }}][is_correct]" value="1" id="is_correct_{{ $index }}_{{ $answerIndex }}" {{ old('questions.' . $index . '.answers.' . $answerIndex . '.is_correct', $answer->is_correct) ? 'checked' : '' }} class="form-checkbox h-5 w-5 text-blue-600">
                                 Correct Answer
                             </label>
                             @error("questions.{$index}.answers.{$answerIndex}.is_correct")
@@ -76,4 +76,5 @@
     <!-- Submit Button -->
     <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Update Quiz</button>
 </form>
+
 @endsection

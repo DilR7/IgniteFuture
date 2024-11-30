@@ -333,7 +333,7 @@ class DashboardController extends Controller
             foreach ($questionData['answers'] as $answerData) {
                 $question->answers()->create([
                     'text' => $answerData['text'],
-                    'is_correct' => $answerData['is_correct'],
+                    'is_correct' => $answerData['is_correct'] ? 1 : 0,
                 ]);
             }
         }
@@ -351,49 +351,39 @@ class DashboardController extends Controller
     }
 
     public function updateQuiz(Request $request, $id)
-{
-    // Find the quiz by ID or fail
-    $quiz = Quiz::findOrFail($id);
+    {
+        $quiz = Quiz::findOrFail($id);
 
-    // Validate input
-    $validated = $request->validate([
-        'title' => 'string|max:255',
-        'module_id' => 'exists:modules,id',
-        'questions' => 'array',
-        'questions.*.text' => 'string|max:255',
-        'questions.*.point' => 'integer|min:1',
-        'questions.*.answers' => 'array',
-        'questions.*.answers.*.text' => 'string|max:255',
-    ]);
-
-    // Update the quiz details
-    $quiz->update([
-        'title' => $request->title,
-        'module_id' => $request->module_id,
-    ]);
-
-    // Delete all existing questions (and answers)
-    $quiz->questions()->delete();
-
-    // Loop through the incoming questions
-    foreach ($request->questions as $questionData) {
-        // Create or update each question
-        $question = $quiz->questions()->create([
-            'text' => $questionData['text'],
-            'point' => $questionData['point'],
+        $validated = $request->validate([
+            'title' => 'string|max:255',
+            'module_id' => 'exists:modules,id',
+            'questions' => 'array',
+            'questions.*.text' => 'string|max:255',
+            'questions.*.point' => 'integer|min:1',
+            'questions.*.answers' => 'array',
+            'questions.*.answers.*.text' => 'string|max:255',
         ]);
 
-        // Loop through the answers for each question
-        foreach ($questionData['answers'] as $answerData) {
-            $question->answers()->create([
-                'text' => $answerData['text'],
-                'is_correct' => $answerData['is_correct'],
-            ]);
-        }
-    }
+        $quiz->update([
+            'title' => $request->title,
+            'module_id' => $request->module_id,
+        ]);
 
-    return redirect()->route('admin.adminquiz')->with('success', 'Quiz updated successfully.');
-}
+        foreach ($request->questions as $questionData) {
+            $question = $quiz->questions()->create([
+                'text' => $questionData['text'],
+                'point' => $questionData['point'],
+            ]);
+            foreach ($questionData['answers'] as $answerData) {
+                $question->answers()->create([
+                    'text' => $answerData['text'],
+                    'is_correct' => $answerData['is_correct'],
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.adminquiz')->with('success', 'Quiz updated successfully.');
+    }
 
     public function deleteQuiz($id)
     {
