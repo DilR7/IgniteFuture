@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+
+    //ViewDashboard
     public function index()
     {
         $categories = Category::latest()->take(3)->get();
@@ -24,13 +26,17 @@ class DashboardController extends Controller
         return view('admin.dashboard', compact('modules', 'admincontent','quiz','users','adminbook','categories'));
     }
 
-    public function viewContent()
-    {
-        $modules = Module::all();
-        $admincontent = Content::with('module')->get();
-        return view('admin.admincontent', compact('admincontent', 'modules'));
-    }
 
+
+
+
+
+
+
+
+
+
+    //ViewModule
     public function viewModule()
     {
         $categories = Category::all();
@@ -38,14 +44,14 @@ class DashboardController extends Controller
         return view('admin.module', compact('modules', 'categories'));
     }
 
-    // Show the page to add a new module
+    // ModuleAddpage
     public function addModuleForm()
     {
         $categories = Category::all();
         return view('admin.addmodule', compact('categories'));
     }
 
-    // Store a new module
+    // CreateModule
     public function storeModule(Request $request)
     {
         $validated = $request->validate([
@@ -62,7 +68,7 @@ class DashboardController extends Controller
         return redirect()->route('adminmodule')->with('success', 'Module added successfully!');
     }
 
-    // Show the page to edit an existing module
+    // EditPageModule
     public function editModuleForm($id)
     {
         $module = Module::findOrFail($id);
@@ -70,7 +76,7 @@ class DashboardController extends Controller
         return view('admin.editmodule', compact('module', 'categories'));
     }
 
-    // Update module
+    // UpdateModule
     public function updateModule(Request $request, $id)
     {
         $module = Module::findOrFail($id);
@@ -88,7 +94,7 @@ class DashboardController extends Controller
         return redirect()->route('adminmodule')->with('success', 'Module updated successfully!');
     }
 
-    // Delete a module
+    // DeleteModule
     public function deleteModule($id)
     {
         $module = Module::findOrFail($id);
@@ -97,89 +103,31 @@ class DashboardController extends Controller
         return redirect()->route('adminmodule')->with('success', 'Module deleted successfully!');
     }
 
-    public function viewQuiz()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ViewContent
+    public function viewContent()
     {
         $modules = Module::all();
-        $quiz = Quiz::with('module')->get();
-        return view('admin.adminquiz', compact('quiz', 'modules'));
+        $admincontent = Content::with('module')->get();
+        return view('admin.admincontent', compact('admincontent', 'modules'));
     }
-
-    public function viewUser()
-    {
-        $users = User::all()->where('role', 'user');
-        return view('admin.manageuser', compact('users'));
-    }
-
-    public function viewBook()
-    {
-        $adminbook = Book::all();
-        return view('admin.adminbook', compact('adminbook'));
-    }
-
-    // CreateBook
-    public function BookCreate()
-    {
-        $modules = Module::all(); 
-        return view('admin.adminbookcreate', compact('modules'));
-    }
-
-    public function postBook(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'desc' => 'required|string',
-            'content' => 'required|string',
-            'module_id' => 'required|exists:modules,id',
-        ]);
-
-        Book::insert([
-            'name' => $request->name,
-            'slug' => strtolower(str_replace(' ','_',$request->name)),
-            'desc' => $request->desc,
-            'content' =>  $request->content,
-            'module_id' => $request->module_id
-        ]);
-
-        return redirect()->route('adminbook')->with('success', 'Book created successfully!');
-    }
-
-    // EditBook
-    public function editBook($id)
-    {
-        $book = Book::findOrFail($id);
-        $modules = Module::all(); // Assuming modules are still relevant for editing
-        return view('admin.adminbookedit', compact('book', 'modules'));
-    }
-
-    public function updateBook(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'desc' => 'required|string',
-            'content' => 'required|string',
-            'module_id' => 'required|exists:modules,id', 
-        ]);
-
-        $book = Book::findOrFail($id);
-        $book->update([
-            'name' => $request->name,
-            'slug' => strtolower(str_replace(' ', '_', $request->name)),
-            'desc' => $request->desc,
-            'content' => $request->content,
-            'module_id' => $request->module_id,
-        ]);
-
-        return redirect()->route('adminbook')->with('success', 'Book updated successfully!');
-    }
-
-    // Delete
-    public function deleteBook($id)
-    {
-        $book = Book::findOrFail($id);
-        $book->delete();
-        return redirect()->route('adminbook')->with('success', 'Book deleted successfully!');
-    }
-
     //CreateContent
     public function ContentCreate()
     {
@@ -245,6 +193,237 @@ class DashboardController extends Controller
         return redirect()->route('admincontent')->with('success', 'Content deleted successfully!');
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+    // ViewBook
+    public function viewBook()
+    {
+        $adminbook = Book::all();
+        return view('admin.adminbook', compact('adminbook'));
+    }
+
+    // CreateBook
+    public function BookCreate()
+    {
+        $modules = Module::all(); 
+        return view('admin.adminbookcreate', compact('modules'));
+    }
+
+    public function postBook(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'content' => 'required|string',
+            'module_id' => 'required|exists:modules,id',
+        ]);
+
+        Book::insert([
+            'name' => $request->name,
+            'slug' => strtolower(str_replace(' ','_',$request->name)),
+            'desc' => $request->desc,
+            'content' =>  $request->content,
+            'module_id' => $request->module_id
+        ]);
+
+        return redirect()->route('adminbook')->with('success', 'Book created successfully!');
+    }
+
+    // EditBook
+    public function editBook($id)
+    {
+        $book = Book::findOrFail($id);
+        $modules = Module::all(); // Assuming modules are still relevant for editing
+        return view('admin.adminbookedit', compact('book', 'modules'));
+    }
+
+    public function updateBook(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'content' => 'required|string',
+            'module_id' => 'required|exists:modules,id', 
+        ]);
+
+        $book = Book::findOrFail($id);
+        $book->update([
+            'name' => $request->name,
+            'slug' => strtolower(str_replace(' ', '_', $request->name)),
+            'desc' => $request->desc,
+            'content' => $request->content,
+            'module_id' => $request->module_id,
+        ]);
+
+        return redirect()->route('adminbook')->with('success', 'Book updated successfully!');
+    }
+
+    // DeleteBook
+    public function deleteBook($id)
+    {
+        $book = Book::findOrFail($id);
+        $book->delete();
+        return redirect()->route('adminbook')->with('success', 'Book deleted successfully!');
+    }
+
+
+    
+
+ 
+    
+    // ViewQuiz
+    public function viewQuiz()
+    {
+        $modules = Module::all();
+        $quiz = Quiz::with('module')->get();
+        return view('admin.adminquiz', compact('quiz', 'modules'));
+    }
+
+    //CreateQuiz
+
+    public function QuizCreate()
+    {
+        $modules = Module::all();
+        return view('admin.adminquizcreate', compact('modules'));
+    }
+
+    public function postQuiz(Request $request)
+    {
+        $request->validate([
+            'title' => 'string|max:255',
+            'desc' => 'string',
+            'score' => 'integer',
+            'module_id' => 'exists:modules,id',
+            'questions' => 'array',
+            'questions.*.text' => 'string|max:255',
+            'questions.*.point' => 'integer',
+            'questions.*.answers' => 'array',
+            'questions.*.answers.*.text' => 'string|max:255',
+            'questions.*.answers.*.is_correct' => 'boolean',
+        ]);
+
+
+        $quiz = Quiz::insert([
+            'title' => $request->title,
+            'slug' => strtolower(str_replace(' ', '_', $request->title)),
+            'desc' => $request->desc,
+            'score' => 0,
+            'module_id' => $request->module_id,
+        ]);
+    
+        // Add questions and answers
+        foreach ($request->questions as $questionData) {
+            // Create a question
+            $question = $quiz->questions()->create([
+                'text' => $questionData['text'],
+                'point' => $questionData['point'],
+            ]);
+    
+            // Create answers
+            foreach ($questionData['answers'] as $answerData) {
+                $question->answers()->create([
+                    'text' => $answerData['text'],
+                    'is_correct' => $answerData['is_correct'],
+                ]);
+            }
+        }
+    
+        return redirect()->route('admin.adminquiz')->with('success', 'Quiz created successfully.');
+    }
+    
+
+    // Edit Quiz
+    public function editQuiz($id)
+    {
+        $quiz = Quiz::with('questions.answers')->findOrFail($id);
+        $modules = Module::all();
+        return view('admin.adminquizedit', compact('quiz', 'modules'));
+    }
+
+    public function updateQuiz(Request $request, $id)
+{
+    // Find the quiz by ID or fail
+    $quiz = Quiz::findOrFail($id);
+
+    // Validate input
+    $validated = $request->validate([
+        'title' => 'string|max:255',
+        'module_id' => 'exists:modules,id',
+        'questions' => 'array',
+        'questions.*.text' => 'string|max:255',
+        'questions.*.point' => 'integer|min:1',
+        'questions.*.answers' => 'array',
+        'questions.*.answers.*.text' => 'string|max:255',
+    ]);
+
+    // Update the quiz details
+    $quiz->update([
+        'title' => $request->title,
+        'module_id' => $request->module_id,
+    ]);
+
+    // Delete all existing questions (and answers)
+    $quiz->questions()->delete();
+
+    // Loop through the incoming questions
+    foreach ($request->questions as $questionData) {
+        // Create or update each question
+        $question = $quiz->questions()->create([
+            'text' => $questionData['text'],
+            'point' => $questionData['point'],
+        ]);
+
+        // Loop through the answers for each question
+        foreach ($questionData['answers'] as $answerData) {
+            $question->answers()->create([
+                'text' => $answerData['text'],
+                'is_correct' => $answerData['is_correct'],
+            ]);
+        }
+    }
+
+    return redirect()->route('admin.adminquiz')->with('success', 'Quiz updated successfully.');
+}
+
+    public function deleteQuiz($id)
+    {
+        $quiz = Quiz::findOrFail($id);
+        $quiz->delete();
+
+        return redirect()->route('adminquiz')->with('success', 'Quiz deleted successfully.');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //ViewUser
+    public function viewUser()
+    {
+        $users = User::all()->where('role', 'user');
+        return view('admin.manageuser', compact('users'));
+    }
+
+    
 }
 
 
