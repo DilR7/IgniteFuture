@@ -22,10 +22,8 @@
                     </div>
                 </div>
 
-                <div class="font-semibold w-full mb-4">
-                    <p class="font-bold text-lg sm:text-xl">Welcome to Ignite<span
-                            class="text-dodger-blue-500">Future</span></p>
-                    <div class="text-sm text-gray-400 font-medium">Register An Account</div>
+                <div class="font-semibold w-full mb-2">
+                    <div class="text-black font-bold text-lg sm:text-xl">Register An Account</div>
                 </div>
                 <form method="POST" action="{{ route('register') }}" class="w-full">
                     @csrf
@@ -91,10 +89,10 @@
             </div>
         </div>
         <div class="hidden lg:flex lg:w-1/2 h-screen gap-4 pt-4 overflow-hidden">
-            <img src="{{ asset('build/assets/RBanner1.jpg') }}" alt="Bottom Right Image" class="flex-1 h-4/6 w-48 rounded-2xl">
-            <img src="{{ asset('build/assets/RBanner2.jpg') }}" alt="Top Left Image"
+            <img src="{{ asset('imgs/RBanner1.jpg') }}" alt="Bottom Right Image" class="flex-1 h-4/6 w-48 rounded-2xl">
+            <img src="{{ asset('imgs/RBanner2.jpg') }}" alt="Top Left Image"
                 class="flex-1 mt-20 h-4/6 w-48 rounded-2xl">
-            <img src="{{ asset('build/assets/RBanner3.jpg') }}" alt="Bottom Right Image"
+            <img src="{{ asset('imgs/RBanner3.jpg') }}" alt="Bottom Right Image"
                 class="flex-1 mt-40 h-4/6 w-48 rounded-2xl">
         </div>
     </div>

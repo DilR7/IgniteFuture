@@ -44,7 +44,7 @@
     <div class="px-4 sm:px-8 lg:pl-32 h-auto flex flex-col lg:flex-row bg-gray-100">
         <div class="grid grid-cols-1 lg:grid-cols-2 text-black w-full">
             <div class="flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2">
-                <img src="{{ asset('build/assets/logo2.jpg') }}" alt="Logo"
+                <img src="{{ asset('imgs/logo2.jpg') }}" alt="Logo"
                     class="w-full sm:w-full lg:w-full max-w-xs lg:max-w-full">
             </div>
 
@@ -124,72 +124,26 @@
     </div>
 
     <div class="px-32 pb-16">
-        <div class="py-8 text-center font-semibold text-2xl">Top Student Of The month</div>
-        <div class="grid grid-cols-5 text-black gap-4">
-            <div class="flex flex-col text-center">
-                <div>
-                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
+        <div class="py-8 text-center font-semibold text-2xl">Top 3 Students Of The Month</div>
+        <div class="flex items-end justify-center gap-4 text-black">
+            @foreach ($top3 as $index => $student)
+                <div class="flex flex-col text-center">
+                    <!-- Set different heights for podium positions -->
+                    <div class="relative p-4 rounded-t-lg" style="height: {{ 200 - ($index * 30) }}px; background-color: {{ $index == 0 ? '#fcd34d' : '#e5e7eb' }};">
+                        <img src="{{ asset('path/to/student/images/' . $student->profile_image) }}" alt="{{ $student->name }}" class="h-24 w-24 mx-auto rounded-full">
+                        <div class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-200">
+                            {{ $index + 1 }}{{ $index == 0 ? 'st' : ($index == 1 ? 'nd' : 'rd') }}
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
+                        <p class="font-medium">{{ $student->name }}</p>
+                        <p class="text-xs text-gray-500 font-normal">{{ $student->school }}</p>
+                        <p class="font-semibold">{{ $student->points }} <span class="font-normal text-gray-500">Points</span></p>
+                    </div>
                 </div>
-                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
-                    <p class="font-medium">Eric</p>
-                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
-                </div>
-                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
-                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
-                </div>
-            </div>
-
-            <div class="flex flex-col text-center">
-                <div>
-                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
-                </div>
-                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
-                    <p class="font-medium">Eric</p>
-                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
-                </div>
-                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
-                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
-                </div>
-            </div>
-
-            <div class="flex flex-col text-center">
-                <div>
-                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
-                </div>
-                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
-                    <p class="font-medium">Eric</p>
-                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
-                </div>
-                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
-                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
-                </div>
-            </div>
-
-            <div class="flex flex-col text-center">
-                <div>
-                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
-                </div>
-                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
-                    <p class="font-medium">Eric</p>
-                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
-                </div>
-                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
-                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
-                </div>
-            </div>
-
-            <div class="flex flex-col text-center">
-                <div>
-                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
-                </div>
-                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
-                    <p class="font-medium">Eric</p>
-                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
-                </div>
-                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
-                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
+    
+    
 @endsection

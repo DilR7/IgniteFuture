@@ -6,10 +6,23 @@
     },
     "routes": [
         {
+            "src": "/imgs/(.*)",
+            "dest": "/public/imgs/$1"
+        },
+        {
+            "src": "/pdfs/(.*)",
+            "dest": "/public/pdfs/$1"
+        },
+        {
+            "src": "/videos/(.*)",
+            "dest": "/public/videos/$1"
+        },
+        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
     ],
+
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",

@@ -138,7 +138,7 @@
             @endforeach
         </div>
 
-        <div class="mt-4">
+        <div class="py-4 overflow-x-scroll">
             {{ $quizzes->links('pagination::tailwind') }}
         </div>
     </div>
