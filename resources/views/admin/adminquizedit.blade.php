@@ -55,6 +55,7 @@
                     @foreach ($question->answers as $answerIndex => $answer)
                         <div class="flex items-center space-x-4">
                             <input type="text" name="questions[{{ $index }}][answers][{{ $answerIndex }}][text]" value="{{ old('questions.' . $index . '.answers.' . $answerIndex . '.text', $answer->text) }}" class="w-full border-gray-300 rounded-md" required>
+                            {{-- <input type="hidden" name="questions[{{ $index }}][answers][{{ $answerIndex }}][is_correct]" value="0"> --}}
                             @error("questions.{$index}.answers.{$answerIndex}.text")
                                 <div class="text-red-500 text-sm">{{ $message }}</div>
                             @enderror

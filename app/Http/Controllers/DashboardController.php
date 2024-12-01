@@ -313,7 +313,7 @@ class DashboardController extends Controller
         ]);
 
 
-        $quiz = Quiz::insert([
+        $quiz = Quiz::create([
             'title' => $request->title,
             'slug' => strtolower(str_replace(' ', '_', $request->title)),
             'desc' => $request->desc,
@@ -338,7 +338,7 @@ class DashboardController extends Controller
             }
         }
     
-        return redirect()->route('admin.adminquiz')->with('success', 'Quiz created successfully.');
+        return redirect()->route('adminquiz')->with('success', 'Quiz created successfully.');
     }
     
 
