@@ -192,6 +192,39 @@
 
     @yield('main-content')
 
+    <footer class="bg-dodger-blue-500 py-6 px-4 sm:px-6 lg:px-12">
+        <div class="w-full mx-auto">
+            <!-- Footer Content -->
+            <div
+                class="flex flex-col items-center sm:flex-row sm:justify-between text-white text-sm space-y-4 sm:space-y-0">
+                <!-- Logo and Brand Name -->
+                <div class="flex flex-col items-center space-y-2 sm:space-y-0 sm:flex-row sm:space-x-3">
+                    <img src="{{ asset('imgs/LogoF.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
+                    <div class="text-center sm:text-left">
+                        <h2 class="font-bold text-lg">IgniteFuture</h2>
+                        <p class="text-gray-200 mt-1">
+                            Empowering your future, one step at a time.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Links Section -->
+                <div class="flex flex-wrap justify-center space-x-4 sm:space-x-6">
+                    <a href="#" class="hover:underline">About</a>
+                    <a href="#" class="hover:underline">Contact</a>
+                    <a href="#" class="hover:underline">Terms</a>
+                    <a href="#" class="hover:underline">Privacy</a>
+                </div>
+            </div>
+
+            <!-- Bottom Text -->
+            <div class="flex justify-center text-gray-300 text-xs mt-4 text-center">
+                © 2024 - IgniteFuture. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <script>

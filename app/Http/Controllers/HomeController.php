@@ -7,6 +7,7 @@ use App\Models\Module;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Point;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -34,7 +35,11 @@ class HomeController extends Controller
         
         $modules = Module::inRandomOrder()->limit(6)->get();
 
-        return view('user.home', compact('categories', 'modules', 'user'));
+        $top3 = Point::orderBy('score', 'desc')
+             ->take(3)                
+             ->get();       
+
+        return view('user.home', compact('categories', 'modules', 'user','top3'));
     }
 
     public function logout(){
