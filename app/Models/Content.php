@@ -18,10 +18,19 @@ class Content extends Model
         'video'
     ];
 
-    public function Module() : BelongsTo
+    public function module() : BelongsTo
     {
         return $this->belongsTo(Module::class);
     }
+
+    public function users()
+    {   
+        return $this->belongsToMany(User::class, 'content_user', 'content_id', 'user_id')
+                    ->withPivot('completed')
+                    ->withTimestamps();
+    }
+
+
 }
 
 

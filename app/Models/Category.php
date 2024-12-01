@@ -16,7 +16,7 @@ class Category extends Model
         'slug',
     ];
 
-    public function Module() : HasMany
+    public function modules() : HasMany
     {
         return $this->hasMany(Module::class);
     }

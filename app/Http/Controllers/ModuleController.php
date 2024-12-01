@@ -2,25 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Module;
 use App\Models\User;
+use App\Models\Point;
+use App\Models\Module;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleController extends Controller
 {
     public function index(){
-        $users = User::all();
-        $modules = Module::inRandomOrder()->paginate(8);
+        $user = Auth::user();
+   
+        $modules = Module::whereDoesntHave('users', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->inRandomOrder()->paginate(8);
         $categories = Category::all();
-        return view('user.module',compact('users','modules','categories'))->with('isAllCategory', true);;
+        return view('user.module',compact('modules','categories','user'))->with('isAllCategory', true);
     }
 
     public function moduleCategory($slug){
+        $user = Auth::user();
         $category = Category::where('slug', $slug)->firstOrFail();
-        $modules = Module::Where('category_id', $category->id)->paginate(8);
+        $modules = Module::where('category_id', $category->id)
+        ->whereDoesntHave('users', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })
+        ->paginate(8);
         $categories = Category::all();
-        return view('user.module', compact('categories', 'modules','category'))->with('isAllCategory', false);;
+        return view('user.module', compact('categories', 'modules','category','user'))->with('isAllCategory', false);;
+    }
+
+    public function ranking()
+    {
+        $user = Auth::user();
+        $points = Point::with('user')->orderBy('score', 'desc')->limit(10)->get();
+        return view('user.ranking', compact('points','user'));
     }
 
     public function store(Request $request)

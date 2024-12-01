@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Module extends Model
@@ -14,27 +15,37 @@ class Module extends Model
         'name',
         'desc',
         'slug',
+        'category_id',
+        'user_id',
         'completion',
     ];
 
-    public function User() : BelongsTo
+    public function users() : BelongsToMany
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'enrollments');
     }
 
-    public function Category() : BelongsTo
+    public function category() : BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function Book() : HasMany
+    public function books() : HasMany
     {
         return $this->hasMany(Book::class);
     }
 
-    public function Content() : HasMany
+    public function quizzes() : HasMany {
+        return $this->hasMany(Quiz::class);
+    }
+
+    public function contents() : HasMany
     {
         return $this->hasMany(Content::class);
     }
 
+    public function enrollments() : HasMany
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }

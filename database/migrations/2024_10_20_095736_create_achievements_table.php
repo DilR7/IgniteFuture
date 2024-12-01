@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('achievements', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('price', 8, 2);
+            $table->text('description')->nullable();
+            $table->integer('required_score');
+            $table->string('image')->nullable();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

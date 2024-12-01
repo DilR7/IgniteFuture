@@ -15,9 +15,10 @@ class DatabaseSeeder extends Seeder
             ModuleSeeder::class,
             ContentSeeder::class,
             BookSeeder::class,
-            // QuizSeeder::class,
-            // QuestionSeeder::class,
-            // AnswerSeeder::class,
+            QuizSeeder::class,
+            QuestionSeeder::class,
+            AnswerSeeder::class,
+            AchievementSeeder::class,
         ]);
     }
 }

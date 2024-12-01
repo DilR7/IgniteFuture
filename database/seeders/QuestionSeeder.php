@@ -2,31 +2,28 @@
 
 namespace Database\Seeders;
 
+use App\Models\Quiz;
 use App\Models\Answer;
 use App\Models\Question;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class QuestionSeeder extends Seeder
 {
     public function run(): void
     {
-        $quizID = 1;
-        $questions = [
-            [
-                'question_text' => 'What is the capital of France?',
-                'question_point' => 10,
-                'quizID' => $quizID,
-            ],
-            [
-                'question_text' => 'What is 2 + 2?',
-                'question_point' => 5,
-                'quizID' => $quizID,
-            ],
-        ];
+        $quizzes = Quiz::all();
 
-        foreach ($questions as $questionData) {
-            Question::create($questionData);
+        foreach($quizzes as $quiz)
+        {
+            for($i = 1; $i <= 3; $i++)
+            {   $name1 = fake()->sentence(1);
+                Question::create([
+                    'text' => $name1,
+                    'point' => 10,
+                    'quiz_id' => $quiz->id 
+                ]);
+            }
         }
     }
 }

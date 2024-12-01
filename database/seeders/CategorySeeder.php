@@ -15,12 +15,14 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $LIST_CATEGORY = ['Physics', 'Mathematics', 'Biology', 'Art', 'Music', 'History', 'Technology', 'Photograph'];
-
+        $image_index = 1;
         foreach ($LIST_CATEGORY as $CATEGORY) {
             Category::create([
                 'name' => $CATEGORY,
                 'slug' => Str::slug($CATEGORY),
+                'img' => 'imgs/HomePage/' . $image_index . '.png'
             ]);
+            $image_index++;
         }
     }
 }

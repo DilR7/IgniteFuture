@@ -2,73 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\User;
+use App\Models\Module;
+use App\Models\Category;
+use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Achievement;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
-    public function index()
-    {
-        $users = User::all();
-        $quizzes = Quiz::with('user')->get();
-        return view('testing.quizzes', compact('quizzes','users'));
-    }
-    
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'quiz_desc' => 'required|string',
-            'score' => 'required|integer',
-            'userID' => 'required|exists:users,userID',
-        ]);
-
-        Quiz::create($request->all());
-        return redirect()->back()->with('success', 'Quiz createc successfully!');
+    public function index(){
+        $user = Auth::user();
+        $modules = Module::all();
+        $categories = Category::all();
+        $quizzes = Quiz::inRandomOrder()->paginate(8);
+        return view('user.quiz',compact('modules','quizzes','categories','user'))->with('isAllQuiz', true);
     }
 
-    
-    public function edit($quizID)
-    {
-        $quizzes = Quiz::findOrFail($quizID);
-        return response()->json($quizzes);
+    public function quizCategory($slug){
+        $user = Auth::user();
+        $category = Category::where('slug', $slug)->firstOrFail(); 
+        $quizzes = Quiz::whereHas('module', function ($query) use ($category) {
+            $query->where('category_id', $category->id);
+        })->paginate(8);
+        $categories = Category::all();
+        return view('user.quiz', compact('user','quizzes','category','categories'))->with('isAllQuiz', true);;
     }
 
- 
-    public function update(Request $request, $quizID)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'quiz_desc' => 'required|string',
-            'score' => 'required|integer',
-            'userID' => 'required|exists:users,userID', 
-        ]);
-
-        $quiz = Quiz::findOrFail($quizID);
-        $quiz->update($request->all());
-        return redirect()->back()->with('success', 'Quiz updated successfully!');
+    public function quizStart($id){
+        $user = Auth::user();
+        $quizzes = Quiz::findOrFail($id);
+        $modules = Module::all();
+        $achievements = Achievement::all();
+        return view('user.start', compact('modules', 'quizzes','user','achievements'))->with('isAllQuiz', false);
     }
-
-   
-    public function delete($quizID)
-    {
-        $quiz = Quiz::findOrFail($quizID);
-        $quiz->delete();
-        return redirect()->back()->with('success', 'Quiz deleted successfully!');
-    }
-
-
-    public function question($quizID)
-    {
-        $quiz = Quiz::findOrFail($quizID);
-        $questions = Question::with('answers')->where('quizID', $quizID)->get();
-
-        return view('testing.questions', compact('quiz', 'questions'));
-    }
-
-
-
-
 }
