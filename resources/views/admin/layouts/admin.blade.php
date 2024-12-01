@@ -1,13 +1,15 @@
 <!-- resources/views/layouts/admin.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Dashboard')</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
 </head>
+
 <body class="flex h-screen">
 
     <div class="w-64">
@@ -24,4 +26,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.js"></script>
 </body>
+
 </html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="icon" type="image/png" href="{{ asset('imgs/Logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ secure_asset('imgs/Logo.png') }}">
     <title>IgniteFuture</title>
     <style>
         #preloader {
@@ -156,7 +156,8 @@
                 @if (Auth::check())
                     <a href="" class="flex items-center space-x-2">
                         <span class="text-white font-medium">Hi, {{ $user->name }}</span>
-                        <img src="{{ asset('imgs/Profile.png') }}" alt="Profile Image" class="h-8 w-8 rounded-full">
+                        <img src="{{ secure_asset('imgs/Profile.png') }}" alt="Profile Image"
+                            class="h-8 w-8 rounded-full">
                     </a>
                 @else
                 @endif
@@ -199,7 +200,7 @@
                 class="flex flex-col items-center sm:flex-row sm:justify-between text-white text-sm space-y-4 sm:space-y-0">
                 <!-- Logo and Brand Name -->
                 <div class="flex flex-col items-center space-y-2 sm:space-y-0 sm:flex-row sm:space-x-3">
-                    <img src="{{ asset('imgs/LogoF.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
+                    <img src="{{ secure_asset('imgs/LogoF.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                     <div class="text-center sm:text-left">
                         <h2 class="font-bold text-lg">IgniteFuture</h2>
                         <p class="text-gray-200 mt-1">

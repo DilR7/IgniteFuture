@@ -4,7 +4,7 @@
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16 space-x-4"
             x-data="{ isOpen: false, selectedCategory: '{{ $isAllCategory ? 'All Category' : $category->name }}' }">
             <div class="flex items-center space-x-2">
-                <img src="{{ asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
+                <img src="{{ secure_asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 

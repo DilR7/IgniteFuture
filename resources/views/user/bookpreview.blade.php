@@ -5,7 +5,7 @@
         <div class="grid grid-cols-6 text-black gap-6">
             <div class="flex flex-col text-center gap-4 col-span-2 pr-4">
                 <div>
-                    <img src="{{ asset('build/assets/BookPreview.jpg') }}" alt="" class="">
+                    <img src="{{ secure_asset('build/assets/BookPreview.jpg') }}" alt="" class="">
                 </div>
                 <div class="flex flex-col items-start">
                     <div class="flex justify-center w-full p-4 border-2 border-gray-200">Rating </div>
@@ -72,7 +72,7 @@
                 <div class="flex gap-3 text-sm text-gray-500"><a>Home</a> > <a>Couse</a> > <a>Book Preview</a></div>
                 <div class="flex flex-col text-sm text-justify gap-4">
                     <div class="font-semibold  text-2xl">Book Preview</div>
-                    <img src="{{ asset('build/assets/BookPreview1.jpg') }}" alt="">
+                    <img src="{{ secure_asset('build/assets/BookPreview1.jpg') }}" alt="">
                 </div>
                 <div class="flex flex-col text-sm text-justify gap-4">
                     <p class="font-semibold text-lg">Description</p>
@@ -340,7 +340,7 @@
                     <p class="font-semibold text-lg">Students Feedback</p>
                     <div class ="flex gap-4">
                         <div>
-                            <img src="{{ asset('build/assets/profile1.jpeg') }}" alt=""
+                            <img src="{{ secure_asset('build/assets/profile1.jpeg') }}" alt=""
                                 class="h-8 w-12 rounded-full">
                         </div>
                         <div class="flex flex-col gap-2">
@@ -365,7 +365,7 @@
 
                     <div class ="flex gap-4">
                         <div>
-                            <img src="{{ asset('build/assets/profile1.jpeg') }}" alt=""
+                            <img src="{{ secure_asset('build/assets/profile1.jpeg') }}" alt=""
                                 class="h-8 w-12 rounded-full">
                         </div>
                         <div class="flex flex-col gap-2">

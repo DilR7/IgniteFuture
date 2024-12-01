@@ -3,7 +3,7 @@
     <div class="bg-white border-b-2 border-dodger-blue-300">
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16">
             <div class="flex items-center space-x-2">
-                <img src="{{ asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
+                <img src="{{ secure_asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 
@@ -69,7 +69,7 @@
                         @foreach ($achievements as $achievement)
                             <div class="flex items-center justify-between bg-white rounded-lg shadow p-2 px-6 w-full">
                                 <div class="text-black font-medium">{{ $achievement->name }}</div>
-                                <img src="{{ asset($achievement->image) }}" alt="{{ $achievement->name }}"
+                                <img src="{{ secure_asset($achievement->image) }}" alt="{{ $achievement->name }}"
                                     class="w-10 h-10 object-cover mr-2">
                             </div>
                         @endforeach

@@ -15,7 +15,7 @@
         <div class="flex flex-col lg:w-1/2 h-screen justify-center items-center">
             <div class="px-6 md:px-16 lg:px-24 w-full">
                 <div class="flex flex-col items-center justify-center w-full pb-8">
-                    <img src="{{ asset('imgs/Logo.png') }}" alt="Your Logo" class="h-10 w-10 md:h-12 md:w-12">
+                    <img src="{{ secure_asset('imgs/Logo.png') }}" alt="Your Logo" class="h-10 w-10 md:h-12 md:w-12">
                     <p class="font-bold text-lg">
                         Ignite<span class="text-dodger-blue-500">Future</span>
                     </p>
@@ -81,9 +81,11 @@
 
         <!-- Right Section (Responsive Images) -->
         <div class="hidden lg:flex lg:w-1/2 h-screen gap-4 pt-4 overflow-hidden">
-            <img src="{{ asset('imgs/RBanner1.jpg') }}" alt="Image 1" class="flex-1 h-4/6 w-48 rounded-2xl">
-            <img src="{{ asset('imgs/RBanner2.jpg') }}" alt="Image 2" class="flex-1 mt-20 h-4/6 w-48 rounded-2xl">
-            <img src="{{ asset('imgs/RBanner3.jpg') }}" alt="Image 3" class="flex-1 mt-40 h-4/6 w-48 rounded-2xl">
+            <img src="{{ secure_asset('imgs/RBanner1.jpg') }}" alt="Image 1" class="flex-1 h-4/6 w-48 rounded-2xl">
+            <img src="{{ secure_asset('imgs/RBanner2.jpg') }}" alt="Image 2"
+                class="flex-1 mt-20 h-4/6 w-48 rounded-2xl">
+            <img src="{{ secure_asset('imgs/RBanner3.jpg') }}" alt="Image 3"
+                class="flex-1 mt-40 h-4/6 w-48 rounded-2xl">
         </div>
     </div>
 </body>

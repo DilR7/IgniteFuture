@@ -6,7 +6,7 @@
     <div class="bg-white border-b-2 border-dodger-blue-300">
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16">
             <div class="flex items-center space-x-2">
-                <img src="{{ asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
+                <img src="{{ secure_asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 
@@ -44,7 +44,7 @@
     <div class="px-4 sm:px-8 lg:pl-32 h-auto flex flex-col lg:flex-row bg-gray-100">
         <div class="grid grid-cols-1 lg:grid-cols-2 text-black w-full">
             <div class="flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2">
-                <img src="{{ asset('imgs/logo2.jpg') }}" alt="Logo"
+                <img src="{{ secure_asset('imgs/logo2.jpg') }}" alt="Logo"
                     class="w-full sm:w-full lg:w-full max-w-xs lg:max-w-full">
             </div>
 
@@ -73,7 +73,7 @@
                 <div class="flex flex-col text-center gap-4">
                     <a class="rounded-xl flex gap-2 hover:cursor-pointer {{ $category->bgColor }}" href="">
                         <div>
-                            <img src="{{ asset($category->img) }}" alt="" class="h-16 sm:h-20 p-4">
+                            <img src="{{ secure_asset($category->img) }}" alt="" class="h-16 sm:h-20 p-4">
                         </div>
                         <div class="flex flex-col items-start justify-center">
                             <p class="font-medium">{{ $category->name }}</p>
@@ -129,21 +129,23 @@
             @foreach ($top3 as $index => $student)
                 <div class="flex flex-col text-center">
                     <!-- Set different heights for podium positions -->
-                    <div class="relative p-4 rounded-t-lg" style="height: {{ 200 - ($index * 30) }}px; background-color: {{ $index == 0 ? '#fcd34d' : '#e5e7eb' }};">
-                        <img src="{{ asset('path/to/student/images/' . $student->profile_image) }}" alt="{{ $student->name }}" class="h-24 w-24 mx-auto rounded-full">
-                        <div class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-200">
+                    <div class="relative p-4 rounded-t-lg"
+                        style="height: {{ 200 - $index * 30 }}px; background-color: {{ $index == 0 ? '#fcd34d' : '#e5e7eb' }};">
+                        <img src="{{ secure_asset('path/to/student/images/' . $student->profile_image) }}"
+                            alt="{{ $student->name }}" class="h-24 w-24 mx-auto rounded-full">
+                        <div
+                            class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-200">
                             {{ $index + 1 }}{{ $index == 0 ? 'st' : ($index == 1 ? 'nd' : 'rd') }}
                         </div>
                     </div>
                     <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
                         <p class="font-medium">{{ $student->name }}</p>
                         <p class="text-xs text-gray-500 font-normal">{{ $student->school }}</p>
-                        <p class="font-semibold">{{ $student->points }} <span class="font-normal text-gray-500">Points</span></p>
+                        <p class="font-semibold">{{ $student->points }} <span
+                                class="font-normal text-gray-500">Points</span></p>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
-    
-    
 @endsection

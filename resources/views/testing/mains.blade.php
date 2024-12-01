@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users List</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <h1>Users List</h1>
@@ -36,7 +38,8 @@
                             <button onclick="openEditModal({{ json_encode($user) }})">Edit</button>
                         </td>
                         <td>
-                            <form action="{{ route('users.delete', $user->userID) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('users.delete', $user->userID) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">Delete</button>
@@ -112,17 +115,17 @@
 
     <style>
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1000; 
+            display: none;
+            position: fixed;
+            z-index: 1000;
             left: 0;
             top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.4);
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
         }
-        
+
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
@@ -130,14 +133,14 @@
             border: 1px solid #888;
             width: 80%;
         }
-        
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-        
+
         .close:hover,
         .close:focus {
             color: black;
@@ -145,7 +148,7 @@
             cursor: pointer;
         }
     </style>
-    
+
     <script>
         // Edit
         function openEditModal(user) {
@@ -154,14 +157,14 @@
             document.getElementById('email').value = user.email;
 
             document.getElementById('editUserForm').action = '/users/' + user.userID;
-    
+
             document.getElementById('editUserModal').style.display = 'block';
         }
-    
+
         function closeEditModal() {
             document.getElementById('editUserModal').style.display = 'none';
         }
-    
+
         window.onclick = function(event) {
             var modal = document.getElementById('editUserModal');
             if (event.target === modal) {
@@ -175,11 +178,11 @@
             document.getElementById('addUserForm').reset();
             document.getElementById('addUserModal').style.display = 'block';
         }
-    
+
         function closeAddUserModal() {
             document.getElementById('addUserModal').style.display = 'none';
         }
-    
+
         function closeEditModal() {
             document.getElementById('editUserModal').style.display = 'none';
         }
@@ -195,4 +198,5 @@
     </script>
 
 </body>
+
 </html>

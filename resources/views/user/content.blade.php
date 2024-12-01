@@ -3,7 +3,7 @@
     <div class="bg-white border-b-2 border-dodger-blue-300">
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16">
             <div class="flex items-center space-x-2">
-                <img src="{{ asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
+                <img src="{{ secure_asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 
@@ -46,7 +46,7 @@
 
         <div class="lg:col-span-2 border-dodger-blue-400 border rounded-lg">
             <video id="main-video" class="w-full rounded-t-lg" controls>
-                <source src="{{ asset($mainContent->video) }}" type="video/mp4">
+                <source src="{{ secure_asset($mainContent->video) }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="p-2">
@@ -68,8 +68,8 @@
                                     ->wherePivot('completed', true)
                                     ->exists();
                             @endphp
-                            <img src="{{ asset($isWatched ? 'imgs/check.png' : 'imgs/uncheck.png') }}" alt="Status"
-                                class="h-4 w-4">
+                            <img src="{{ secure_asset($isWatched ? 'imgs/check.png' : 'imgs/uncheck.png') }}"
+                                alt="Status" class="h-4 w-4">
                             <span class="text-sm font-semibold">{{ $loop->iteration }}.</span>
                             <a href="{{ route('othercontents', ['slug' => $content->slug]) }}"
                                 class="text-black flex items-center">

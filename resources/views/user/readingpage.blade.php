@@ -4,7 +4,7 @@
     <div class="bg-white border-b-2 border-dodger-blue-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16">
             <div class="flex items-center space-x-2">
-                <img src="{{ asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
+                <img src="{{ secure_asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 
@@ -27,18 +27,20 @@
 
     <div
         class="px-4 sm:px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0 lg:space-x-4">
-        <button id="prev-page" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hidden lg:block">&laquo;</button>
+        <button id="prev-page"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hidden lg:block">&laquo;</button>
 
         <div id="pdf-viewer" class="bg-white p-2 rounded-lg shadow-lg flex flex-col lg:flex-row lg:space-x-4 w-full">
             <canvas id="pdf-canvas-1" class="h-screen w-full lg:w-1/2"></canvas>
             <canvas id="pdf-canvas-2" class="h-screen w-full lg:w-1/2 hidden lg:block"></canvas>
         </div>
 
-        <button id="next-page" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hidden lg:block">&raquo;</button>
+        <button id="next-page"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 hidden lg:block">&raquo;</button>
     </div>
 
     <div class="text-center py-4">
-        
+
         <span class="text-lg font-semibold">
             Page
             <input id="page-num-input" type="number" value="1" min="1" step="1"
@@ -53,7 +55,7 @@
         const pdfjsLib = window['pdfjs-dist/build/pdf'];
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
 
-        const url = "{{ asset($book->content) }}";
+        const url = "{{ secure_asset($book->content) }}";
         let pdfDoc = null,
             pageNum = 1,
             pageRendering = false,
