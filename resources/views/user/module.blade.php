@@ -100,6 +100,7 @@
                         <div class="flex items-center justify-start p-4">
                             <button type="button" @click="showModal = true; formId = 'form-{{ $module->id }}';"
                                 class="rounded-lg bg-blue-700 py-2 px-4 text-white hover:bg-blue-800">
+
                                 Enroll Now
                             </button>
                         </div>

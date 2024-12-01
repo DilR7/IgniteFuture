@@ -29,6 +29,8 @@ class Content extends Model
                     ->withPivot('completed')
                     ->withTimestamps();
     }
+
+
 }
 
 
