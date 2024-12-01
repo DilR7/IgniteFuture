@@ -362,6 +362,7 @@ class DashboardController extends Controller
             'questions.*.point' => 'integer|min:1',
             'questions.*.answers' => 'array',
             'questions.*.answers.*.text' => 'string|max:255',
+            'questions.*.answers.*.is_correct' => 'boolean',
         ]);
 
         $quiz->update([
@@ -377,12 +378,12 @@ class DashboardController extends Controller
             foreach ($questionData['answers'] as $answerData) {
                 $question->answers()->create([
                     'text' => $answerData['text'],
-                    'is_correct' => $answerData['is_correct'],
+                    'is_correct' => $answerData['is_correct'] ?? 0,
                 ]);
             }
         }
 
-        return redirect()->route('admin.adminquiz')->with('success', 'Quiz updated successfully.');
+        return redirect()->route('adminquiz')->with('success', 'Quiz updated successfully.');
     }
 
     public function deleteQuiz($id)
