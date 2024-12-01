@@ -20,7 +20,7 @@
                             clip-rule="evenodd" />
                     </svg>
                 </div>
-            @endforeach
+            </div>
 
 
             <div class="flex items-center space-x-2 sm:space-x-4">
@@ -66,6 +66,10 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="mt-4">
+            {{ $books->links('pagination::tailwind') }}
         </div>
     </div>
 @endsection
