@@ -66,5 +66,9 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="mt-4">
+            {{ $books->links('pagination::tailwind') }}
+        </div>
     </div>
 @endsection

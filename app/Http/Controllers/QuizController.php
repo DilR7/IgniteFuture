@@ -27,7 +27,7 @@ class QuizController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail(); 
         $quizzes = Quiz::whereHas('module', function ($query) use ($category) {
             $query->where('category_id', $category->id);
-        })->paginate(8);
+        })->paginate(6);
         $categories = Category::all();
         return view('user.quiz', compact('user','quizzes','category','categories'))->with('isAllQuiz', true);;
     }
