@@ -20,7 +20,7 @@
                             clip-rule="evenodd" />
                     </svg>
                 </div>
-            @endforeach
+            </div>
 
 
             <div class="flex items-center space-x-2 sm:space-x-4">
