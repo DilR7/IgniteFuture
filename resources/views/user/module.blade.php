@@ -109,7 +109,7 @@
             @endforeach
         </div>
 
-        <div class="mt-5">
+        <div class="py-5">
             {{ $modules->links('pagination::tailwind') }}
         </div>
 

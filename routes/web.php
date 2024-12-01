@@ -14,14 +14,6 @@ use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
-// Route::get('/', function () {
-//     if (Auth::check() && Auth::user()->hasRole('admin')) {
-//         return redirect('/admin/dashboard');
-//     }
-
-//     return app(HomeController::class)->index();
-// })->name('home');
-
 use App\Http\Controllers\QuestionController;
 
 Route::controller(HomeController::class)->group(function(){
@@ -105,6 +97,5 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
         Route::get('/manageuser', 'viewUser')->name('manageuser');
     });
 });
-
 
 require __DIR__.'/auth.php';
