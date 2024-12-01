@@ -28,7 +28,6 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('home');
     Route::get('/logout', 'logout')->name('logout');
 });
-
 Route::middleware(['auth', 'role:user'])->group(function(){
     Route::controller(ModuleController::class)->group(function(){
         Route::get('/modules','index')->name('modules');
@@ -63,7 +62,6 @@ Route::middleware(['auth', 'role:user'])->group(function(){
         Route::post('/submit-quiz', [QuestionController::class, 'submitQuiz'])->name('submit.quiz');
     });
 });
-
 
 Route::middleware(['auth', 'role:admin'])->group(function() {
 
@@ -141,5 +139,6 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
         Route::get('/manageuser', 'viewUser')->name('manageuser');
     });
 });
+
 
 require __DIR__.'/auth.php';

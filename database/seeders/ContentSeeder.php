@@ -29,7 +29,6 @@ class ContentSeeder extends Seeder
                 'video' => 'videos/ok.mp4', 
                 'module_id' => $module->id, 
             ]);
-            }
         }
     }
 }

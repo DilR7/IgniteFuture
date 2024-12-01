@@ -20,7 +20,8 @@
                             clip-rule="evenodd" />
                     </svg>
                 </div>
-            </div>
+            @endforeach
+
 
             <div class="flex items-center space-x-2 sm:space-x-4">
                 @if (Auth::check())
