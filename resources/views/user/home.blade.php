@@ -143,7 +143,7 @@
             @if ($top3->isEmpty())
                 <div class="flex flex-col text-center order-2">
                     <div class="relative p-4 rounded-t-lg h-[140px] bg-yellow-400">
-                        <img src="{{ secure_asset('path/to/default-avatar.png') }}" alt="Placeholder"
+                        <img src="{{ secure_asset('imgs/profile.jpg') }}" alt="Placeholder"
                             class="h-24 w-24 mx-auto rounded-full">
                         <div
                             class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-200">
@@ -159,7 +159,7 @@
 
                 <div class="flex flex-col text-center order-1">
                     <div class="relative p-4 rounded-t-lg h-[120px] bg-gray-300">
-                        <img src="{{ secure_asset('path/to/default-avatar.png') }}" alt="Placeholder"
+                        <img src="{{ secure_asset('imgs/profile.jpg') }}" alt="Placeholder"
                             class="h-20 w-20 mx-auto rounded-full">
                         <div
                             class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-200">
