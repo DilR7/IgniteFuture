@@ -13,13 +13,21 @@ use Illuminate\Support\Facades\Auth;
 
 class ModuleController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $user = Auth::user();
    
         $modules = Module::whereDoesntHave('users', function ($query) use ($user) {
             $query->where('user_id', $user->id);
-        })->paginate(6);
+        });
         $categories = Category::all();
+
+        $query = $request->input('query');
+        if ($query) {
+            $modules->where('name', 'LIKE', '%' . $query . '%')
+                ->orWhere('desc', 'LIKE', '%' . $query . '%');
+        }
+       
+        $modules = $modules->paginate(6);
         return view('user.module',compact('modules','categories','user'))->with('isAllCategory', true);
     }
 

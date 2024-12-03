@@ -8,18 +8,18 @@
             </div>
 
             <div class="flex-1 mx-4 hidden sm:flex">
-                <div class="relative w-full">
-                    <input type="text"
+                <form method="GET" action="{{ route('books') }}" class="relative w-full">
+                    <input type="text" name="query" value="{{ request('query') }}"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="What do you want to learn...">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
-                        viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1111.172 4.414l4.95 4.95a1 1 0 01-1.414 1.414l-4.95-4.95A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </div>
+                        placeholder="Search for books...">
+                    <button type="submit" class="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1111.172 4.414l4.95 4.95a1 1 0 01-1.414 1.414l-4.95-4.95A6 6 0 012 8z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </form>
             </div>
 
 

@@ -44,18 +44,18 @@
 
 
             <div class="flex-1 mx-4 hidden sm:flex">
-                <div class="relative w-full">
-                    <input type="text"
+                <form method="GET" action="{{ route('quiz') }}" class="relative w-full">
+                    <input type="text" name="query" value="{{ request('query') }}"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="What do you want to learn...">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
-                        viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1111.172 4.414l4.95 4.95a1 1 0 01-1.414 1.414l-4.95-4.95A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </div>
+                        placeholder="Search for modules...">
+                    <button type="submit" class="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1111.172 4.414l4.95 4.95a1 1 0 01-1.414 1.414l-4.95-4.95A6 6 0 012 8z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </form>
             </div>
 
             <div class="flex items-center space-x-2 sm:space-x-4">
@@ -78,34 +78,32 @@
     <div class="px-4 sm:px-8 md:px-16 lg:px-32 bg-gray-100 pt-5">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  text-black gap-4">
             @foreach ($quizzes as $quiz)
-                <a href="javascript:void(0)" class="h-full">
-                    <div
-                        class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
-                        <div class="relative m-2.5 overflow-hidden text-white rounded-md">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                                alt="card-image"
-                                class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 object-cover" />
-                        </div>
-                        <div class="p-4 flex-grow">
-                            <div
-                                class="mb-4 rounded-md border-2 border-dodger-blue-300 bg-white py-0.5 px-2.5 text-xs text-dodger-blue-800 font-semibold transition-all shadow-sm w-24 text-center">
-                                {{ $quiz->Module->Category->name }}
-                            </div>
-                            <div class="mb-2 text-slate-800 text-lg font-semibold line-clamp-2">
-                                {{ $quiz->title }}
-                            </div>
-                            <h6 class="text-slate-600 leading-normal font-light line-clamp-3">
-                                {{ $quiz->desc }}
-                            </h6>
-                        </div>
-                        <div class="flex items-center justify-start p-4">
-                            <button onclick="window.location.href='{{ route('quizstart', ['id' => $quiz->id]) }}'"
-                                class="rounded-lg bg-blue-700 py-2 px-4 text-white hover:bg-blue-800" type="button">
-                                Start Quiz
-                            </button>
-                        </div>
+                <div
+                    class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div class="relative m-2.5 overflow-hidden text-white rounded-md">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
+                            alt="card-image"
+                            class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 object-cover" />
                     </div>
-                </a>
+                    <div class="p-4 flex-grow">
+                        <div
+                            class="mb-4 rounded-md border-2 border-dodger-blue-300 bg-white py-0.5 px-2.5 text-xs text-dodger-blue-800 font-semibold transition-all shadow-sm w-24 text-center">
+                            {{ $quiz->Module->Category->name }}
+                        </div>
+                        <div class="mb-2 text-slate-800 text-lg font-semibold line-clamp-2">
+                            {{ $quiz->title }}
+                        </div>
+                        <h6 class="text-slate-600 leading-normal font-light line-clamp-3">
+                            {{ $quiz->desc }}
+                        </h6>
+                    </div>
+                    <div class="flex items-center justify-start p-4">
+                        <button onclick="window.location.href='{{ route('quizstart', ['id' => $quiz->id]) }}'"
+                            class="rounded-lg bg-blue-700 py-2 px-4 text-white hover:bg-blue-800" type="button">
+                            Start Quiz
+                        </button>
+                    </div>
+                </div>
             @endforeach
         </div>
 

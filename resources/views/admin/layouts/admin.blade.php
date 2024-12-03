@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>@yield('title', 'Admin Dashboard')</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet">
-    <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
 </head>
 
 <body class="flex h-screen">
@@ -15,7 +15,7 @@
     <div class="w-64">
         @include('admin.layouts.sidebar')
     </div>
-    <div class="flex-1 flex flex-col">
+    <div class=" flex flex-col">
         <header class="p-4 w-auto flex-grow">
             @include('admin.layouts.header')
         </header>

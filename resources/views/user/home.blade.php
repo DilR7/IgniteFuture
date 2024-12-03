@@ -10,21 +10,6 @@
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 
-            <div class="flex-1 mx-4 hidden sm:flex">
-                <div class="relative w-full">
-                    <input type="text"
-                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        placeholder="What do you want to learn...">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5 absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
-                        viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1111.172 4.414l4.95 4.95a1 1 0 01-1.414 1.414l-4.95-4.95A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </div>
-            </div>
-
             <div class="flex items-center space-x-2 sm:space-x-4">
                 @if (Auth::check())
                     <a href="{{ route('logout') }}"
@@ -40,11 +25,11 @@
             </div>
         </div>
     </div>
-    <div class="px-4 sm:px-8 lg:pl-32 h-auto flex flex-col lg:flex-row bg-gray-100">
+    <div class="pl-4 sm:pl-6 lg:pl-12 h-auto flex flex-col lg:flex-row bg-gray-100">
         <div class="grid grid-cols-1 lg:grid-cols-2 text-black w-full">
-            <div class="flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2">
+            <div class="flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2 ">
                 <img src="{{ secure_asset('imgs/logo2.jpg') }}" alt="Logo"
-                    class="w-full sm:w-full lg:w-full max-w-xs lg:max-w-full">
+                    class="w-full sm:w-full lg:w-full max-w-xs lg:max-w-full ">
             </div>
 
             <div

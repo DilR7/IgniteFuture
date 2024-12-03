@@ -19,7 +19,7 @@ class ModuleSeeder extends Seeder
 
         foreach($categories as $category)
         {
-            for($i = 1; $i <= 5; $i++)
+            for($i = 1; $i <= 2; $i++)
             {
                 $name = fake()->sentence(10);
                 Module::create([

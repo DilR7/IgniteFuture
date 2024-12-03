@@ -35,7 +35,7 @@
                 </div>
             </div>
             <button id="edit-profile-btn"
-                class="mt-4 md:mt-0 bg-dodger-blue-600 text-white px-6 py-2 rounded-lg hover:bg-dodger-blue-800 shadow-lg flex items-center">
+                class="mt-6 md:mt-0 bg-dodger-blue-600 text-white px-6 py-2 rounded-lg hover:bg-dodger-blue-800 shadow-lg flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -67,7 +67,7 @@
                 <div class="text-center">
                     <h3 class="text-lg font-semibold">Achievements</h3>
                 </div>
-                <div class="flex justify-center items-center space-x-6 my-20">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 my-8">
                     @foreach ($achievement as $ach)
                         <div class="flex flex-col items-center">
                             <img src="{{ secure_asset($ach->image) }}" alt="{{ $ach->name }}"
@@ -78,35 +78,41 @@
                     @endforeach
                 </div>
             </div>
+
         </div>
     </div>
 
     <div id="edit-profile-modal"
         class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-            <h3 class="text-lg font-semibold mb-4">Update Information</h3>
+        <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-11/12 sm:w-3/4 md:w-full max-w-md">
+            <h3 class="text-lg font-semibold mb-4 text-center md:text-left">Update Information</h3>
             <form action="{{ route('profileupdate') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700 pb-1">Name</label>
                     <input type="text" id="name" name="name" value="{{ $user->name }}"
-                        class="mt-1 block w-full rounded-md border-gray-300">
+                        class="mt-1 block w-full rounded-md border-gray-300 focus:ring-dodger-blue-500 focus:border-dodger-blue-500">
                 </div>
                 <div class="mb-4">
-                    <label for="profile_picture" class="block text-sm font-medium text-gray-700">Profile Picture <span
+                    <label for="profile_picture" class="block text-sm font-medium text-gray-700 pb-1">Profile Picture <span
                             class="text-red-700 font-bold">(Optional)</span></label>
                     <input type="file" id="profile_picture" name="profile_picture"
-                        class="mt-1 block w-full rounded-md border-gray-300 border">
+                        class="mt-1 block w-full rounded-md border-gray-300 border focus:ring-dodger-blue-500 focus:border-dodger-blue-500">
                 </div>
-                <div class="flex justify-end gap-2">
+                <div class="flex justify-between gap-2">
                     <button type="button" id="close-modal-btn"
-                        class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400">Cancel</button>
+                        class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-400">
+                        Cancel
+                    </button>
                     <button type="submit"
-                        class="bg-dodger-blue-600 text-white px-4 py-2 rounded-lg hover:bg-dodger-blue-800">Save</button>
+                        class="bg-dodger-blue-600 text-white px-4 py-2 rounded-lg hover:bg-dodger-blue-800 focus:outline-none focus:ring focus:ring-dodger-blue-500">
+                        Save
+                    </button>
                 </div>
             </form>
         </div>
     </div>
+
 
     <script>
         document.getElementById('edit-profile-btn').addEventListener('click', function() {

@@ -9,12 +9,22 @@ use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
-    public function index()
-    {
-        $books = Book::paginate(6);
-        $user = Auth::user();
-        return view('user.book', compact('books','user'));
+    public function index(Request $request)
+{
+    $user = Auth::user();
+    $query = $request->input('query');
+
+    $books = Book::query();
+
+    if ($query) {
+        $books->where('name', 'LIKE', '%' . $query . '%')
+              ->orWhere('desc', 'LIKE', '%' . $query . '%');
     }
+    
+    $books = $books->paginate(6);
+
+    return view('user.book', compact('books', 'user'));
+}
 
     public function readBook($slug)
     {

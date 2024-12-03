@@ -15,13 +15,18 @@ use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $user = Auth::user();
         $modules = Module::all();
         $categories = Category::all();
         $quizzes = Quiz::paginate(6);
         $isAllQuiz = true;
         $selectedCategory = "All Category";
+        $query = $request->input('query');
+        if ($query) {
+            $quizzes->where('title', 'LIKE', '%' . $query . '%')
+                  ->orWhere('desc', 'LIKE', '%' . $query . '%');
+        }
         return view('user.quiz',compact('modules','quizzes','categories','user','isAllQuiz','selectedCategory'))->with('isAllQuiz', true);
     }
 
