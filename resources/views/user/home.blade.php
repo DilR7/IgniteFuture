@@ -193,7 +193,7 @@
                         class="flex flex-col text-center {{ $index == 0 ? 'order-2' : ($index == 1 ? 'order-1' : 'order-3') }}">
                         <div
                             class="relative p-4 rounded-t-lg {{ $index == 0 ? 'h-[140px] bg-yellow-400' : ($index == 1 ? 'h-[120px] bg-gray-300' : 'h-[100px] bg-yellow-700') }}">
-                            <img src="{{ $student->user->profile_picture ? secure_asset('storage/' . $student->user->profile_picture) : secure_asset('imgs/logo2.jpg') }}"
+                            <img src="{{ $student->user->profile_picture ? secure_asset('storage/' . $student->user->profile_picture) : secure_asset('imgs/profile.jpg') }}"
                                 alt="{{ $student->name }}"
                                 class="h-20 w-20 sm:h-24 sm:w-24 mx-auto rounded-full object-cover">
                             <div

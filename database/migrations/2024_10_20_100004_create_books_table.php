@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('desc');
             $table->string('content');
-            $table->string('img');
+            // $table->string('img');
             $table->timestamps();
             $table->foreignId('module_id')->constrained('modules')->onDelete('cascade')->onUpdate('cascade');
         });
