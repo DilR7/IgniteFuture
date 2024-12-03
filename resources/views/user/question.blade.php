@@ -15,10 +15,9 @@
                         Out</a>
                 @else
                     <a href="{{ route('register') }}"
-                        class="text-dodger-blue-500 font-medium rounded-lg px-3 py-2 sm:px-4 sm:py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Create
-                        Account</a>
+                        class="text-dodger-blue-500 font-medium rounded-lg px-3 py-2 sm:px-4 sm:py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Register</a>
                     <a href="{{ route('login') }}"
-                        class="bg-dodger-blue-500 font-medium text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-dodger-blue-900">Sign
+                        class="bg-dodger-blue-500 font-medium text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-dodger-blue-900">Log
                         In</a>
                 @endif
             </div>
@@ -89,14 +88,12 @@
         }
     }" x-init="startTimer()" class="px-4 sm:px-12 md:px-32 py-4 bg-gray-100">
 
-        {{-- Timer --}}
         <div class="text-right mb-4" x-show="!isSubmitted">
             <span class="font-bold text-red-500 text-lg">
                 Time Remaining: <span x-text="formatTime(timeRemaining)"></span>
             </span>
         </div>
 
-        {{-- Questions --}}
         <div class="bg-white border border-gray-200 shadow-sm rounded-lg" x-show="!isSubmitted">
             @foreach ($questions as $index => $question)
                 <div x-show="currentQuestion === {{ $index }}" class="p-6">
@@ -107,6 +104,7 @@
                         @foreach ($question->answers as $answer)
                             <label class="flex items-center">
                                 <input type="radio" name="answer_{{ $question->id }}" :value="{{ $answer->id }}"
+                                    :checked="selectedAnswers[{{ $question->id }}] === {{ $answer->id }}"
                                     @click="selectedAnswers[{{ $question->id }}] = {{ $answer->id }}" class="mr-2">
                                 <span>{{ $answer->text }}</span>
                             </label>
@@ -115,7 +113,6 @@
                 </div>
             @endforeach
 
-            {{-- Navigation Buttons --}}
             <div class="flex justify-between items-center px-6 py-4 border-t border-gray-200">
                 <button @click="currentQuestion = Math.max(currentQuestion - 1, 0)" x-show="currentQuestion > 0"
                     class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
@@ -135,7 +132,6 @@
             </div>
         </div>
 
-        {{-- Modal --}}
         <div x-show="showModal"
             class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-lg shadow-lg p-6 w-96">
@@ -170,7 +166,6 @@
             </div>
         </div>
 
-        {{-- Score Display --}}
         <div x-show="score !== null && isSubmitted" class="my-32 text-center">
             <div class="text-2xl font-bold text-green-600 mb-4">
                 Quiz Submitted! <br>

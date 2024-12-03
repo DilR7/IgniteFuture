@@ -2,74 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Module;
 use App\Models\User;
+use App\Models\Module;
+use App\Models\Enrollment;
+use App\Models\Achievement;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-
     public function index(){
-        $users = User::all();
-        $modules = Module::with('user')->get(); 
-        return view('testing.mains',compact('users','modules'));
+        $user = Auth::user();
+        $listEnrolled = Module::whereIn('id', Enrollment::where('user_id', $user->id)->pluck('module_id'))
+                        ->withCount('contents')
+                        ->get();
+        $achievement = Achievement::whereIn('id', function ($query) use ($user) {
+                        $query->select('achievement_id')
+                                ->from('user_achievements')
+                                ->where('user_id', $user->id);
+                        })
+                        ->get()
+                        ->map(function ($achievement) use ($user) {
+                        $count = DB::table('user_achievements')
+                                ->where('user_id', $user->id)
+                                ->where('achievement_id', $achievement->id)
+                                ->count();
+                        $achievement->count = $count;
+                        return $achievement;
+                    });
+        return view('user.profile',compact('user','listEnrolled','achievement'));
     }
 
-    public function edit($userID)
-    {
-        $users = User::findOrFail($userID);
-        return view('testing.mains', compact('users')); 
-    }
+    public function update(Request $request)
+{
+    $user = Auth::user();
+    $data = $request->only(['name']);
 
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional profile picture
+    ]);
 
-    public function update(Request $request, $userID)
-    {
-        $users = User::findOrFail($userID);
-        $data = $request->only(['name', 'email']); 
-
-
-        if ($request->filled('password')) {
-            $data['password'] = bcrypt($request->password);
+    if ($request->hasFile('profile_picture')) {
+        if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
+            Storage::disk('public')->delete($user->profile_picture);
         }
 
-        $users->update($data);
-        return response()->json($users);
+        $filePath = $request->file('profile_picture')->store('profile_pictures', 'public');
+        $data['profile_picture'] = $filePath; // Add profile picture path to data
     }
 
-    public function store(Request $request)
-    {
-        $users = new User();
-        $users->name = $request->name;
-        $users->email = $request->email;
-        $users->password = bcrypt($request->password); 
-        $users->save();
-    
-        return response()->json([
-            'success' => true,
-            'message' => 'User added successfully!',
-            'user' => $users
-        ]);
-    }
+    DB::table('users')->where('id', Auth::id())->update($data);
 
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $users = User::where('name', 'like', '%' . $query . '%')
-                    ->orWhere('email', 'like', '%' . $query . '%')
-                    ->get();
-        return view('testing.mains', compact('users'));
-    }
+    return redirect()->back()->with('success', 'Profile updated successfully.');
+}
 
-
-    public function delete($userID)
-    {
-        $user = User::find($userID);
-        
-        if (!$user) {
-            return response()->json(['message' => 'User not found.'], 404);
-        }
-
-        $user->delete();
-        return response()->json(['Successful deleted'], 204);
-    }
 }

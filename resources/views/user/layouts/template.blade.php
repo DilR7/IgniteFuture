@@ -154,10 +154,10 @@
             </div>
             <div class="flex items-center space-x-4">
                 @if (Auth::check())
-                    <a href="" class="flex items-center space-x-2">
-                        <span class="text-white font-medium">Hi, {{ $user->name }}</span>
-                        <img src="{{ secure_asset('imgs/Profile.png') }}" alt="Profile Image"
-                            class="h-8 w-8 rounded-full">
+                    <a href="{{ route('profileE') }}" class="flex items-center space-x-2">
+                        <span class="text-white font-medium hover:underline">Hi, {{ $user->name }}</span>
+                        <img src="{{ $user->profile_picture ? secure_asset('storage/' . $user->profile_picture) : secure_asset('imgs/Profile.png') }}"
+                            alt="Profile Image" class="h-8 w-8 rounded-full object-cover">
                     </a>
                 @else
                 @endif
@@ -195,10 +195,8 @@
 
     <footer class="bg-dodger-blue-500 py-6 px-4 sm:px-6 lg:px-12">
         <div class="w-full mx-auto">
-            <!-- Footer Content -->
             <div
                 class="flex flex-col items-center sm:flex-row sm:justify-between text-white text-sm space-y-4 sm:space-y-0">
-                <!-- Logo and Brand Name -->
                 <div class="flex flex-col items-center space-y-2 sm:space-y-0 sm:flex-row sm:space-x-3">
                     <img src="{{ secure_asset('imgs/LogoF.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                     <div class="text-center sm:text-left">
@@ -209,7 +207,6 @@
                     </div>
                 </div>
 
-                <!-- Links Section -->
                 <div class="flex flex-wrap justify-center space-x-4 sm:space-x-6">
                     <a href="#" class="hover:underline">About</a>
                     <a href="#" class="hover:underline">Contact</a>
@@ -218,7 +215,6 @@
                 </div>
             </div>
 
-            <!-- Bottom Text -->
             <div class="flex justify-center text-gray-300 text-xs mt-4 text-center">
                 © 2024 - IgniteFuture. All rights reserved.
             </div>

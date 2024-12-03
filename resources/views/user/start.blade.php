@@ -14,10 +14,9 @@
                         Out</a>
                 @else
                     <a href="{{ route('register') }}"
-                        class="text-dodger-blue-500 font-medium rounded-lg px-3 py-2 sm:px-4 sm:py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Create
-                        Account</a>
+                        class="text-dodger-blue-500 font-medium rounded-lg px-3 py-2 sm:px-4 sm:py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Register</a>
                     <a href="{{ route('login') }}"
-                        class="bg-dodger-blue-500 font-medium text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-dodger-blue-900">Sign
+                        class="bg-dodger-blue-500 font-medium text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-dodger-blue-900">Log
                         In</a>
                 @endif
             </div>
@@ -29,7 +28,7 @@
         <div x-data="{ showModal: false }" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-2">
             <div class="flex flex-col text-center gap-4 col-span-1 md:col-span-2 lg:col-span-6  order-2 lg:order-1">
                 <div class="flex flex-col items-start border-2 border-blue-500 rounded-lg">
-                    <div class="flex flex-col p-4 gap-4">
+                    <div class="flex flex-col p-4 gap-4 w-full">
                         <div class="flex justify-between w-full ">
                             <div class="font-bold">Title:</div>
                             <div>{{ $quizzes->title }}</div>

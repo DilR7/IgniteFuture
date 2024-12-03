@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
@@ -9,18 +10,20 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrollmentController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\QuestionController;
 
 Route::controller(HomeController::class)->group(function(){
     Route::get('/','index')->name('home');
     Route::get('/logout', 'logout')->name('logout');
 });
 Route::middleware(['auth', 'role:user,admin'])->group(function(){
+    Route::get('/profile', [UserController::class, 'index'])->name('profileE');
+    Route::post('/profile', [UserController::class, 'update'])->name('profileupdate');
+
     Route::controller(ModuleController::class)->group(function(){
         Route::get('/modules','index')->name('modules');
         Route::get('/modules/{slug}', 'moduleCategory')->name('modulecategory');

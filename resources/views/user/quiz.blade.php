@@ -8,35 +8,40 @@
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 
-            <div class="relative hidden sm:block">
-                <button @click="isOpen = !isOpen"
-                    class="text-white bg-dodger-blue-500 hover:bg-dodger-blue-800 focus:ring-4 focus:outline-none focus:ring-dodger-blue-300 font-medium rounded-lg text-sm px-4 py-2 flex items-center"
-                    type="button">
-                    <span x-text="selectedCategory"></span>
-                    <svg class="w-3 h-3 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1l4 4 4-4" />
-                    </svg>
-                </button>
+            <div class="w-44 sm:w-auto mt-2 sm:mt-0">
+                <div class="relative w-full sm:w-auto" x-data="{ isOpen: false, selectedCategory: '{{ $selectedCategory }}' }">
+                    <button @click="isOpen = !isOpen"
+                        class="w-full sm:w-auto text-white bg-dodger-blue-500 hover:bg-dodger-blue-800 focus:ring-4 focus:outline-none focus:ring-dodger-blue-300 font-medium rounded-lg text-sm px-4 py-2 flex items-center justify-between sm:justify-start">
+                        <span x-text="selectedCategory"></span>
+                        <svg class="w-3 h-3 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 1l4 4 4-4" />
+                        </svg>
+                    </button>
 
-                <div x-show="isOpen" @click.away="isOpen = false"
-                    class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-full mt-2">
-                    <ul class="py-2 text-sm text-gray-700">
-                        <li>
-                            <a href="{{ route('modules') }}" @click="selectedCategory = 'All Category'; isOpen = false"
-                                class="block px-2 py-2 hover:bg-dodger-blue-200">All Category</a>
-                        </li>
-                        @foreach ($categories as $cat)
+                    <div x-show="isOpen" @click.away="isOpen = false"
+                        class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-full sm:w-auto mt-2 max-h-64 overflow-y-auto">
+                        <ul class="py-2 text-sm text-gray-700">
                             <li>
-                                <a href="{{ route('quizcategory', ['slug' => $cat->slug]) }}"
-                                    @click="selectedCategory = '{{ $cat->name }}'; isOpen = false"
-                                    class="block px-2 py-2 hover:bg-dodger-blue-200">{{ $cat->name }}</a>
+                                <a href="{{ route('quiz') }}" @click="selectedCategory = 'All Category'; isOpen = false;"
+                                    class="block px-4 py-2 hover:bg-dodger-blue-200">
+                                    All Category
+                                </a>
                             </li>
-                        @endforeach
-                    </ul>
+                            @foreach ($categories as $cat)
+                                <li>
+                                    <a href="{{ route('quizcategory', ['slug' => $cat->slug]) }}"
+                                        class="block px-4 py-2 hover:bg-dodger-blue-200">
+                                        {{ $cat->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
+
 
             <div class="flex-1 mx-4 hidden sm:flex">
                 <div class="relative w-full">
@@ -56,53 +61,19 @@
             <div class="flex items-center space-x-2 sm:space-x-4">
                 @if (Auth::check())
                     <a href="{{ route('logout') }}"
-                        class="text-dodger-blue-500 font-medium rounded-lg px-3 py-2 sm:px-4 sm:py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Log
-                        Out</a>
+                        class="hidden sm:block text-dodger-blue-500 font-medium rounded-lg px-3 py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">
+                        Log Out
+                    </a>
                 @else
                     <a href="{{ route('register') }}"
-                        class="text-dodger-blue-500 font-medium rounded-lg px-3 py-2 sm:px-4 sm:py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Create
-                        Account</a>
+                        class="text-dodger-blue-500 font-medium rounded-lg px-3 py-2 sm:px-4 sm:py-2 bg-dodger-blue-200 hover:bg-dodger-blue-500 hover:text-white">Register</a>
                     <a href="{{ route('login') }}"
-                        class="bg-dodger-blue-500 font-medium text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-dodger-blue-900">Sign
+                        class="bg-dodger-blue-500 font-medium text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-dodger-blue-900">Log
                         In</a>
                 @endif
             </div>
         </div>
     </div>
-
-    <!-- Mobile Dropdown for Category (Content Section) -->
-    {{-- <div class="block sm:hidden px-4 pt-5 bg-gray-100" x-data="{ isOpen: false, selectedCategory: '{{ $isAllQuiz ? 'All Quiz' : $category->name ?? 'All Category' }}' }">
-        <!-- Dropdown Button -->
-        <button @click="isOpen = !isOpen"
-            class="text-white bg-dodger-blue-500 hover:bg-dodger-blue-800 focus:ring-4 focus:outline-none focus:ring-dodger-blue-300 font-medium rounded-lg text-sm px-4 py-2 flex items-center w-full justify-between"
-            type="button">
-            <span x-text="selectedCategory"></span>
-            <svg class="w-3 h-3 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 10 6">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M1 1l4 4 4-4" />
-            </svg>
-        </button>
-
-        <!-- Dropdown Menu -->
-        <div x-show="isOpen" @click.away="isOpen = false"
-            class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow min-w-full mt-2 left-0">
-            <ul class="py-2 text-sm text-gray-700">
-                <li>
-                    <!-- All Category -->
-                    <a href="{{ route('modules') }}" @click="isOpen = false"
-                        class="block px-4 py-2 hover:bg-dodger-blue-200">All Category</a>
-                </li>
-                @foreach ($categories as $cat)
-                    <li>
-                        <!-- Each Category Option -->
-                        <a href="{{ route('modulecategory', ['slug' => $cat->slug]) }}" @click="isOpen = false"
-                            class="block px-4 py-2 hover:bg-dodger-blue-200">{{ $cat->name }}</a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    </div> --}}
 
     <div class="px-4 sm:px-8 md:px-16 lg:px-32 bg-gray-100 pt-5">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  text-black gap-4">

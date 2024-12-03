@@ -7,9 +7,10 @@ use App\Models\User;
 use App\Models\Module;
 use App\Models\Category;
 use App\Models\Question;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Achievement;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
@@ -18,8 +19,10 @@ class QuizController extends Controller
         $user = Auth::user();
         $modules = Module::all();
         $categories = Category::all();
-        $quizzes = Quiz::inRandomOrder()->paginate(8);
-        return view('user.quiz',compact('modules','quizzes','categories','user'))->with('isAllQuiz', true);
+        $quizzes = Quiz::paginate(6);
+        $isAllQuiz = true;
+        $selectedCategory = "All Category";
+        return view('user.quiz',compact('modules','quizzes','categories','user','isAllQuiz','selectedCategory'))->with('isAllQuiz', true);
     }
 
     public function quizCategory($slug){
@@ -29,7 +32,9 @@ class QuizController extends Controller
             $query->where('category_id', $category->id);
         })->paginate(6);
         $categories = Category::all();
-        return view('user.quiz', compact('user','quizzes','category','categories'))->with('isAllQuiz', true);;
+        $isAllQuiz = false;
+        $selectedCategory = $category->name;
+        return view('user.quiz', compact('user','quizzes','category','categories', 'isAllQuiz','selectedCategory'))->with('isAllQuiz', true);;
     }
 
     public function quizStart($id){

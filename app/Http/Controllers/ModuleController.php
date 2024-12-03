@@ -18,7 +18,7 @@ class ModuleController extends Controller
    
         $modules = Module::whereDoesntHave('users', function ($query) use ($user) {
             $query->where('user_id', $user->id);
-        })->inRandomOrder()->paginate(6);
+        })->paginate(6);
         $categories = Category::all();
         return view('user.module',compact('modules','categories','user'))->with('isAllCategory', true);
     }

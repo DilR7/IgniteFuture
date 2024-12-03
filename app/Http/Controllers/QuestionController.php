@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Point;
 use App\Models\Answer;
 use App\Models\Question;
+use App\Models\Achievement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,6 +56,25 @@ class QuestionController extends Controller
                 'score' => $score,
             ]);
         }
+
+        $unlockedAchievements = Achievement::where('required_score', '<=', $score)->get();
+        foreach ($unlockedAchievements as $achievement) {
+            $existingAchievement = DB::table('user_achievements')
+                ->where('user_id', $user->id)
+                ->where('achievement_id', $achievement->id)
+                ->first();
+    
+            if (!$existingAchievement) {
+                DB::table('user_achievements')->insert([
+                    'user_id' => $user->id,
+                    'achievement_id' => $achievement->id,
+                    'unlocked_at' => now(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+    
         return response()->json(['score' => $score]);
     }
 }

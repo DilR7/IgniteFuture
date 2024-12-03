@@ -11,7 +11,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::inRandomOrder()->paginate(6);
+        $books = Book::paginate(6);
         $user = Auth::user();
         return view('user.book', compact('books','user'));
     }
