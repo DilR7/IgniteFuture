@@ -46,12 +46,12 @@
 
         <div class="lg:col-span-2 border-dodger-blue-400 border rounded-lg">
             <video id="main-video" class="w-full rounded-t-lg" controls>
-                <source src="{{ asset($mainContent->video) }}" type="video/mp4">
+                <source src="{{ asset('storage/' . $module->video) }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="p-2">
-                <h2 class="mt-4 font-semibold text-xl">{{ $mainContent->name }}</h2>
-                <p class="text-gray-600">{{ $mainContent->desc }}</p>
+                <h2 class="mt-4 font-semibold text-xl">{{ $mainContent->name ?? '' }}</h2>
+                <p class="text-gray-600">{{ $mainContent->desc ?? '' }}</p>
             </div>
         </div>
 
@@ -104,7 +104,7 @@
 
     <script>
         document.getElementById('main-video').addEventListener('ended', function() {
-            fetch('{{ route('contents.markWatched', ['id' => $mainContent->id]) }}', {
+            fetch('{{ route('contents.markWatched', ['id' => $mainContent->id ?? 0]) }}', {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',

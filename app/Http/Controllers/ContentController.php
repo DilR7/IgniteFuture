@@ -112,6 +112,8 @@ class ContentController extends Controller
 
     return response()->json(['message' => 'Content marked as watched successfully!']);
 }
+
+
     public function show($contentID)
     {
         $content = Content::findOrFail($contentID);

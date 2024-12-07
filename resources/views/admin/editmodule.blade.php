@@ -5,7 +5,7 @@
 @section('content')
     <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md dark:bg-gray-800 dark:text-white">
         <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Edit Module</h2>
-        <form action="{{ route('updateModule', $module->id) }}" method="POST">
+        <form action="{{ route('updateModule', $module->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Module Name</label>
@@ -29,7 +29,26 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-4">
+                <label for="image" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Module Image</label>
+                <input type="file" id="image" name="image" class="w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+            </div>
+            <div class="mb-4">
+                <label for="video" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Module Video</label>
+                <input type="file" id="video" name="video" class="w-full border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+            </div>
+
             <button type="submit" class="w-full bg-gray-900 text-white font-medium rounded-lg text-sm px-5 py-2.5 hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-600">Update Module</button>
+
+            @if ($errors->any())
+                <div class="text-red-500 mb-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
     </div>
 @endsection

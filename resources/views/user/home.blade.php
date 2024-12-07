@@ -4,7 +4,7 @@
 @extends('user.layouts.template')
 @section('main-content')
     <div class="bg-white border-b-2 border-dodger-blue-300">
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16">
             <div class="flex items-center space-x-2">
                 <img src="{{ asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
@@ -44,7 +44,7 @@
     <div class="px-4 sm:px-8 lg:pl-32 h-auto flex flex-col lg:flex-row bg-gray-100">
         <div class="grid grid-cols-1 lg:grid-cols-2 text-black w-full">
             <div class="flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2">
-                <img src="{{ asset('imgs/logo2.jpg') }}" alt="Logo"
+                <img src="{{ asset('build/assets/logo2.jpg') }}" alt="Logo"
                     class="w-full sm:w-full lg:w-full max-w-xs lg:max-w-full">
             </div>
 
@@ -93,8 +93,9 @@
                     <div
                         class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                         <div class="relative m-2.5 overflow-hidden text-white rounded-md">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                                alt="card-image"
+                            <img
+                                src="{{ $module->image ? asset('storage/' . $module->image) : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80' }}"
+                                alt="Module Image"
                                 class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 sm:h-48 md:h-56 object-cover" />
                         </div>
                         <div class="p-4 flex-grow">
@@ -123,27 +124,75 @@
         </div>
     </div>
 
+
+
     <div class="px-32 pb-16">
-        <div class="py-8 text-center font-semibold text-2xl">Top 3 Students Of The Month</div>
-        <div class="flex items-end justify-center gap-4 text-black">
-            @foreach ($top3 as $index => $student)
-                <div class="flex flex-col text-center">
-                    <!-- Set different heights for podium positions -->
-                    <div class="relative p-4 rounded-t-lg" style="height: {{ 200 - ($index * 30) }}px; background-color: {{ $index == 0 ? '#fcd34d' : '#e5e7eb' }};">
-                        <img src="{{ asset('path/to/student/images/' . $student->profile_image) }}" alt="{{ $student->name }}" class="h-24 w-24 mx-auto rounded-full">
-                        <div class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-200">
-                            {{ $index + 1 }}{{ $index == 0 ? 'st' : ($index == 1 ? 'nd' : 'rd') }}
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
-                        <p class="font-medium">{{ $student->name }}</p>
-                        <p class="text-xs text-gray-500 font-normal">{{ $student->school }}</p>
-                        <p class="font-semibold">{{ $student->points }} <span class="font-normal text-gray-500">Points</span></p>
-                    </div>
+        <div class="py-8 text-center font-semibold text-2xl">Top Student Of The month</div>
+        <div class="grid grid-cols-5 text-black gap-4">
+            <div class="flex flex-col text-center">
+                <div>
+                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
                 </div>
-            @endforeach
+                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
+                    <p class="font-medium">Eric</p>
+                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
+                </div>
+                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
+                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
+                </div>
+            </div>
+
+            <div class="flex flex-col text-center">
+                <div>
+                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
+                </div>
+                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
+                    <p class="font-medium">Eric</p>
+                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
+                </div>
+                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
+                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
+                </div>
+            </div>
+
+            <div class="flex flex-col text-center">
+                <div>
+                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
+                </div>
+                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
+                    <p class="font-medium">Eric</p>
+                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
+                </div>
+                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
+                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
+                </div>
+            </div>
+
+            <div class="flex flex-col text-center">
+                <div>
+                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
+                </div>
+                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
+                    <p class="font-medium">Eric</p>
+                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
+                </div>
+                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
+                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
+                </div>
+            </div>
+
+            <div class="flex flex-col text-center">
+                <div>
+                    <img src="{{ asset('build/assets/TopStudent.jpg') }}" alt="" class="">
+                </div>
+                <div class="flex flex-col items-center justify-center border-x-2 p-2 border-gray-100">
+                    <p class="font-medium">Eric</p>
+                    <p class="text-xs text-gray-500 font-normal">SMA 1</p>
+                </div>
+                <div class="flex flex-col items-center justify-center border-2 p-2 text-sm border-gray-100">
+                    <p class="font-semibold ">100 <span class="font-normal text-gray-500">Point</span></p>
+                </div>
+            </div>
         </div>
     </div>
-    
-    
 @endsection
