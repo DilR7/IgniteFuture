@@ -75,19 +75,17 @@
     <div x-data="{ showModal: false, formId: null }" class="px-4 sm:px-8 md:px-16 lg:px-32 bg-gray-100 pt-5">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-black gap-4">
             @foreach ($modules as $module)
-                <form id="form-{{ $module->id }}" action="{{ route('contents', ['slug' => $module->slug]) }}"
-                    method="POST">
+                <form id="form-{{ $module->id }}" action="{{ route('contents', ['slug' => $module->slug]) }}" method="POST">
                     @csrf
-                    <div
-                        class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                    <div class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                         <div class="relative m-2.5 overflow-hidden text-white rounded-md">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
+                            <img
+                                src="{{ $module->image ? asset('storage/' . $module->image) : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80' }}"
                                 alt="card-image"
                                 class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 object-cover" />
                         </div>
                         <div class="p-4 flex-grow">
-                            <div
-                                class="mb-4 rounded-md border-2 border-dodger-blue-300 bg-white py-0.5 px-2.5 text-xs text-dodger-blue-800 font-semibold transition-all shadow-sm w-24 text-center">
+                            <div class="mb-4 rounded-md border-2 border-dodger-blue-300 bg-white py-0.5 px-2.5 text-xs text-dodger-blue-800 font-semibold transition-all shadow-sm w-24 text-center">
                                 {{ $module->Category->name }}
                             </div>
                             <h6 class="mb-2 text-slate-800 text-lg font-semibold line-clamp-2">
@@ -99,8 +97,7 @@
                         </div>
                         <div class="flex items-center justify-start p-4">
                             <button type="button" @click="showModal = true; formId = 'form-{{ $module->id }}';"
-                                class="rounded-lg bg-blue-700 py-2 px-4 text-white hover:bg-blue-800">
-
+                                    class="rounded-lg bg-blue-700 py-2 px-4 text-white hover:bg-blue-800">
                                 Enroll Now
                             </button>
                         </div>
@@ -109,7 +106,8 @@
             @endforeach
         </div>
 
-        <div class="py-5">
+
+        <div class="mt-5">
             {{ $modules->links('pagination::tailwind') }}
         </div>
 
@@ -117,6 +115,11 @@
             class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 px-4 sm:px-6 lg:px-8"
             x-cloak>
             <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
+                <button @click="showModal = false" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
 
                 <div class="flex justify-center mb-6">
