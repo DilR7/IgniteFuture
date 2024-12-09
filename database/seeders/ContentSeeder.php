@@ -19,7 +19,7 @@ class ContentSeeder extends Seeder
 
         foreach($modules as $module)
         {
-            for($i = 1; $i <= 3; $i++)
+            for($i = 1; $i <= 2; $i++)
             {
                 $name1 = fake()->sentence(2);
                 Content::create([

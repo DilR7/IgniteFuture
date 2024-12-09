@@ -16,6 +16,7 @@ class Book extends Model
         'desc',
         'content',
         'slug',
+        'img',
     ];
 
     public function book() : BelongsTo

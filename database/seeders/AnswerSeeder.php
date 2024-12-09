@@ -16,12 +16,11 @@ class AnswerSeeder extends Seeder
         $questions = Question::all();
 
         foreach ($questions as $question) {
-            // Generate four answers for each question
             for ($i = 0; $i < 4; $i++) {
                 Answer::create([
                     'question_id' => $question->id,
                     'text' => fake()->word(),
-                    'is_correct' => $i === 0, // Mark the first answer as correct for simplicity
+                    'is_correct' => $i === 0,
                 ]);
             }
         }
