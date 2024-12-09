@@ -28,7 +28,7 @@
     <div class="pl-4 sm:pl-6 lg:pl-12 h-auto flex flex-col lg:flex-row bg-gray-100">
         <div class="grid grid-cols-1 lg:grid-cols-2 text-black w-full">
             <div class="flex justify-center lg:justify-end mt-8 lg:mt-0 order-1 lg:order-2">
-                <img src="{{ asset('build/assets/logo2.jpg') }}" alt="Logo"
+                <img src="{{ secure_asset('imgs/logo2.jpg') }}" alt="Logo"
                     class="w-full sm:w-full lg:w-full max-w-xs lg:max-w-full">
             </div>
 
@@ -81,8 +81,7 @@
                     <div
                         class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                         <div class="relative m-2.5 overflow-hidden text-white rounded-md">
-                            <img
-                                src="{{ $module->image ? asset('storage/' . $module->image) : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80' }}"
+                            <img src="{{ $module->image ? secure_asset('storage/' . $module->image) : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80' }}"
                                 alt="Module Image"
                                 class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 sm:h-48 md:h-56 object-cover" />
                         </div>
@@ -194,8 +193,7 @@
                         class="flex flex-col text-center {{ $index == 0 ? 'order-2' : ($index == 1 ? 'order-1' : 'order-3') }}">
                         <div
                             class="relative p-4 rounded-t-lg {{ $index == 0 ? 'h-[140px] bg-yellow-400' : ($index == 1 ? 'h-[120px] bg-gray-300' : 'h-[100px] bg-yellow-700') }}">
-                            <img src="{{ $student->user->profile_picture ? secure_asset('storage/' . $student->user->profile_picture) : secure_asset('imgs/profile.jpg') }}"
-                                alt="{{ $student->name }}"
+                            <img src="data:image/jpeg;base64, {{ $user->profile_picture }}" alt="{{ $student->name }}"
                                 class="h-20 w-20 sm:h-24 sm:w-24 mx-auto rounded-full object-cover">
                             <div
                                 class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-50">

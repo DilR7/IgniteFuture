@@ -66,12 +66,6 @@
                     <p class="text-red-600 text-sm">{{ $message }}</p>
                 @enderror
 
-                <label for="questions[${questionIndex}][point]" class="block text-sm font-medium">Point</label>
-                <input type="number" name="questions[${questionIndex}][point]" class="w-full border-gray-300 rounded-md mb-2" value="{{ old('questions[${questionIndex}][point]') }}" required>
-                @error('questions.${questionIndex}.point')
-                    <p class="text-red-600 text-sm">{{ $message }}</p>
-                @enderror
-
                 <div class="answers-container">
                     <h5 class="text-sm font-medium mb-2">Answers</h5>
                     <button type="button" class="bg-green-600 text-white px-2 py-1 rounded mb-4" onclick="addAnswer(this, ${questionIndex})">+ Add Answer</button>

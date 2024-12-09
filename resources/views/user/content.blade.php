@@ -45,7 +45,7 @@
 
         <div class="lg:col-span-2 border-dodger-blue-400 border rounded-lg">
             <video id="main-video" class="w-full rounded-t-lg" controls>
-                <source src="{{ asset('storage/' . $module->video) }}" type="video/mp4">
+                <source src="{{ secure_asset('storage/' . $module->video) }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="p-2">

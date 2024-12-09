@@ -8,7 +8,7 @@
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 
-            <div class="w-44 sm:w-auto mt-2 sm:mt-0">
+            <div class="w-44 sm:w-auto sm:mt-0">
                 <div class="relative w-full sm:w-auto" x-data="{ isOpen: false, selectedCategory: '{{ $selectedCategory }}' }">
                     <button @click="isOpen = !isOpen"
                         class="w-full sm:w-auto text-white bg-dodger-blue-500 hover:bg-dodger-blue-800 focus:ring-4 focus:outline-none focus:ring-dodger-blue-300 font-medium rounded-lg text-sm px-4 py-2 flex items-center justify-between sm:justify-start">
@@ -107,7 +107,7 @@
             @endforeach
         </div>
 
-        <div class="py-4 overflow-x-scroll">
+        <div class="py-4">
             {{ $quizzes->links('pagination::tailwind') }}
         </div>
     </div>

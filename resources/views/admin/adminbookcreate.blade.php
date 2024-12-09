@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-2">
-    <form action="{{ route('adminbook.store') }}" method="POST">
+    <form  method="POST">
         @csrf
         <div class="mb-4">
             <label for="name" class="block text-sm font-medium text-gray-700">Book Name</label>

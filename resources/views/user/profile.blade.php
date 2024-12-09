@@ -27,8 +27,8 @@
     <div class="bg-gray-100 w-full mx-auto px-4 sm:px-6 lg:px-12 py-6">
         <div class="bg-dodger-blue-200 rounded-lg p-6 flex flex-col md:flex-row items-center md:justify-between shadow-md">
             <div class="flex items-center space-x-4">
-                <img src="{{ $user->profile_picture ? secure_asset('storage/' . $user->profile_picture) : secure_asset('imgs/Profile.png') }}"
-                    alt="Profile Image" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-lg">
+                <img src="data:image/jpeg;base64, {{ $user->profile_picture }}" alt="Profile Image"
+                    class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-lg">
                 <div>
                     <h1 class="text-2xl font-bold text-gray-900">{{ $user->name }}</h1>
                     <p class="text-sm text-gray-700">{{ $user->email }}</p>
