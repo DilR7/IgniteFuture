@@ -212,7 +212,4 @@
             @endif
         </div>
     </div>
-
-
-
 @endsection
