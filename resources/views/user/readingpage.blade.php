@@ -51,10 +51,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 
     <script>
+        const base64Pdf = "{{ $book->content }}";
+
+        function base64ToUint8Array(base64) {
+            const raw = atob(base64);
+            const uint8Array = new Uint8Array(new ArrayBuffer(raw.length));
+            for (let i = 0; i < raw.length; i++) {
+                uint8Array[i] = raw.charCodeAt(i);
+            }
+            return uint8Array;
+        }
+
+        const pdfData = base64ToUint8Array(base64Pdf);
+
         const pdfjsLib = window['pdfjs-dist/build/pdf'];
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
 
-        const url = "{{ secure_asset($book->content) }}";
         let pdfDoc = null,
             pageNum = 1,
             pageRendering = false,
@@ -74,7 +86,9 @@
         window.addEventListener('resize', updateResponsiveMode);
         updateResponsiveMode();
 
-        pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+        pdfjsLib.getDocument({
+            data: pdfData
+        }).promise.then(function(pdfDoc_) {
             pdfDoc = pdfDoc_;
             document.getElementById('page-count').textContent = pdfDoc.numPages;
             renderPages(pageNum);

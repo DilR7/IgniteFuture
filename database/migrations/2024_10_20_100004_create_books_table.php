@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('desc');
-            $table->string('content');
-            // $table->lonmg
+            $table->longText('content');
+            $table->longText('img');
             $table->timestamps();
             $table->foreignId('module_id')->constrained('modules')->onDelete('cascade')->onUpdate('cascade');
         });

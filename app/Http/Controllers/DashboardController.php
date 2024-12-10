@@ -54,16 +54,29 @@ class DashboardController extends Controller
     // CreateModule
     public function storeModule(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'desc' => 'required|string',
-            'slug' => 'required|string|unique:modules,slug|max:255',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
             'completion' => 'nullable|integer|min:0|max:100',
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required',
         ]);
 
-        Module::create($validated);
+        $imgBase64 = null;
+        if ($request->hasFile('img')) {
+            $imgBase64 = base64_encode(file_get_contents($request->file('img')));
+        } 
+
+        Module::create([
+            'name' => $request->name,
+            'slug' => strtolower(str_replace(' ','_',$request->name)),
+            'desc' => $request->desc,
+            'img' => $imgBase64,
+            'completion' => 0,
+            'category_id' => $request->category_id,
+            'user_id' => $request->user_id
+        ]);;
 
         return redirect()->route('adminmodule')->with('success', 'Module added successfully!');
     }
@@ -79,17 +92,30 @@ class DashboardController extends Controller
     // UpdateModule
     public function updateModule(Request $request, $id)
     {
-        $module = Module::findOrFail($id);
-
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'desc' => 'required|string',
-            'slug' => "required|string|unique:modules,slug,{$id}|max:255",
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
             'completion' => 'nullable|integer|min:0|max:100',
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        $module->update($validated);
+        $module = Module::findOrFail($id);
+    
+        if ($request->hasFile('img')) {
+            $newImg = base64_encode(file_get_contents($request->file('img')));
+        } else {
+            $newImg = $module->img; 
+        }
+
+        $module->update([
+            'name' => $request->name,
+            'slug' => strtolower(str_replace(' ','_',$request->name)),
+            'desc' => $request->desc,
+            'img' => $newImg,
+            'completion' => 0,
+            'category_id' => $request->category_id,
+        ]);
 
         return redirect()->route('adminmodule')->with('success', 'Module updated successfully!');
     }
@@ -224,15 +250,27 @@ class DashboardController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'desc' => 'required|string',
-            'content' => 'required|string',
+            'content' => 'required|file|mimes:pdf|max:5120',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
             'module_id' => 'required|exists:modules,id',
         ]);
+
+        $contentBase64 = null;
+        if ($request->hasFile('content')) {
+            $contentBase64 = base64_encode(file_get_contents($request->file('content')));
+        }
+
+        $imgBase64 = null;
+        if ($request->hasFile('img')) {
+            $imgBase64 = base64_encode(file_get_contents($request->file('img')));
+        } 
 
         Book::insert([
             'name' => $request->name,
             'slug' => strtolower(str_replace(' ','_',$request->name)),
             'desc' => $request->desc,
-            'content' =>  $request->content,
+            'content' =>  $contentBase64,
+            'img' => $imgBase64,
             'module_id' => $request->module_id
         ]);
 
@@ -252,16 +290,31 @@ class DashboardController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'desc' => 'required|string',
-            'content' => 'required|string',
+            'content' => 'nullable|file|mimes:pdf|max:5120',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
             'module_id' => 'required|exists:modules,id', 
         ]);
 
         $book = Book::findOrFail($id);
+
+        if ($request->hasFile('content')) {
+            $newContent = base64_encode(file_get_contents($request->file('content')));
+        } else {
+            $newContent = $book->content;
+        }
+    
+        if ($request->hasFile('img')) {
+            $newImg = base64_encode(file_get_contents($request->file('img')));
+        } else {
+            $newImg = $book->img; 
+        }
+
         $book->update([
             'name' => $request->name,
             'slug' => strtolower(str_replace(' ', '_', $request->name)),
             'desc' => $request->desc,
-            'content' => $request->content,
+            'content' => $newContent,
+            'img' => $newImg,
             'module_id' => $request->module_id,
         ]);
 
@@ -300,36 +353,37 @@ class DashboardController extends Controller
     public function postQuiz(Request $request)
     {
         $request->validate([
-            'title' => 'string|max:255',
-            'desc' => 'string',
-            'score' => 'integer',
-            'module_id' => 'exists:modules,id',
-            'questions' => 'array',
-            'questions.*.text' => 'string|max:255',
-            'questions.*.point' => 'integer',
-            'questions.*.answers' => 'array',
-            'questions..answers..text' => 'string|max:255',
-            'questions..answers..is_correct' => 'boolean',
+            'title' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'module_id' => 'required|exists:modules,id',
+            'questions' => 'required|array',
+            'questions.*.text' => 'required|string|max:255',
+            'questions.*.point' => 'nullable|integer', // allow point to be nullable or not required
+            'questions.*.answers' => 'required|array',
+            'questions.*.answers.*.text' => 'required|string|max:255',
+            'questions.*.answers.*.is_correct' => 'required|boolean',
         ]);
 
+        $imgBase64 = null;
+            if ($request->hasFile('img') && $request->file('img')->isValid()) {
+            $imgBase64 = base64_encode(file_get_contents($request->file('img')));
+            }
 
         $quiz = Quiz::create([
             'title' => $request->title,
             'slug' => strtolower(str_replace(' ', '_', $request->title)),
             'desc' => $request->desc,
-            'score' => 0,
+            'img' => $imgBase64,
             'module_id' => $request->module_id,
         ]);
-    
-        // Add questions and answers
+
         foreach ($request->questions as $questionData) {
-            // Create a question
             $question = $quiz->questions()->create([
                 'text' => $questionData['text'],
-                'point' => $questionData['point'],
+                'point' => $questionData['point'] ?? null,  
             ]);
-    
-            // Create answers
+
             if (isset($questionData['answers'])) {
                 foreach ($questionData['answers'] as $answerData) {
                     $question->answers()->create([
@@ -339,10 +393,9 @@ class DashboardController extends Controller
                 }
             }
         }
-    
+
         return redirect()->route('adminquiz')->with('success', 'Quiz created successfully.');
     }
-    
 
     // Edit Quiz
     public function editQuiz($id)
@@ -354,37 +407,67 @@ class DashboardController extends Controller
 
     public function updateQuiz(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'desc' => 'required|string',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096',
+            'module_id' => 'required|exists:modules,id',
+            'questions' => 'required|array',
+            'questions.*.text' => 'required|string|max:255',
+            'questions.*.point' => 'nullable|integer', 
+            'questions.*.answers' => 'required|array',
+            'questions.*.answers.*.text' => 'required|string|max:255',
+            'questions.*.answers.*.is_correct' => 'boolean',
+        ]);
+
         $quiz = Quiz::findOrFail($id);
 
-        $validated = $request->validate([
-            'title' => 'string|max:255',
-            'module_id' => 'exists:modules,id',
-            'questions' => 'array',
-            'questions.*.text' => 'string|max:255',
-            'questions.*.point' => 'integer|min:1',
-            'questions.*.answers' => 'array',
-            'questions..answers..text' => 'string|max:255',
-        ]);
+        if ($request->hasFile('img')) {
+            $newImg = base64_encode(file_get_contents($request->file('img')));
+        } else {
+            $newImg = $quiz->img;
+        }
 
         $quiz->update([
             'title' => $request->title,
+            'slug' => strtolower(str_replace(' ', '_', $request->title)),
+            'desc' => $request->desc,
+            'img' => $newImg,
             'module_id' => $request->module_id,
         ]);
 
         foreach ($request->questions as $questionData) {
-            $question = $quiz->questions()->create([
-                'text' => $questionData['text'],
-                'point' => $questionData['point'],
-            ]);
-            foreach ($questionData['answers'] as $answerData) {
-                $question->answers()->create([
-                    'text' => $answerData['text'],
-                    'is_correct' => $answerData['is_correct'],
+            $question = $quiz->questions()->find($questionData['id']);
+            
+            if ($question) {
+                $question->update([
+                    'text' => $questionData['text'],
+                    'point' => $questionData['point'] ?? null,
                 ]);
+            } else {
+                $question = $quiz->questions()->create([
+                    'text' => $questionData['text'],
+                    'point' => $questionData['point'] ?? null,
+                ]);
+            }
+
+            foreach ($questionData['answers'] as $answerData) {
+                $answer = $question->answers()->find($answerData['id']);
+                if ($answer) {
+                    $answer->update([
+                        'text' => $answerData['text'],
+                        'is_correct' => $answerData['is_correct'] ?? false,
+                    ]);
+                } else {
+                    $question->answers()->create([
+                        'text' => $answerData['text'],
+                        'is_correct' => $answerData['is_correct'] ?? false,
+                    ]);
+                }
             }
         }
 
-        return redirect()->route('admin.adminquiz')->with('success', 'Quiz updated successfully.');
+        return redirect()->route('adminquiz')->with('success', 'Quiz updated successfully.');
     }
 
     public function deleteQuiz($id)

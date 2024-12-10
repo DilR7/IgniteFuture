@@ -156,8 +156,13 @@
                 @if (Auth::check())
                     <a href="{{ route('profileE') }}" class="flex items-center space-x-2">
                         <span class="text-white font-medium hover:underline">Hi, {{ $user->name }}</span>
-                        <img src="data:image/jpeg;base64, {{ $user->profile_picture }}" alt="Profile Image"
-                            class="h-8 w-8 rounded-full object-cover">
+                        @if ($user->profile_picture)
+                            <img src="data:image/jpeg;base64, {{ $user->profile_picture }}" alt="Profile Image"
+                                class="h-8 w-8 rounded-full object-cover">
+                        @else
+                            <img src="{{ secure_asset('imgs/Profile.png') }}" alt="Default Profile Image"
+                                class="h-8 w-8 rounded-full object-cover">
+                        @endif
                     </a>
                 @else
                 @endif

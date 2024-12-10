@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/admin.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,18 +11,20 @@
 
 <body class="flex h-screen">
 
-    <div class="w-64">
+    <div class="w-64 bg-gray-800 text-white flex-none">
         @include('admin.layouts.sidebar')
     </div>
-    <div class=" flex flex-col">
-        <header class="p-4 w-auto flex-grow">
+
+    <div class="flex flex-col flex-grow w-full">
+        <header class="w-full bg-gray-900 text-white">
             @include('admin.layouts.header')
         </header>
 
-        <main id="content" class="flex-grow p-4 mt-8 ml-10 overflow-auto">
+        <main id="content" class="px-2 mt-20 w-full">
             @yield('content')
         </main>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.js"></script>
 </body>
 

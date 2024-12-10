@@ -86,7 +86,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
         Route::get('/module/add', 'addModuleForm')->name('addModuleForm');
         Route::post('/module/store', 'storeModule')->name('storeModule');
         Route::get('/module/edit/{id}', 'editModuleForm')->name('editModuleForm');
-        Route::post('/module/update/{id}', 'updateModule')->name('updateModule');
+        Route::put('/module/update/{id}', 'updateModule')->name('updateModule');
         Route::post('/module/delete/{id}', 'deleteModule')->name('deleteModule');
 
         //CRUD Quiz

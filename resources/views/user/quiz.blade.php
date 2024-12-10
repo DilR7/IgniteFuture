@@ -81,8 +81,8 @@
                 <div
                     class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                     <div class="relative m-2.5 overflow-hidden text-white rounded-md">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                            alt="card-image"
+                        <img src="data:image/png;base64, {{ $quiz->img }}"
+                            style="width: 1200px; height: auto; object-fit: cover;" alt="card-image"
                             class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 object-cover" />
                     </div>
                     <div class="p-4 flex-grow">

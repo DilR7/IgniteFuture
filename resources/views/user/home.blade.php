@@ -4,7 +4,7 @@
 @extends('user.layouts.template')
 @section('main-content')
     <div class="bg-white border-b-2 border-dodger-blue-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16">
+        <div class="w-full mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between h-16">
             <div class="flex items-center space-x-2">
                 <img src="{{ secure_asset('imgs/Logo.png') }}" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12">
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
@@ -43,9 +43,13 @@
                     Our mission is to help people to find the best course online and learn
                     with experts anytime, anywhere.
                 </div>
-                <button class="bg-dodger-blue-500 w-32 sm:w-24 p-2 text-center rounded-lg text-white font-medium text-sm">
-                    JOIN US
-                </button>
+                @if (Auth::user())
+                @else
+                    <button onclick="window.location.href='{{ route('register') }}'"
+                        class="bg-dodger-blue-500 w-32 sm:w-24 p-2 text-center rounded-lg text-white font-medium text-sm">
+                        JOIN US
+                    </button>
+                @endif
             </div>
         </div>
     </div>
@@ -81,8 +85,8 @@
                     <div
                         class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                         <div class="relative m-2.5 overflow-hidden text-white rounded-md">
-                            <img src="{{ $module->image ? secure_asset('storage/' . $module->image) : 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80' }}"
-                                alt="Module Image"
+                            <img src="data:image/png;base64, {{ $module->img }}" alt="Module Image"
+                                style="width: 1200px; height: auto; object-fit: cover;"
                                 class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 sm:h-48 md:h-56 object-cover" />
                         </div>
                         <div class="p-4 flex-grow">
@@ -193,7 +197,7 @@
                         class="flex flex-col text-center {{ $index == 0 ? 'order-2' : ($index == 1 ? 'order-1' : 'order-3') }}">
                         <div
                             class="relative p-4 rounded-t-lg {{ $index == 0 ? 'h-[140px] bg-yellow-400' : ($index == 1 ? 'h-[120px] bg-gray-300' : 'h-[100px] bg-yellow-700') }}">
-                            <img src="data:image/jpeg;base64, {{ $user->profile_picture }}" alt="{{ $student->name }}"
+                            <img src="data:image/png;base64, {{ $student->profile_picture }}" alt="{{ $student->name }}"
                                 class="h-20 w-20 sm:h-24 sm:w-24 mx-auto rounded-full object-cover">
                             <div
                                 class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-50">
