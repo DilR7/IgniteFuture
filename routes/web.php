@@ -31,7 +31,8 @@ Route::middleware(['auth', 'role:user,admin'])->group(function(){
     });
 
     Route::controller(ContentController::class)->group(function(){
-        Route::post('/modules/{slug}/content', 'index')->name('contents');
+        Route::get('/modules/{module_id}/content', 'index2')->name('content');
+        Route::post('/modules/{slug}/contents', 'index')->name('contents');
         Route::get('/content/{slug}', 'otherContent')->name('othercontents');
         Route::get('/modules/{module_id}/mycontent', 'myContent')->name('mycontents');
         Route::post('/contents/{id}/mark-watched', 'markAsWatched')->name('contents.markWatched');

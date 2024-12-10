@@ -50,7 +50,7 @@
                 <h3 class="text-lg font-semibold mb-4">Enrolled Modules</h3>
                 <div class="max-h-60 overflow-auto space-y-4 pr-2">
                     @foreach ($listEnrolled as $list)
-                        <a href="{{ route('contents', ['slug' => $list->slug]) }}" class="block">
+                        <a href="{{ route('content', ['module_id' => $list->id]) }}" class="block">
                             <div
                                 class="bg-gray-100 rounded-lg flex items-center p-4 shadow-sm hover:shadow-md transition-shadow">
                                 <img src="data:image/png;base64, {{ $list->img }}" alt="Module Image"

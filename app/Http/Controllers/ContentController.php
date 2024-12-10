@@ -46,6 +46,29 @@ class ContentController extends Controller
         return view('user.content', compact('module', 'contents','mainContent','listCourse','relatedModule','user'));
     }
 
+    public function index2($module_id)
+    {
+        $user = Auth::user();
+
+        $module = Module::findOrFail($module_id);
+
+        $contents = Content::where('module_id', $module->id)->get();
+        $mainContent = $contents->first();
+
+        $listCourse = Module::whereIn('id', Enrollment::where('user_id', $user->id)->pluck('module_id'))
+                        ->withCount('contents')
+                        ->get();
+
+                        $relatedModule = Module::whereIn('category_id', Category::pluck('id'))
+                        ->inRandomOrder()
+                        ->withCount('contents')
+                        ->take(2)
+                        ->get();
+
+        return view('user.content', compact('mainContent', 'module', 'contents', 'listCourse','relatedModule','user'));
+    }
+
+
     public function otherContent($slug)
     {
         $user = Auth::user();
