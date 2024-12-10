@@ -52,8 +52,8 @@
                     @foreach ($listEnrolled as $list)
                         <div
                             class="bg-gray-100 rounded-lg flex items-center p-4 shadow-sm hover:shadow-md transition-shadow">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                                alt="Module Image" class="w-20 h-20 rounded-lg object-cover shadow-sm">
+                            <img src="data:image/png;base64, {{ $book->img }}" alt="Module Image"
+                                class="w-20 h-20 rounded-lg object-cover shadow-sm">
                             <div class="ml-4">
                                 <h4 class="font-semibold text-gray-800">{{ $list->name }}</h4>
                                 <p class="text-sm text-gray-600">{{ $list->contents_count }} Videos</p>
