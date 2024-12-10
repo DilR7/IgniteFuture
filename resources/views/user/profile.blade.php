@@ -52,7 +52,7 @@
                     @foreach ($listEnrolled as $list)
                         <div
                             class="bg-gray-100 rounded-lg flex items-center p-4 shadow-sm hover:shadow-md transition-shadow">
-                            <img src="data:image/png;base64, {{ $book->img }}" alt="Module Image"
+                            <img src="data:image/png;base64, {{ $list->img }}" alt="Module Image"
                                 class="w-20 h-20 rounded-lg object-cover shadow-sm">
                             <div class="ml-4">
                                 <h4 class="font-semibold text-gray-800">{{ $list->name }}</h4>

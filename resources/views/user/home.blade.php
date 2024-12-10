@@ -197,7 +197,7 @@
                         class="flex flex-col text-center {{ $index == 0 ? 'order-2' : ($index == 1 ? 'order-1' : 'order-3') }}">
                         <div
                             class="relative p-4 rounded-t-lg {{ $index == 0 ? 'h-[140px] bg-yellow-400' : ($index == 1 ? 'h-[120px] bg-gray-300' : 'h-[100px] bg-yellow-700') }}">
-                            <img src="data:image/png;base64, {{ $student->profile_picture }}" alt="{{ $student->name }}"
+                            <img src="data:image/jpeg;base64, {{ $student->profile_picture }}" alt="{{ $student->name }}"
                                 class="h-20 w-20 sm:h-24 sm:w-24 mx-auto rounded-full object-cover">
                             <div
                                 class="absolute bottom-0 px-3 py-1 text-sm rounded-full left-1/2 transform -translate-x-1/2 bg-gray-50">
