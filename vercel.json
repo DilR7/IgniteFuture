@@ -3,9 +3,7 @@
     "framework": null,
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.6.0" },
-        "excludeFiles": {
-            "patterns": ["{.next,*.cache,node_modules,public,app}/**"]
-        }
+        "excludeFiles": "{.next,*.cache,node_modules,public,app}/**"
     },
     "routes": [
         {
