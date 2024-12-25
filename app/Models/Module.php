@@ -14,6 +14,7 @@ class Module extends Model
     protected $fillable = [
         'name',
         'desc',
+        'img',
         'slug',
         'category_id',
         'user_id',

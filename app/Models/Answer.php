@@ -9,8 +9,8 @@ class Answer extends Model
 {
     use HasFactory;
     protected $fillable = ['text', 'is_correct', 'question_id'];
-    public function questions()
+    public function question()
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(Question::class);
     }
 }

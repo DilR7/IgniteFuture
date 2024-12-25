@@ -27,8 +27,8 @@
     <div class="bg-gray-100 w-full mx-auto px-4 sm:px-6 lg:px-12 py-6">
         <div class="bg-dodger-blue-200 rounded-lg p-6 flex flex-col md:flex-row items-center md:justify-between shadow-md">
             <div class="flex items-center space-x-4">
-                <img src="{{ $user->profile_picture ? secure_asset('storage/' . $user->profile_picture) : secure_asset('imgs/Profile.png') }}"
-                    alt="Profile Image" class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-lg">
+                <img src="data:image/jpeg;base64, {{ $user->profile_picture }}" alt="Profile Image"
+                    class="h-24 w-24 rounded-full object-cover border-4 border-white shadow-lg">
                 <div>
                     <h1 class="text-2xl font-bold text-gray-900">{{ $user->name }}</h1>
                     <p class="text-sm text-gray-700">{{ $user->email }}</p>
@@ -50,15 +50,17 @@
                 <h3 class="text-lg font-semibold mb-4">Enrolled Modules</h3>
                 <div class="max-h-60 overflow-auto space-y-4 pr-2">
                     @foreach ($listEnrolled as $list)
-                        <div
-                            class="bg-gray-100 rounded-lg flex items-center p-4 shadow-sm hover:shadow-md transition-shadow">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                                alt="Module Image" class="w-20 h-20 rounded-lg object-cover shadow-sm">
-                            <div class="ml-4">
-                                <h4 class="font-semibold text-gray-800">{{ $list->name }}</h4>
-                                <p class="text-sm text-gray-600">{{ $list->contents_count }} Videos</p>
+                        <a href="{{ route('content', ['module_id' => $list->id]) }}" class="block">
+                            <div
+                                class="bg-gray-100 rounded-lg flex items-center p-4 shadow-sm hover:shadow-md transition-shadow">
+                                <img src="data:image/png;base64, {{ $list->img }}" alt="Module Image"
+                                    class="w-20 h-20 rounded-lg object-cover shadow-sm">
+                                <div class="ml-4">
+                                    <h4 class="font-semibold text-gray-800">{{ $list->name }}</h4>
+                                    <p class="text-sm text-gray-600">{{ $list->contents_count }} Videos</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
             </div>

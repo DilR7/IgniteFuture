@@ -31,7 +31,8 @@ Route::middleware(['auth', 'role:user,admin'])->group(function(){
     });
 
     Route::controller(ContentController::class)->group(function(){
-        Route::post('/modules/{slug}/content', 'index')->name('contents');
+        Route::get('/modules/{module_id}/content', 'index2')->name('content');
+        Route::post('/modules/{slug}/contents', 'index')->name('contents');
         Route::get('/content/{slug}', 'otherContent')->name('othercontents');
         Route::get('/modules/{module_id}/mycontent', 'myContent')->name('mycontents');
         Route::post('/contents/{id}/mark-watched', 'markAsWatched')->name('contents.markWatched');
@@ -86,7 +87,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
         Route::get('/module/add', 'addModuleForm')->name('addModuleForm');
         Route::post('/module/store', 'storeModule')->name('storeModule');
         Route::get('/module/edit/{id}', 'editModuleForm')->name('editModuleForm');
-        Route::post('/module/update/{id}', 'updateModule')->name('updateModule');
+        Route::put('/module/update/{id}', 'updateModule')->name('updateModule');
         Route::post('/module/delete/{id}', 'deleteModule')->name('deleteModule');
 
         //CRUD Quiz

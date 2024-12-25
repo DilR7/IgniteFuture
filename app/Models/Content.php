@@ -15,7 +15,8 @@ class Content extends Model
         'name',
         'slug',
         'desc',
-        'video'
+        'video',
+        'module_id'
     ];
 
     public function module() : BelongsTo

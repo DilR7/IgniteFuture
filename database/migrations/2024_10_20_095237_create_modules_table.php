@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('desc');
+            $table->longText('img')->nullable();
             $table->string('slug')->unique();
             $table->boolean('completion')->default(0);
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');

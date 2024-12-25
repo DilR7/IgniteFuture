@@ -45,9 +45,9 @@
                 <div
                     class="cursor-pointer group relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                     <div class="relative m-2.5 overflow-hidden text-white rounded-md">
-                        <img class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110"
-                            src="https://images.unsplash.com/photo-1496436818536-e239445d3327?q=80&w=1200"
-                            alt="investment-seed-round" />
+                        <img src="data:image/png;base64, {{ $book->img }}" alt="Book Cover"
+                            style="width: 1200px; height: auto; object-fit: cover;"
+                            class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 object-cover">
                     </div>
                     <div class="p-4">
                         <h6 class="mb-2 text-slate-800 text-xl font-semibold line-clamp-1">

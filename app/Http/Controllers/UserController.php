@@ -43,16 +43,17 @@ class UserController extends Controller
 
     $request->validate([
         'name' => 'required|string|max:255',
-        'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional profile picture
+        'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
     if ($request->hasFile('profile_picture')) {
-        if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
-            Storage::disk('public')->delete($user->profile_picture);
+        if ($user->profile_picture) {
+            $user->profile_picture = null; 
         }
 
-        $filePath = $request->file('profile_picture')->store('profile_pictures', 'public');
-        $data['profile_picture'] = $filePath; // Add profile picture path to data
+        $image = $request->file('profile_picture');
+        $base64Image = base64_encode(file_get_contents($image));
+        $data['profile_picture'] = $base64Image;
     }
 
     DB::table('users')->where('id', Auth::id())->update($data);

@@ -8,7 +8,7 @@
                 <p class="font-bold text-lg sm:text-xl">Ignite<span class="text-dodger-blue-500">Future</span></p>
             </div>
 
-            <div class="w-44 sm:w-auto mt-2 sm:mt-0">
+            <div class="w-44 sm:w-auto sm:mt-0">
                 <div class="relative w-full sm:w-auto" x-data="{ isOpen: false, selectedCategory: '{{ $selectedCategory }}' }">
                     <button @click="isOpen = !isOpen"
                         class="w-full sm:w-auto text-white bg-dodger-blue-500 hover:bg-dodger-blue-800 focus:ring-4 focus:outline-none focus:ring-dodger-blue-300 font-medium rounded-lg text-sm px-4 py-2 flex items-center justify-between sm:justify-start">
@@ -81,8 +81,8 @@
                 <div
                     class="cursor-pointer group relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg hover:shadow-lg transition-shadow duration-300">
                     <div class="relative m-2.5 overflow-hidden text-white rounded-md">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                            alt="card-image"
+                        <img src="data:image/png;base64, {{ $quiz->img }}"
+                            style="width: 1200px; height: auto; object-fit: cover;" alt="card-image"
                             class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-40 object-cover" />
                     </div>
                     <div class="p-4 flex-grow">
@@ -107,7 +107,7 @@
             @endforeach
         </div>
 
-        <div class="py-4 overflow-x-scroll">
+        <div class="py-4">
             {{ $quizzes->links('pagination::tailwind') }}
         </div>
     </div>

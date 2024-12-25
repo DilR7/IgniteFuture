@@ -31,8 +31,8 @@
                     <li class="flex items-center space-x-4 p-2 hover:bg-gray-200 rounded-lg">
                         <a href="{{ route('mycontents', ['module_id' => $course->id]) }}"
                             class="flex items-center space-x-4 prevent-jump">
-                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                                alt="Course Image" class="w-12 h-12 rounded-lg object-cover">
+                            <img src="data:image/png;base64, {{ $course->img }}" alt="Course Image"
+                                class="w-12 h-12 rounded-lg object-cover">
                             <div>
                                 <h3 class="font-medium text-sm line-clamp-2">{{ $course->name }}</h3>
                                 <p class="text-xs text-gray-500">{{ $course->contents_count }} Videos</p>
@@ -45,7 +45,7 @@
 
         <div class="lg:col-span-2 border-dodger-blue-400 border rounded-lg">
             <video id="main-video" class="w-full rounded-t-lg" controls>
-                <source src="{{ asset('storage/' . $module->video) }}" type="video/mp4">
+                <source src="{{ secure_asset($mainContent->video) }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="p-2">
@@ -89,8 +89,7 @@
                                 action="{{ route('contents', ['slug' => $relatedCourse->slug]) }}" method="POST">
                                 @csrf
                                 <div class="relative overflow-hidden text-white rounded-md">
-                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1471&amp;q=80"
-                                        alt="card-image"
+                                    <img src="data:image/png;base64, {{ $relatedCourse->img }}" alt="card-image"
                                         class="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110 w-full h-24 object-cover" />
                                 </div>
                                 <div class="p-2">
