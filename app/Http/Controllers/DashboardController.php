@@ -330,11 +330,13 @@ class DashboardController extends Controller
             ]);
     
             // Create answers
-            foreach ($questionData['answers'] as $answerData) {
-                $question->answers()->create([
-                    'text' => $answerData['text'],
-                    'is_correct' => $answerData['is_correct'] ? 1 : 0,
-                ]);
+            if (isset($questionData['answers'])) {
+                foreach ($questionData['answers'] as $answerData) {
+                    $question->answers()->create([
+                        'text' => $answerData['text'],
+                        'is_correct' => $answerData['is_correct'] ?? false,
+                    ]);
+                }
             }
         }
     
